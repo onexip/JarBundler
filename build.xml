@@ -1,6 +1,6 @@
 <project name="jarbundler" default="jar" basedir=".">
 
-  <property name="version" value="2.3.1"/>
+  <property name="version" value="2.3.2"/>
   <property name="description" value="ANT task for creating Mac OS X application bundles"/>    
 
 

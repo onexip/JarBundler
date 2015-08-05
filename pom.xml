@@ -1,0 +1,138 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ultramixer.jarbundler</groupId>
+    <artifactId>jarbundler-parent</artifactId>
+    <version>3.2.2</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>core</module>
+        <module>examples</module>
+    </modules>
+    <name>JarBundler</name>
+    <description></description>
+    <inceptionYear>2015</inceptionYear>
+    <url>http://www.ultramixer.com/</url>
+
+    <build>
+        <plugins>
+
+            <!-- assumes java 1.8 as the minimal JDK -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <debug>true</debug>
+                    <debuglevel>none</debuglevel>
+                    <compilerArgument>-g:none</compilerArgument>
+                </configuration>
+            </plugin>
+
+
+            <!-- surefire 2.7+ runs test classes by annotation instead of classname pattern -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.8.1</version>
+            </plugin>
+
+            <!-- include a javadoc jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- include a sourcecode jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <!--<phase>verify</phase>-->
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- autoversion submodules -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.2.1</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <reportPlugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-javadoc-plugin</artifactId>
+                            <version>2.9.1</version>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-project-info-reports-plugin</artifactId>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-changes-plugin</artifactId>
+                            <reportSets>
+                                <reportSet>
+                                    <reports>
+                                        <report>changes-report</report>
+                                    </reports>
+                                </reportSet>
+                            </reportSets>
+                        </plugin>
+                    </reportPlugins>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!--
+    <licenses>
+        <license>
+            <name>BSD</name>
+            <url>http://www.debian.org/misc/bsd.license</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    //-->
+
+    <!--
+    <scm>
+        <connection>scm:git:https://code.google.com/p/miglayout</connection>
+        <developerConnection>scm:git:https://code.google.com/p/miglayout</developerConnection>
+        <url>http://code.google.com/p/miglayout/source/browse/</url>
+    </scm>
+    //-->
+
+
+</project>
