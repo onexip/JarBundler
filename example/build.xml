@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- ===========================================================================================
+Use this sample build in your own projects.  After putting the JarBundler-X.X.jar file in 
+your ANT library remove the 'classpath' attribute from the "taskdef" element.
+============================================================================================ -->
+
+<project name="Hello World" default="simple" basedir=".">
+
+    <property name="version" value="4.3.1"/>
+    <property name="buildnumber" value="213"/>
+    <property name="jarbundler.jar" value="../build/jarbundler-2.3.1.jar"></property>
+
+    <tstamp>
+        <format property="this_year" pattern="yyyy"/>
+    </tstamp>
+
+    <property name="copyright" value="Copyright &#xa9; ${this_year} Informagen, Inc."/>
+
+
+    <target name="compile" description="Compile the classes">
+        <mkdir dir="classes"/>
+        <javac srcdir="src/java" destdir="classes" deprecation="on" source="1.4"/>
+    </target>
+
+
+    <target name="jar" depends="compile" description="Create JAR file">
+        <mkdir dir="build"/>
+        <jar jarfile="build/${ant.project.name}.jar" basedir="classes"/>
+    </target>
+
+
+    <!-- Create a JNI library for launching the Help Viewer -->
+    <target name="jni" description="Create HelpBook JNI Library">
+        <mkdir dir="build"/>
+        <exec executable="cc">
+            <arg line="-c"/>
+            <arg line="-I/System/Library/Frameworks/JavaVM.framework/Headers"/>
+            <arg line="-o build/HelpBookJNI.o"/>
+            <arg value="src/obj-c/HelpBookJNI.m"/>
+        </exec>
+
+        <exec executable="cc">
+            <arg line="-dynamiclib"/>
+            <arg line="-framework JavaVM"/>
+            <arg line="-framework Cocoa"/>
+            <arg line="-o build/libHelpBookJNI.jnilib"/>
+            <arg value="build/HelpBookJNI.o"/>
+        </exec>
+
+        <delete file="build/HelpBookJNI.o" quiet="true"/>
+    </target>
+
+
+    <!-- Create a simple application to see if all the bits came together properly -->
+
+    <target name="simple" depends="jar" description="Build an example application">
+
+        <taskdef name="jarbundler"
+                 classpath="${jarbundler.jar}"
+                 classname="net.sourceforge.jarbundler.JarBundler"/>
+
+        <jarbundler dir="${basedir}" verbose="true" showPlist="true"
+                    name="${ant.project.name}"
+                    mainclass="net.sourceforge.jarbundler.example.HelloWorld"
+                    jar="build/${ant.project.name}.jar"
+                    icon="icons/${ant.project.name}.icns"
+                    version="${version}"
+                    copyright="${copyright}"/>
+
+    </target>
+
+
+    <!--
+       Create a complex application which:
+           - Recognizes text and html document types
+           - Has a bundle document type, extension '.hello'
+           - Includes a Help Book
+     -->
+
+    <target name="complex" depends="jar, jni" description="Build an example application">
+
+        <taskdef name="jarbundler"
+                 classpath="${jarbundler.jar}"
+                 classname="net.sourceforge.jarbundler.JarBundler"/>
+
+        <jarbundler dir="${basedir}" verbose="true" showPlist="false"
+                    name="${ant.project.name}"
+                    copyright="${copyright}"
+                    shortname="Hello"
+                    signature="Helo"
+                    stubfile="Hello World"
+                    mainclass="net.sourceforge.jarbundler.example.HelloWorld"
+                    jar="build/${ant.project.name}.jar"
+                    icon="icons/${ant.project.name}.icns"
+                    jvmversion="1.5+"
+                    version="${version}"
+                    infostring="${ant.project.name}, ${copyright}"
+                    build="${buildnumber}"
+                    bundleid="net.sourceforge.jarbundler.example.HelloWorld"
+                    helpbookfolder="HelpBook"
+                    helpbookname="Hello World Help"
+                    suFeedURL=""
+        >
+
+
+            <!-- Adjust the look, feel and behavior -->
+            <javaproperty name="apple.laf.useScreenMenuBar" value="true"/>
+            <javaproperty name="apple.awt.brushMetal" value="true"/>
+            <javaproperty name="apple.awt.showGrowBox" value="false"/>
+
+            <lsenvironment name="DYLD_LIBRARY_PATH"
+                           value="Contents/Resources/native/mac/x86:$DYLD_LIBRARY_PATH"></lsenvironment>
+
+            <!-- Associate document types with this application -->
+            <documenttype name="Hello World text document"
+                          extensions="txt text"
+                          ostypes="TEXT sEXT ttro"
+                          iconFile="icons/txt.icns"
+                          role="Editor"/>
+
+            <documenttype name="Hello World HTML document"
+                          extensions="html htm"
+                          iconFile="icons/html.icns"
+                          role="Editor"/>
+
+            <documenttype name="Hello World RTF document"
+                          extensions="rtf"
+                          role="Viewer"/>
+
+            <documenttype name="Hello World images"
+                          mimetypes="image/jpeg image/png"
+                          role="Viewer"/>
+
+            <documenttype name="Hello project document"
+                          extensions="hello"
+                          iconFile="icons/Hello Document.icns"
+                          bundle="true"
+                          role="Editor"/>
+
+            <!-- Just proving we can included these files.  Might use them in About boxes -->
+            <resourcefilelist dir=".." files="LICENSE.TXT"/>
+
+            <!-- Copy the HelpBook JNI library  -->
+            <javafilelist dir="${basedir}/build" files="libHelpBookJNI.jnilib"/>
+
+
+            <!-- Copy the HelpBooks to the language specific folders            -->
+            <!--  English will use the foldername and book name from the Bundle -->
+            <!--  German or 'de' will use the custom folder name and book name  -->
+
+            <HelpBook locale="English">
+                <fileset dir="HelpBook/English"/>
+                <fileset dir="HelpBook/common"/>
+            </HelpBook>
+
+            <helpbook foldername="Hilfebuch" name="Hallo Welt Hilfe" locale="German">
+                <fileset dir="HelpBook/German"/>
+                <fileset dir="HelpBook/common"/>
+            </helpbook>
+            <!--
+                  <helpbook name="Hjälp" locale="sv">
+                      <fileset dir="HelpBook/Swedish" />
+                      <fileset dir="HelpBook/common" />
+                  </helpbook>
+            -->
+
+
+        </jarbundler>
+
+    </target>
+
+
+    <target name="clean" description="Clean up anything we can't rebuild">
+        <delete dir="${ant.project.name}.app" quiet="true"/>
+        <delete dir="build" quiet="true"/>
+        <delete dir="classes" quiet="true"/>
+    </target>
+
+</project>
+
+        <!--
+        cc -c -I/System/Library/Frameworks/JavaVM.framework/Headers src/obj-c/HelpBookJNI.m
+        cc -dynamiclib -o libHelpBookJNI.jnilib HelpBookJNI.o -framework JavaVM -framework Cocoa
+        -->
+
+
