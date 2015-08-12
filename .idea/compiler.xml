@@ -36,6 +36,7 @@
     <bytecodeTargetLevel>
       <module name="core" target="1.6" />
       <module name="examples" target="1.6" />
+      <module name="jarbundler-parent" target="1.6" />
       <module name="trunk" target="1.6" />
     </bytecodeTargetLevel>
   </component>

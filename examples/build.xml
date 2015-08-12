@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 
+<!--
+  ~ Copyright (c) 2015, UltraMixer Digital Audio Solutions <info@ultramixer.com>, Seth J. Morabito <sethm@loomcom.com>
+  ~ All rights reserved.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  ~
+  -->
+
 <!-- ===========================================================================================
 Use this sample build in your own projects.  After putting the JarBundler-X.X.jar file in 
 your ANT library remove the 'classpath' attribute from the "taskdef" element.
@@ -15,7 +33,7 @@ your ANT library remove the 'classpath' attribute from the "taskdef" element.
         <format property="this_year" pattern="yyyy"/>
     </tstamp>
 
-    <property name="copyright" value="Copyright &#xa9; ${this_year} Informagen, Inc."/>
+    <property name="copyright" value="Copyright &#xa9; ${this_year} UltraMixer"/>
 
 
     <target name="compile" description="Compile the classes">
@@ -58,11 +76,11 @@ your ANT library remove the 'classpath' attribute from the "taskdef" element.
 
         <taskdef name="jarbundler"
                  classpath="${jarbundler.jar}"
-                 classname="net.sourceforge.jarbundler.JarBundler"/>
+                 classname="com.ultramixer.jarbundler.JarBundler"/>
 
         <jarbundler dir="${basedir}" verbose="true" showPlist="true"
                     name="${ant.project.name}"
-                    mainclass="net.sourceforge.jarbundler.example.HelloWorld"
+                    mainclass="com.ultramixer.jarbundler.example.HelloWorld"
                     jar="build/${ant.project.name}.jar"
                     icon="icons/${ant.project.name}.icns"
                     version="${version}"
@@ -82,7 +100,7 @@ your ANT library remove the 'classpath' attribute from the "taskdef" element.
 
         <taskdef name="jarbundler"
                  classpath="${jarbundler.jar}"
-                 classname="net.sourceforge.jarbundler.JarBundler"/>
+                 classname="com.ultramixer.jarbundler.JarBundler"/>
 
         <jarbundler dir="${basedir}" verbose="true" showPlist="false"
                     name="${ant.project.name}"
@@ -90,14 +108,14 @@ your ANT library remove the 'classpath' attribute from the "taskdef" element.
                     shortname="Hello"
                     signature="Helo"
                     stubfile="Hello World"
-                    mainclass="net.sourceforge.jarbundler.example.HelloWorld"
+                    mainclass="com.ultramixer.jarbundler.example.HelloWorld"
                     jar="build/${ant.project.name}.jar"
                     icon="icons/${ant.project.name}.icns"
                     jvmversion="1.5+"
                     version="${version}"
                     infostring="${ant.project.name}, ${copyright}"
                     build="${buildnumber}"
-                    bundleid="net.sourceforge.jarbundler.example.HelloWorld"
+                    bundleid="com.ultramixer.jarbundler.example.HelloWorld"
                     helpbookfolder="HelpBook"
                     helpbookname="Hello World Help"
                     suFeedURL=""

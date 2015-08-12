@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <component name="CopyrightManager">
-  <settings default="" />
+  <settings default="">
+    <module2copyright>
+      <element module="All" copyright="JarBundler" />
+    </module2copyright>
+  </settings>
 </component>
