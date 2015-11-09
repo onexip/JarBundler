@@ -8,7 +8,7 @@ Project moved from http://sourceforge.net/projects/jarbundler/
 <dependency>
     <groupId>com.ultramixer.jarbundler</groupId>
     <artifactId>jarbundler-core</artifactId>
-    <version>3.2.2</version>
+    <version>3.3.0</version>
 </dependency>
 ```
 
