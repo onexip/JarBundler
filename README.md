@@ -19,7 +19,7 @@ Take a look at ./dox/index.html
 
 # ChangeLog
 
-* **version 3.3.0** (2015-11-09)
+## Version 3.3.0 (2015-11-09)
 * Merged changes from https://github.com/tofi86/Jarbundler/blob/ into official release
 * Added optional `contentSize` attribute to JarBundler task (for Plist key `NSPreferencesContentSize`)
 * Added optional `useJavaXKey` attribute to JarBundler task (for [universalJavaApplicationStub](https://github.com/tofi86/universalJavaApplicationStub)-Support)
