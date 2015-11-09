@@ -13,7 +13,6 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
- *
  */
 
 package com.ultramixer.jarbundler;
@@ -98,9 +97,6 @@ import java.lang.System;
  * 
  * <dt>version
  * <dd>Version information about your application (e.g., "1.0")
- * 
- * <dt>infostring
- * <dd>String to show in the "Get Info" dialog
  * </dl>
  * 
  * These attributes control the fine-tuning of the "Mac OS X" look and feel.
@@ -230,7 +226,7 @@ import java.lang.System;
  *                name=&quot;Foo Project&quot;
  *                mainclass=&quot;org.bar.Main&quot;
  *                version=&quot;1.0 b 1&quot;
- *                infostring=&quot;Foo Project (c) 2002&quot; 
+ *                copyright=&quot;Foo Project (c) 2002&quot;
  *                type=&quot;APPL&quot;
  *                jars=&quot;bin/foo.jar bin/bar.jar&quot;
  *                execs=&quot;exec/foobar&quot;
@@ -440,12 +436,30 @@ public class JarBundler extends MatchingTask {
 		bundleProperties.setNSHumanReadableCopyright(s);
 	}
 
-	/**
-	 * Setter for the deprecated "aboutmenuname" attribute (optional)
+	/**  Tobias Fischer, v2.4.0
+	 * Setter for the "NSHighResolutionCapable" attribute (optional) Default "false".
 	 */
-	public void setAboutmenuname(String s) {
-		System.err.println("WARNING: 'aboutmenuname' is deprecated! Use JarBundler attribute 'shortname' instead!");
-		bundleProperties.setCFBundleName(s);
+	public void setHighResolutionCapable(boolean b) {
+		bundleProperties.setNSHighResolutionCapable(b);
+	}
+
+	/**  Adrien Quillet, v2.5.0
+	 * Setter for the "NSPreferencesContentSize" attribute (optional).
+	 */
+	public void setContentSize(String s) {
+		// Check input consistency
+		String pattern = "[0-9]+,[0-9]+";
+		if(!s.matches(pattern)) {
+			throw new BuildException("Invalid content size format (expected 'width,height')");
+		}
+		bundleProperties.setNSPreferencesContentSize(s);
+	}
+
+	/**  Tobias Fischer, v2.4.0
+	 * Setter for the alternative 'JavaX' dictionary key
+	 */
+	public void setUseJavaXKey(boolean b) {
+		bundleProperties.setJavaXKey(b);
 	}
 
 	/**
@@ -560,39 +574,7 @@ public class JarBundler extends MatchingTask {
 	}
 
 
-	/**
-	 * Setter for the "infostring" attribute (optional) This key identifies a
-	 * human-readable plain text string displaying the copyright information for
-	 * the bundle. The Finder displays this information in the Info window of
-	 * the bundle. (This string was also known as the long version string in Mac
-	 * OS 9). The format of the key should be of the following format: "&copy;
-	 * Great Software, Inc, 1999". You can localize this string by including it
-	 * in the InfoPlist.strings file of the appropriate .lproj directory.
-	 */
 
-	public void setInfoString(String s) {
-		bundleProperties.setCFBundleGetInfoString(s);
-	}
-
-	/**
-	 * Setter for the "shortinfostring" attribute (optional) This key identifies
-	 * the marketing version of the bundle. The marketing version is a string
-	 * that usually displays the major and minor version of the bundle. This
-	 * string is usually of the form n.n.n where n is a number. The first number
-	 * is the major version number of the bundle. The second and third numbers
-	 * are minor revision numbers. You may omit minor revision numbers as
-	 * appropriate. The value of this key is displayed in the default About box
-	 * for Cocoa applications.
-	 * 
-	 * The value for this key differs from the value for "CFBundleVersion",
-	 * which identifies a specific build number. The CFBundleShortVersionString
-	 * value represents a more formal version that does not change with every
-	 * build.
-	 */
-	public void setShortInfoString(String s) {
-		System.err.println("WARNING: 'shortinfostring' is deprecated! Use JarBundler attribute 'infostring' instead!");
-		setVersion(s);
-	}
 
 	/**
 	 * Setter for the "verbose" attribute (optional)
@@ -705,7 +687,7 @@ public class JarBundler extends MatchingTask {
 	 * Set the 'chmod' executable.
 	 */
 	public void setChmod(String s) {
-		log("The \"chmod\" attribute has deprecaited, using the ANT Chmod task internally");
+		log("The \"chmod\" attribute is deprecated, use the ANT Chmod task instead");
 	}
 
 	/***************************************************************************
@@ -1565,10 +1547,7 @@ public class JarBundler extends MatchingTask {
         bundleProperties.setLSApplicationCategoryType(type);
     }
 
-    public void setNSHighResolutionCapable(String nsHighResolutionCapable)
-    {
-        bundleProperties.setNSHighResolutionCapable(nsHighResolutionCapable);
-    }
+
 
 
 }

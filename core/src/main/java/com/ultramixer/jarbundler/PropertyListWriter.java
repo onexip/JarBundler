@@ -13,38 +13,55 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
- *
  */
 
 package com.ultramixer.jarbundler;
 
 // This package's imports
-
-import org.apache.tools.ant.BuildException;
-import org.apache.tools.ant.util.FileUtils;
-import org.w3c.dom.DOMImplementation;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.*;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.*;
+
+// Java I/O
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+
+// Java Utility
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 
-// Java I/O
-// Java Utility
 // Java language imports
+import java.lang.Boolean;
+import java.lang.Double;
+import java.lang.String;
+import java.lang.System;
+
 // Apache Ant
+import org.apache.tools.ant.BuildException;
+import org.apache.tools.ant.util.FileUtils;
+
 // Java XML DOM creation
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.ParserConfigurationException;
+
 // W3C DOM
+import org.w3c.dom.Document;
+import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+
+
 
 
 /**
@@ -166,9 +183,6 @@ public class PropertyListWriter
         // Finder 'Version' label, defaults to "1.0"
         writeKeyStringPair("CFBundleShortVersionString", bundleProperties.getCFBundleShortVersionString(), dict);
 
-        // Finder 'Get Info'
-        writeKeyStringPair("CFBundleGetInfoString", bundleProperties.getCFBundleGetInfoString(), dict);
-
         // Mac OS X required key, defaults to "false"
         writeKeyStringPair("CFBundleAllowMixedLocalizations",
                 (bundleProperties.getCFBundleAllowMixedLocalizations() ? "true" : "false"), dict);
@@ -225,6 +239,14 @@ public class PropertyListWriter
             writeKeyStringPair("NSHumanReadableCopyright", bundleProperties.getNSHumanReadableCopyright(), dict);
         }
 
+		// HiRes capability, optional
+		if ( bundleProperties.getNSHighResolutionCapable() != false )
+			writeKeyBooleanPair( "NSHighResolutionCapable", bundleProperties.getNSHighResolutionCapable(), dict );
+
+		// Content size, optional
+		if ( bundleProperties.getNSPreferencesContentSize() != null )
+			writeKeyStringPair( "NSPreferencesContentSize", "{" + bundleProperties.getNSPreferencesContentSize() + "}", dict );
+
         // IsAgent, optional
         if (bundleProperties.getLSUIElement() != null)
         {
@@ -238,12 +260,7 @@ public class PropertyListWriter
             writeKeyStringPair("LSApplicationCategoryType", bundleProperties.getLSApplicationCategoryType(), dict);
         }
 
-        // NSHighResolutionCapable, optional
-        //new since 08/05/2015 by Tobias Bley / UltraMixer
-        if (bundleProperties.getNSHighResolutionCapable() != null)
-        {
-            writeKeyStringPair("NSHighResolutionCapable", bundleProperties.getNSHighResolutionCapable(), dict);
-        }
+
 
 
         //New since 08/05/2015 Tobias Bley / UltraMixer
@@ -270,8 +287,8 @@ public class PropertyListWriter
             writeDocumentTypes(documentTypes, dict);
         }
 
-        // Java entry in the plist dictionary
-        writeKey("Java", dict);
+		// Java / JavaX entry in the plist dictionary
+		writeKey(bundleProperties.getJavaXKey() ? "JavaX" : "Java", dict);
         Node javaDict = createNode("dict", dict);
 
         // Main class, required

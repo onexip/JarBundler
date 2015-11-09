@@ -5,7 +5,7 @@
 
     <groupId>com.ultramixer.jarbundler</groupId>
     <artifactId>jarbundler-parent</artifactId>
-    <version>3.2.2</version>
+    <version>3.3.0</version>
     <packaging>pom</packaging>
     <modules>
         <module>core</module>
@@ -270,6 +270,10 @@
         <developer>
             <name>Seth J. Morabito</name>
             <email>sethm@loomcom.com</email>
+        </developer>
+        <developer>
+            <name>Tobias Fischer</name>
+            <organizationUrl>http://www.pagina-online.de</organizationUrl>
         </developer>
     </developers>
 

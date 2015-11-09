@@ -41,9 +41,6 @@ public class AppBundleProperties {
 	// Finder version, with default
 	private String mCFBundleShortVersionString = "1.0";
 
-	// Get Info string, optional
-	private String mCFBundleGetInfoString = null;
-
 	// Build number, optional
 	private String mCFBundleVersion = null;
 
@@ -65,6 +62,12 @@ public class AppBundleProperties {
 	// Copyright, optional
 
 	private String mNSHumanReadableCopyright = null;
+
+	// Window size, optional (per Adrien Quillet <aquillet@is2t.com>)
+	private String mNSPreferencesContentSize = null;
+
+	// Support for JavaX key, optional
+	private boolean mJavaXKey = false;
 
 	// Explicit default: JavaApplicationStub
 	private String mCFBundleExecutable = "JavaApplicationStub";
@@ -121,7 +124,8 @@ public class AppBundleProperties {
     //New since 08/05/2015 Tobias Bley / UltraMixer
     //HiDPI support (Retina)
     //NSHighResolutionCapable
-    private String nsHighResolutionCapable;
+	// HiRes capability, optional
+    private boolean mNSHighResolutionCapable;
 
 
     //New since 08/05/2015 Tobias Bley / UltraMixer
@@ -160,6 +164,8 @@ public class AppBundleProperties {
 	public Hashtable getJavaProperties() {
 		return mJavaProperties;
 	}
+
+    // New in JarBundler 2.2.0; Tobias Bley ----------------
 
     public void addToJVMArchs(String s) {
         mJVMArchs.add(s);
@@ -269,17 +275,6 @@ public class AppBundleProperties {
 		return mCFBundleIdentifier;
 	}
 
-	public void setCFBundleGetInfoString(String s) {
-		mCFBundleGetInfoString = s;
-	}
-
-	public String getCFBundleGetInfoString() {
-		if (mCFBundleGetInfoString == null)
-			return getCFBundleShortVersionString();
-
-		return mCFBundleGetInfoString;
-	}
-
 	public void setCFBundleShortVersionString(String s) {
 		mCFBundleShortVersionString = s;
 	}
@@ -318,6 +313,30 @@ public class AppBundleProperties {
 
 	public String getNSHumanReadableCopyright() {
 		return mNSHumanReadableCopyright;
+	}
+
+	public void setNSHighResolutionCapable(boolean b) {
+		mNSHighResolutionCapable = b;
+	}
+
+	public boolean getNSHighResolutionCapable() {
+		return mNSHighResolutionCapable;
+	}
+
+	public void setNSPreferencesContentSize(String s) {
+		mNSPreferencesContentSize = s;
+	}
+
+	public String getNSPreferencesContentSize() {
+		return mNSPreferencesContentSize;
+	}
+
+	public void setJavaXKey(boolean b) {
+		mJavaXKey = b;
+	}
+
+	public boolean getJavaXKey() {
+		return mJavaXKey;
 	}
 
 	public void setCFBundleExecutable(String s) {
@@ -502,16 +521,6 @@ public class AppBundleProperties {
 
     //New since 08/05/2015 Tobias Bley / UltraMixer
 	public void setLSApplicationCategoryType(String lsApplicationCategoryType) { this.mLSApplicationCategoryType = lsApplicationCategoryType; }
-
-    //New since 08/05/2015 Tobias Bley / UltraMixer
-	public String getNSHighResolutionCapable()
-	{
-		return nsHighResolutionCapable;
-	}
-
-    //New since 08/05/2015 Tobias Bley / UltraMixer
-	public void setNSHighResolutionCapable(String nsHighResolutionCapable) { this.nsHighResolutionCapable = nsHighResolutionCapable; }
-
 
     //------------------------------------------------------------------------------------------
 }
