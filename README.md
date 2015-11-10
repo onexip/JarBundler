@@ -29,9 +29,12 @@ Take a look at ./dox/index.html
   * removed deprecated `infostring` and `shortinfostring` attributes *(use `copyright` attribute instead)*
 
 ## Version 3.2.0 (2015-08-05)
-* optional `hiResCapable` attribute (for Plist key `NSHighResolutionCapable`)
+* optional `highResolutionCapable` attribute (for Plist key `NSHighResolutionCapable`)
 * optional `LSApplicationCategoryType` attribute (for Plist key `LSApplicationCategoryType`)
 * optional `SUPublicDSAKeyFile` attribute (for Plist key `SUPublicDSAKeyFile`)
+
+## Previous history
+Take a look at ./dox/index.html
 
 
 # License
