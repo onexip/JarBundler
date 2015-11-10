@@ -25,54 +25,58 @@ import java.util.List;
 
 
 /**
- * Represents an Info.plist Service specifying a service provided by the application.
+ * <p>Represents an Info.plist Service specifying a service provided by the application.</p>
  * 
- * Port Name - The name of the port the application monitors for incoming service requests.
+ * <dl>
+ * <dt>Port Name</dt>
+ * <dd>The name of the port the application monitors for incoming service requests.</dd>
  * 
- *
- * Message - The name of the instance method to invoke for the service. 
+ * <dt>Message</dt>
+ * <dd>The name of the instance method to invoke for the service. 
  * In Objective-C, the instance method must be of the form messageName:userData:error:.
- * In Java, the instance method must be of the form messageName(NSPasteBoard,String).
+ * In Java, the instance method must be of the form messageName(NSPasteBoard,String).</dd>
  * 
- * 
- * Menu Item - The text to add to the Services menu. The value must be unique.
+ * <dt>Menu Item</dt>
+ * <dd>The text to add to the Services menu. The value must be unique.
  * You can use a slash character "/" to specify a submenu. For example, Mail/Send
- * would appear in the Services Menu as a menu named Mail with an item named Send.
+ * would appear in the Services Menu as a menu named Mail with an item named Send.</dd>
  * 
+ * <dt>Send Types</dt>
+ * <dd>A list of the data type names that can be read by the service.
+ *   The NSPasteboard class description lists several common data types.</dd>
  * 
- * Send Types - A list of the data type names that can be read by the service.
- *   The NSPasteboard class description lists several common data types.
- *
- *
- * Return Types - A list of the data type names that can be returned by the service.
+ * <dt>Return Types</dt>
+ * <dd>A list of the data type names that can be returned by the service.
  * The NSPasteboard class description lists several common data types.
- * You must specify either Return Types, Send Types or both.
+ * You must specify either Return Types, Send Types or both.<br><br>
+ * You must specify either Send Types, Return Types or both.</dd>
  * 
- * You must specify either Send Types, Return Types or both.
- *  
- * 
- * Key Equivalent - This attribute is optional. The keyboard equivalent used to invoke
+ * <dt>Key Equivalent</dt>
+ * <dd>This attribute is optional. The keyboard equivalent used to invoke
  * the service menu command. The value has to be a single character. Users invoke this
- * keyboard equivalent by pressing the Command and Shift key modifiers along with the character.
+ * keyboard equivalent by pressing the Command and Shift key modifiers along with the character.</dd>
  * 
+ * <dt>User Data</dt>
+ * <dd>This attribute is optional. The value is free choosable and is passed
+ * to the method as second parameter.</dd>
  * 
- * User Data - This attribute is optional. The value is free choosable and is passed
- * to the method as second parameter.
- * 
- * 
- * Timeout - This attribute is optional. It indicates the number of milliseconds
+ * <dt>Timeout</dt>
+ * <dd>This attribute is optional. It indicates the number of milliseconds
  * Services should wait for a response from the application providing
- * a service when a respond is required.
+ * a service when a respond is required.</dd>
+ * </dl>
  * 
- * 
- * <service portname="jarBundler"
+ * <p>Example:</p>
+ * <pre>
+ * &lt;service portname="jarBundler"
  *          message="processRequest"
  *          menuitem="JarBundler/Process Request"
  *          sendtypes="NSStringPboardType,NSFilenamesPboardType"
  *          returntypes="NSStringPboardType"
  *          keyequivalent="p"
  *          userdata="a string passed to the method"
- *          timeout="5000" />
+ *          timeout="5000" /&gt;
+ * </pre>
  */
 public class Service {
 	private static final List EMPTYLIST = new ArrayList(0);
