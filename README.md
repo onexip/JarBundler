@@ -20,11 +20,21 @@ Take a look at ./dox/index.html
 # ChangeLog
 
 ## Version 3.3.0 (2015-11-09)
-* Merged changes from https://github.com/tofi86/Jarbundler/blob/ into official release
-* Added optional `contentSize` attribute to JarBundler task (for Plist key `NSPreferencesContentSize`)
-* Added optional `useJavaXKey` attribute to JarBundler task (for [universalJavaApplicationStub](https://github.com/tofi86/universalJavaApplicationStub)-Support)
-* removed deprecated `aboutmenuname` attribute
-* removed deprecated `infostring` and `shortinfostring` attributes (use `copyright` attribute instead)
+* Merged changes from [tofi86/Jarbundler](https://github.com/tofi86/Jarbundler/) into official release
+  * optional `contentSize` attribute *(for Plist key `NSPreferencesContentSize`)*
+  * optional `useJavaXKey` attribute *(for [universalJavaApplicationStub](https://github.com/tofi86/universalJavaApplicationStub) support)*
+  * optional `allowmixedlocalizations` attribute *(for Plist key `CFBundleAllowMixedLocalizations`)*
+  * optional `copyright` attribute *(for Plist key `NSHumanReadableCopyright`)*
+  * removed deprecated `aboutmenuname` attribute *(use `shortname` attribute instead)*
+  * removed deprecated `infostring` and `shortinfostring` attributes *(use `copyright` attribute instead)*
+
+## Version 3.2.0 (2015-08-05)
+* optional `highResolutionCapable` attribute (for Plist key `NSHighResolutionCapable`)
+* optional `LSApplicationCategoryType` attribute (for Plist key `LSApplicationCategoryType`)
+* optional `SUPublicDSAKeyFile` attribute (for Plist key `SUPublicDSAKeyFile`)
+
+## Previous history
+Take a look at ./dox/index.html
 
 
 # License
