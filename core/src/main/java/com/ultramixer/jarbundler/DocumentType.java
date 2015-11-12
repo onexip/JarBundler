@@ -24,62 +24,65 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Represents an Info.plist DocumentType used for associating a document with
- * the application
- * <p/>
- * The Document Types allows you to specify which documents your finished
+ * <p>Represents an Info.plist DocumentType used for associating a document with
+ * the application</p>
+ * <p>The Document Types allows you to specify which documents your finished
  * product can handle. You should list the application's primary document type
  * first because the document controller uses that type by default when the user
- * requests a new document.
- * <p/>
- * Name - The name of the document type.
- * <p/>
- * UTI - A list of Uniform Type Identifier (UTI) strings for the document. UTIs
+ * requests a new document.</p>
+ * 
+ * <dl>
+ * <dt>Name</dt>
+ * <dd>The name of the document type.</dd>
+ * 
+ * <dt>UTI</dt>
+ * <dd>A list of Uniform Type Identifier (UTI) strings for the document. UTIs
  * are strings that uniquely identify abstract types. They can be used to
  * describe a file format or data type but can also be used to describe type
  * information for other sorts of entities, such as directories, volumes, or
  * packages. For more information on UTIs, see the header file UTType.h,
- * available as part of LaunchServices.framework in Mac OS X v10.3 and later.
- * <p/>
- * <p/>
- * Extensions - A list of the filename extensions for this document type. Don't
- * include the period in the extension.
- * <p/>
- * <p/>
- * OS Types - A list of four-letter codes for the document. These codes are
- * stored in the document's resources or information property list files.
- * <p/>
- * <p/>
- * MIME Types - A list of the Multipurpose Internet Mail Extensions (MIME) types
+ * available as part of LaunchServices.framework in Mac OS X v10.3 and later.</dd>
+ * 
+ * <dt>Extensions</dt>
+ * <dd>A list of the filename extensions for this document type. Don't
+ * include the period in the extension.</dd>
+ * 
+ * <dt>OS Types</dt>
+ * <dd>A list of four-letter codes for the document. These codes are
+ * stored in the document's resources or information property list files.</dd>
+ * 
+ * <dt>MIME Types</dt>
+ * <dd>A list of the Multipurpose Internet Mail Extensions (MIME) types
  * for the document. MIME types identify content types for Internet
- * applications.
- * <p/>
- * <p/>
- * Icon File - The name of the file that contains the document type's icon.
- * <p/>
- * <p/>
- * Role - A description of how the application uses the documents of this type.
- * <p/>
- * Editor - The application can display, edit, and save documents of this type.
- * <p/>
- * Viewer - The application can display, but not edit, documents of this type.
- * <p/>
- * Shell - The application provides runtime services for other processes for
- * example, a Java applet viewer.
- * <p/>
- * None - The application can neither display nor edit documents of this type
+ * applications.</dd>
+ * 
+ * <dt>Icon File</dt>
+ * <dd>The name of the file that contains the document type's icon.</dd>
+ * 
+ * <dt>Role</dt>
+ * <dd>A description of how the application uses the documents of this type.
+ * <ul>
+ * <li>Editor - The application can display, edit, and save documents of this type.</li>
+ * <li>Viewer - The application can display, but not edit, documents of this type.</li>
+ * <li>Shell - The application provides runtime services for other processes for
+ * example, a Java applet viewer.</li>
+ * <li>None - The application can neither display nor edit documents of this type
  * but instead uses them in some other way. For example, Sketch uses this role
- * to declare types it can export but not read.
- * <p/>
- * <p/>
- * Bundle - Specifies whether the document is a single file or a file bundle,
+ * to declare types it can export but not read.</li>
+ * </ul></dd>
+ * 
+ * <dt>Bundle</dt>
+ * <dd>Specifies whether the document is a single file or a file bundle,
  * that is, a directory that is treated as a single document by certain
- * applications, such as the Finder.
- * <p/>
- * <p/>
- * <documenttype> name="Scan Project" extensions="scansort scanproj"
+ * applications, such as the Finder.</dd>
+ * </dl>
+ * 
+ * <p>Example:</p>
+ * <pre>
+ * &lt;documenttype name="Scan Project" extensions="scansort scanproj"
  * ostypes="fold disk fdrp" iconfile="document.icns" mimetypes="text/html
- * image/jpeg" role="editor" bundle="true" />
+ * image/jpeg" role="editor" bundle="true" /&gt;
+ * </pre>
  */
 
 
@@ -97,13 +100,12 @@ public class DocumentType
      * Extensions. A list of the filename extensions for this document type.
      * Don't include the period in the extension.
      */
-
     public String[] extensions = null;
+
     /**
      * OS Types. A list of four-letter codes for the document. These codes are
      * stored in the document's resources or information property list files.
      */
-
     public String[] osTypes = null;
     /**
      * MIME Types. A list of the Multipurpose Internet Mail Extensions (MIME)
@@ -127,26 +129,23 @@ public class DocumentType
     /**
      * Icon File. The name of the file that contains the document types icon.
      */
-
     public File iconFile = null;
+
     /**
      * Role. A description of how the application uses the documents of this
      * type. You can choose from four values:
-     * <p/>
-     * Editor. The application can display, edit, and save documents of this
-     * type.
-     * <p/>
-     * Viewer. The application can display, but not edit, documents of this
-     * type.
-     * <p/>
-     * Shell. The application provides runtime services for other processesfor
-     * example, a Java applet viewer.
-     * <p/>
-     * None. The application can neither display nor edit documents of this type
+     * <ul>
+     * <li>Editor. The application can display, edit, and save documents of this
+     * type.</li>
+     * <li>Viewer. The application can display, but not edit, documents of this
+     * type.</li>
+     * <li>Shell. The application provides runtime services for other processesfor
+     * example, a Java applet viewer.</li>
+     * <li>None. The application can neither display nor edit documents of this type
      * but instead uses them in some other way. For example, Sketch uses this
-     * role to declare types it can export but not read.
+     * role to declare types it can export but not read.</li>
+     * </ul>
      */
-
     public String role = null;
 
     /**
@@ -154,7 +153,6 @@ public class DocumentType
      * document bundle, that is, a directory that is treated as a single
      * document by certain applications, such as the Finder.
      */
-
     public boolean isBundle = false;
 
     public String getName()

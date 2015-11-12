@@ -65,13 +65,11 @@ import org.w3c.dom.Element;
 
 
 /**
- * Write out a Java application bundle property list file. For descriptions of
+ * <p>Write out a Java application bundle property list file. For descriptions of
  * the property list keys, see <a
- * href="http://developer.apple.com/documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/PListKeys.html"
- * >Apple docs</a>.
+ * href="https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html"
+ * >Apple docs</a>.</p>
  */
-
-
 public class PropertyListWriter
 {
 
@@ -89,6 +87,8 @@ public class PropertyListWriter
 
     /**
      * Create a new Property List writer.
+     * 
+     * @param bundleProperties All the AppBundleProperties
      */
     public PropertyListWriter(AppBundleProperties bundleProperties)
     {
@@ -254,7 +254,7 @@ public class PropertyListWriter
         }
 
         // LSApplicationCategoryType, optional
-        //new since 08/05/2015 by Tobias Bley / UltraMixer
+        // new since 2015-08-05 by Tobias Bley / UltraMixer
         if (bundleProperties.getLSApplicationCategoryType() != null)
         {
             writeKeyStringPair("LSApplicationCategoryType", bundleProperties.getLSApplicationCategoryType(), dict);
@@ -263,8 +263,8 @@ public class PropertyListWriter
 
 
 
-        //New since 08/05/2015 Tobias Bley / UltraMixer
-        //LSEnvironemnt dict node
+        // New since 2015-08-05 Tobias Bley / UltraMixer
+        // LSEnvironemnt dict node
         if (bundleProperties.getLSEnvironment() != null && bundleProperties.getLSEnvironment().keySet().size() > 0)
         {
             writeKey("LSEnvironment", dict);
@@ -376,8 +376,8 @@ public class PropertyListWriter
         //by Tobias Bley / UltraMixer
         writeKeyStringPair("SUFeedURL", bundleProperties.getSUFeedURL(), dict);
 
-        //Sparkle Properties
-        //new since 08/05/2015 by Tobias Bley / UltraMixer
+        // Sparkle Properties
+        // new since 2015-08-05 by Tobias Bley / UltraMixer
         writeKeyStringPair("SUPublicDSAKeyFile", bundleProperties.getSUPublicDSAKeyFile(), dict);
 
 

@@ -88,9 +88,8 @@ public class AppBundleProperties {
 	private final String mCFBundleInfoDictionaryVersion = "6.0";
 
 	// Optional keys, with no defaults.
-
 	private String mCFBundleIconFile = null;
-    private String mSplashFile = null;
+	private String mSplashFile = null;
 	private String mCFBundleIdentifier = null;
 	private String mVMOptions = null; // Java VM options
 	private String mWorkingDirectory = null; // Java Working Dir
@@ -106,9 +105,9 @@ public class AppBundleProperties {
     private String mLSApplicationCategoryType = null;
 
 
-    //Sparkle Properties
+    // Sparkle Properties
     private String mSUFeedURL = null;
-    //New 08/05/2015 Tobias Bkey / UltraMixer
+    // New 2015-08-05 Tobias Bkey / UltraMixer
     private String mSUPublicDSAKeyFile;
 
 	// Java properties
@@ -121,42 +120,56 @@ public class AppBundleProperties {
 	private List mServices = new LinkedList();
 
 
-    //New since 08/05/2015 Tobias Bley / UltraMixer
-    //HiDPI support (Retina)
-    //NSHighResolutionCapable
+    // New since 2015-08-05 Tobias Bley / UltraMixer
+    // HiDPI support (Retina)
+    // NSHighResolutionCapable
 	// HiRes capability, optional
     private boolean mNSHighResolutionCapable;
 
 
-    //New since 08/05/2015 Tobias Bley / UltraMixer
 	/**
 	 * LSEnvironment (Dictionary - OS X) defines environment variables to be set before launching this app. The names of the environment variables are the keys of the dictionary, with the values being the corresponding environment variable value. Both keys and values must be strings.
 	 * These environment variables are set only for apps launched through Launch Services. If you run your executable directly from the command line, these environment variables are not set.
+	 * 
+	 * @author Tobias Bley
+	 * @since 3.2.0
 	 */
 	private Hashtable mLSEnvironments = new Hashtable();
 
 
 	// ================================================================================
 
-	//New since 08/05/2015 Tobias Bley / UltraMixer
 	/**
 	 * Add a LSEnvironment key-value pair to the mLSEnvironments hashtable.
+	 * 
+	 * @author Tobias Bley
+	 * @since 3.2.0
+	 * 
+	 * @param key A Key
+	 * @param value A Value
 	 */
-
 	public void addLSEnvironment(String key, String value) {
 		mLSEnvironments.put(key, value);
 	}
 
 
-	//New since 08/05/2015 Tobias Bley / UltraMixer
+	/**
+	 * 
+	 * @author Tobias Bley
+	 * @since 3.2.0
+	 * 
+	 * @return LSEnvironment
+	 */
 	public Hashtable getLSEnvironment() {
 		return mLSEnvironments;
 	}
 
 	/**
 	 * Add a Java runtime property to the properties hashtable.
+	 * 
+	 * @param prop A property
+	 * @param val A value
 	 */
-
 	public void addJavaProperty(String prop, String val) {
 		mJavaProperties.put(prop, val);
 	}
@@ -200,6 +213,8 @@ public class AppBundleProperties {
 
 	/**
 	 * Add a document type to the document type list.
+	 * 
+	 * @param documentType A document type
 	 */
 	public void addDocumentType(DocumentType documentType) {
 		mDocumentTypes.add(documentType);
@@ -215,6 +230,8 @@ public class AppBundleProperties {
 
 	/**
 	 * Add a service to the services list.
+	 * 
+	 * @param service Service
 	 */
 	public void addService(Service service) {
 		mServices.add(service);
@@ -504,22 +521,22 @@ public class AppBundleProperties {
         this.mSUFeedURL = suFeedURL;
     }
 
-    //New since 08/05/2015 Tobias Bley / UltraMixer
+    // New since 2015-08-05 Tobias Bley / UltraMixer
 	public void setSUPublicDSAKeyFile(String file)
 	{
 		this.mSUPublicDSAKeyFile = file;
 	}
 
-    //New since 08/05/2015 Tobias Bley / UltraMixer
+    // New since 2015-08-05 Tobias Bley / UltraMixer
 	public String getSUPublicDSAKeyFile()
 	{
 		return mSUPublicDSAKeyFile;
 	}
 
-    //New since 08/05/2015 Tobias Bley / UltraMixer
+    // New since 2015-08-05 Tobias Bley / UltraMixer
 	public String getLSApplicationCategoryType() { return mLSApplicationCategoryType; }
 
-    //New since 08/05/2015 Tobias Bley / UltraMixer
+    // New since 2015-08-05 Tobias Bley / UltraMixer
 	public void setLSApplicationCategoryType(String lsApplicationCategoryType) { this.mLSApplicationCategoryType = lsApplicationCategoryType; }
 
     //------------------------------------------------------------------------------------------
