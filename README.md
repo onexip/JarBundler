@@ -14,7 +14,7 @@ Project moved from http://sourceforge.net/projects/jarbundler/
 
 
 # Documentation
-Take a look at ./dox/index.html
+Take a look at [./docs/index.html](http://htmlpreview.github.io/?https://github.com/UltraMixer/JarBundler/blob/master/dox/index.html) *(Currently outdated. Sorry.)*
 
 
 # ChangeLog
@@ -34,7 +34,7 @@ Take a look at ./dox/index.html
 * optional `SUPublicDSAKeyFile` attribute (for Plist key `SUPublicDSAKeyFile`)
 
 ## Previous history
-Take a look at ./dox/index.html
+Take a look at [./docs/index.html](http://htmlpreview.github.io/?https://github.com/UltraMixer/JarBundler/blob/master/dox/index.html)
 
 
 # License
