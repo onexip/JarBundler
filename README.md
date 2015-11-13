@@ -3,7 +3,10 @@ JarBundler is a feature-rich Ant task which will create a Mac OS X application b
 
 Project moved from http://sourceforge.net/projects/jarbundler/
 
-# Maven
+# Releases
+
+## Maven
+Add the following dependency to your `pom.xml` file:
 ```xml
 <dependency>
     <groupId>com.ultramixer.jarbundler</groupId>
@@ -11,6 +14,9 @@ Project moved from http://sourceforge.net/projects/jarbundler/
     <version>3.3.0</version>
 </dependency>
 ```
+
+## Download
+Check the [release page](https://github.com/UltraMixer/JarBundler/releases) to get the latest distribution.
 
 
 # Documentation
