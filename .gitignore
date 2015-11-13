@@ -1,5 +1,5 @@
 .project
 .classpath
-.settings
-.idea
+.settings/
+.idea/
 jarbundler-parent.iml
