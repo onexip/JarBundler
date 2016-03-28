@@ -35,10 +35,13 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 
 // Java Utility
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 // Java language imports
 import java.lang.Boolean;
@@ -77,8 +80,6 @@ public class PropertyListWriter
     // Our application bundle properties
     private AppBundleProperties bundleProperties;
 
-    private double version = 1.3;
-
     // DOM version of Info.plist file
     private Document document = null;
 
@@ -93,20 +94,7 @@ public class PropertyListWriter
     public PropertyListWriter(AppBundleProperties bundleProperties)
     {
         this.bundleProperties = bundleProperties;
-        setJavaVersion(bundleProperties.getJVMVersion());
     }
-
-    private void setJavaVersion(String version)
-    {
-
-        if (version == null)
-        {
-            return;
-        }
-
-        this.version = Double.valueOf(version.substring(0, 3)).doubleValue();
-    }
-
 
     public void writeFile(File fileName) throws BuildException
     {
@@ -123,6 +111,8 @@ public class PropertyListWriter
             Transformer trans = transFactory.newTransformer();
             trans.setOutputProperty(OutputKeys.INDENT, "yes");
             trans.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+            trans.setOutputProperty(OutputKeys.DOCTYPE_PUBLIC, "-//Apple Computer//DTD PLIST 1.0//EN");
+            trans.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "http://www.apple.com/DTDs/PropertyList-1.0.dtd");
             writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName), "UTF-8"));
             trans.transform(new DOMSource(document), new StreamResult(writer));
         }
@@ -287,90 +277,133 @@ public class PropertyListWriter
             writeDocumentTypes(documentTypes, dict);
         }
 
-		// Java / JavaX entry in the plist dictionary
-		writeKey(bundleProperties.getJavaXKey() ? "JavaX" : "Java", dict);
-        Node javaDict = createNode("dict", dict);
-
-        // Main class, required
-        writeKeyStringPair("MainClass", bundleProperties.getMainClass(), javaDict);
-
-        // Target JVM version, optional but recommended
-        if (bundleProperties.getJVMVersion() != null)
+        // Java / JavaX entries in the plist dictionary
+        if (bundleProperties.getJavaVersion() < 1.7)
         {
-            writeKeyStringPair("JVMVersion", bundleProperties.getJVMVersion(), javaDict);
+            // Apple Java Version
+            writeKey(bundleProperties.getJavaXKey() ? "JavaX" : "Java", dict);
+            Node javaDict = createNode("dict", dict);
+
+            // Main class, required
+            writeKeyStringPair("MainClass", bundleProperties.getMainClass(), javaDict);
+
+            // Target JVM version, optional but recommended
+            if (bundleProperties.getJVMVersion() != null)
+            {
+                writeKeyStringPair("JVMVersion", bundleProperties.getJVMVersion(), javaDict);
+            }
+
+            // New in JarBundler 2.2.0; Tobias Bley ---------------------------------
+
+            // JVMArchs, optional
+            List jvmArchs = bundleProperties.getJVMArchs();
+
+            if (jvmArchs != null && !jvmArchs.isEmpty())
+            {
+                writeJVMArchs(jvmArchs, javaDict);
+            }
+
+            // lsArchitecturePriority, optional
+            List lsArchitecturePriority = bundleProperties.getLSArchitecturePriority();
+
+            if (lsArchitecturePriority != null && !lsArchitecturePriority.isEmpty())
+            {
+                writeLSArchitecturePriority(lsArchitecturePriority, javaDict);
+            }
+
+            //-----------------------------------------------------------------------
+
+            // Classpath is composed of two types, required
+            // 1: Jars bundled into the JAVA_ROOT of the application
+            // 2: External directories or files with an absolute path
+
+            List classPath = bundleProperties.getClassPath();
+            List extraClassPath = bundleProperties.getExtraClassPath();
+
+            if ((classPath.size() > 0) || (extraClassPath.size() > 0))
+            {
+                writeClasspath(classPath, extraClassPath, javaDict);
+            }
+
+            // JVM options, optional
+            if (bundleProperties.getVMOptions() != null)
+            {
+                writeKeyStringPair("VMOptions", bundleProperties.getVMOptions(), javaDict);
+            }
+
+            // Working directory, optional
+            if (bundleProperties.getWorkingDirectory() != null)
+            {
+                writeKeyStringPair("WorkingDirectory", bundleProperties.getWorkingDirectory(), javaDict);
+            }
+
+            // StartOnMainThread, optional
+            if (bundleProperties.getStartOnMainThread() != null)
+            {
+                writeKey("StartOnMainThread", javaDict);
+                createNode(bundleProperties.getStartOnMainThread().toString(), javaDict);
+            }
+
+            // SplashFile, optional
+            if (bundleProperties.getSplashFile() != null)
+            {
+                writeKeyStringPair("SplashFile", bundleProperties.getSplashFile(), javaDict);
+            }
+
+            // Main class arguments, optional
+            if (bundleProperties.getArguments() != null)
+            {
+                writeKeyStringPair("Arguments", bundleProperties.getArguments(), javaDict);
+            }
+
+            // Java properties, optional
+            Hashtable javaProperties = bundleProperties.getJavaProperties();
+
+            if (javaProperties.isEmpty() == false)
+            {
+                writeJavaProperties(javaProperties, javaDict);
+            }
         }
-
-        // New in JarBundler 2.2.0; Tobias Bley ---------------------------------
-
-        // JVMArchs, optional
-        List jvmArchs = bundleProperties.getJVMArchs();
-
-        if (jvmArchs != null && !jvmArchs.isEmpty())
+        else
         {
-            writeJVMArchs(jvmArchs, javaDict);
-        }
+            // Oracle Java Version
 
-        // lsArchitecturePriority, optional
-        List lsArchitecturePriority = bundleProperties.getLSArchitecturePriority();
+            // Main class, required
+            writeKeyStringPair("JVMMainClassName", bundleProperties.getMainClass(), dict);
 
-        if (lsArchitecturePriority != null && !lsArchitecturePriority.isEmpty())
-        {
-            writeLSArchitecturePriority(lsArchitecturePriority, javaDict);
-        }
+            // Main class arguments, optional
+            if (bundleProperties.getArguments() != null)
+            {
+                writeKey("JVMArguments", dict);
+                writeArray(Arrays.asList(bundleProperties.getArguments().split("\\s+")), dict);
+            }
 
-        //-----------------------------------------------------------------------
+            // JVM options and Java properties, optional
+            if ((bundleProperties.getVMOptions() != null) || !bundleProperties.getJavaProperties().isEmpty())
+            {
+                writeKey("JVMOptions", dict);
 
+                List<String> jvmOptions = new ArrayList<String>();
 
-        // Classpath is composed of two types, required
-        // 1: Jars bundled into the JAVA_ROOT of the application
-        // 2: External directories or files with an absolute path
+                if (bundleProperties.getVMOptions() != null)
+                {
+                    jvmOptions.addAll(Arrays.asList(bundleProperties.getVMOptions().split("\\s+")));
+                }
 
-        List classPath = bundleProperties.getClassPath();
-        List extraClassPath = bundleProperties.getExtraClassPath();
+                Iterator javaPropertiesIterator = bundleProperties.getJavaProperties().entrySet().iterator();
+                while (javaPropertiesIterator.hasNext())
+                {
+                    Map.Entry entry = (Map.Entry) javaPropertiesIterator.next();
+                    if (((String) entry.getKey()).startsWith("com.apple."))
+                    {
+                        System.out.println("Deprecated as of 1.4: " + entry.getKey());
+                        continue;
+                    }
+                    jvmOptions.add("-D" + entry.getKey() + '=' + entry.getValue());
+                }
 
-        if ((classPath.size() > 0) || (extraClassPath.size() > 0))
-        {
-            writeClasspath(classPath, extraClassPath, javaDict);
-        }
-
-
-        // JVM options, optional
-        if (bundleProperties.getVMOptions() != null)
-        {
-            writeKeyStringPair("VMOptions", bundleProperties.getVMOptions(), javaDict);
-        }
-
-        // Working directory, optional
-        if (bundleProperties.getWorkingDirectory() != null)
-        {
-            writeKeyStringPair("WorkingDirectory", bundleProperties.getWorkingDirectory(), javaDict);
-        }
-
-        // StartOnMainThread, optional
-        if (bundleProperties.getStartOnMainThread() != null)
-        {
-            writeKey("StartOnMainThread", javaDict);
-            createNode(bundleProperties.getStartOnMainThread().toString(), javaDict);
-        }
-
-        // SplashFile, optional
-        if (bundleProperties.getSplashFile() != null)
-        {
-            writeKeyStringPair("SplashFile", bundleProperties.getSplashFile(), javaDict);
-        }
-
-        // Main class arguments, optional
-        if (bundleProperties.getArguments() != null)
-        {
-            writeKeyStringPair("Arguments", bundleProperties.getArguments(), javaDict);
-        }
-
-        // Java properties, optional
-        Hashtable javaProperties = bundleProperties.getJavaProperties();
-
-        if (javaProperties.isEmpty() == false)
-        {
-            writeJavaProperties(javaProperties, javaDict);
+                writeArray(jvmOptions, dict);
+            }
         }
 
         //by Tobias Bley / UltraMixer
@@ -539,7 +572,7 @@ public class PropertyListWriter
         {
             String key = (String) i.next();
 
-            if (key.startsWith("com.apple.") && (version >= 1.4))
+            if (key.startsWith("com.apple.") && (bundleProperties.getJavaVersion() >= 1.4))
             {
                 System.out.println("Deprecated as of 1.4: " + key);
                 continue;
