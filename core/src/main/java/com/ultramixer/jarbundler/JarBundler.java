@@ -906,7 +906,7 @@ public class JarBundler extends MatchingTask {
 	 * @since 3.2.0
 	 * 
 	 * @param lsEnvironment A 'lsenvironment' element
-	 * @throws BuildException 'lsenvironment' must have both 'name' and 'value' attibutes
+	 * @throws BuildException 'lsenvironment' must have both 'name' and 'value' attributes
 	 */
 	public void addConfiguredLSEnvironment(LSEnvironment lsEnvironment) throws BuildException {
 
@@ -915,7 +915,7 @@ public class JarBundler extends MatchingTask {
 
 		if ((name == null) || (value == null))
 			throw new BuildException(
-					"'<lsenvironment>' must have both 'name' and 'value' attibutes");
+					"'<lsenvironment>' must have both 'name' and 'value' attributes");
 
 		bundleProperties.addLSEnvironment(name, value);
 	}
@@ -927,7 +927,7 @@ public class JarBundler extends MatchingTask {
 
 		if ((name == null) || (value == null))
 			throw new BuildException(
-					"'<javaproperty>' must have both 'name' and 'value' attibutes");
+					"'<javaproperty>' must have both 'name' and 'value' attributes");
 
 		bundleProperties.addJavaProperty(name, value);
 	}
@@ -941,7 +941,7 @@ public class JarBundler extends MatchingTask {
 
 		if ((name == null) || (role == null))
 			throw new BuildException(
-					"'<documenttype>' must have both a 'name' and a 'role' attibute");
+					"'<documenttype>' must have both a 'name' and a 'role' attribute");
 
 		if ((osTypes.isEmpty()) && (extensions.isEmpty()) && (mimeTypes.isEmpty()))
 			throw new BuildException(
