@@ -438,7 +438,14 @@ public class AppBundleProperties {
 
 	public void setJVMVersion(String s) {
 		mJVMVersion = s;
-		mJavaVersion = Double.parseDouble(s.substring(0, 3));
+
+		if(s.startsWith("1.")) {
+			// parse Java versions up to 1.8
+			mJavaVersion = Double.parseDouble(s.substring(0, 3));
+		} else {
+			// parse Java versions 9 and higher (9, 9-ea, 9+, 9.1, 10, 10.0, 11, 11*, 11.13, etc.)
+			mJavaVersion = Double.parseDouble(s.replaceAll("^(9|\\d\\d)(\\.\\d\\d?)?.*$", "$1$2"));
+		}
 	}
 
 	public String getJVMVersion() {
