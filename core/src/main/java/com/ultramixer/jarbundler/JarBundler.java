@@ -505,10 +505,26 @@ public class JarBundler extends MatchingTask {
 	 * @param b True sets 'JavaX' dictionary key instead of 'Java' key
 	 */
 	public void setUseJavaXKey(boolean b) {
-		if (b && (bundleProperties.getJavaVersion() >= 1.7)) {
-			throw new BuildException("Setting usejavaxkey is useless if jvmversion is at least 1.7, because then the Oracle PList format is used");
+		if (b && bundleProperties.getOracleStyle()) {
+			throw new BuildException("Setting attribute 'useJavaXKey' is useless if attribute 'useOracleStyle' is used");
 		}
 		bundleProperties.setJavaXKey(b);
+	}
+
+	/**
+	 * <p>Setter for optional generation of Oracle Plist format</p>
+	 * <p>If this isn't set, the default Apple Plist Format will be used</p>
+	 * 
+	 * @author Tobias Fischer
+	 * @since 3.4.0
+	 * 
+	 * @param b True generates Oracle Plist format instead of Apple Plist format
+	 */
+	public void setUseOracleStyle(boolean b) {
+		if (b && bundleProperties.getJavaXKey()) {
+			throw new BuildException("Setting attribute 'useOracleStyle' is useless if attribute 'useJavaXKey' is used");
+		}
+		bundleProperties.setOracleStyle(b);
 	}
 
 	/**
@@ -625,8 +641,8 @@ public class JarBundler extends MatchingTask {
 	 */
 	public void setJvmversion(String s) {
 		bundleProperties.setJVMVersion(s);
-		if (bundleProperties.getJavaXKey() && (bundleProperties.getJavaVersion() >= 1.7)) {
-			throw new BuildException("Setting usejavaxkey is useless if jvmversion is at least 1.7, because then the Oracle PList format is used");
+		if (bundleProperties.getJavaVersion() > 1.6 && !(bundleProperties.getJavaXKey() || bundleProperties.getOracleStyle())) {
+			throw new BuildException("When requesting a JVM > 1.6 you should either set the 'useJavaXKey' attribute (to generate a compatible Apple Plist format) or the 'useOracleStyle' attribute (to generate an Oracle Plist format).");
 		}
 	}
 
@@ -1137,7 +1153,7 @@ public class JarBundler extends MatchingTask {
 					+ mResourcesDir);
 
 		// Make the Resources/Java directory
-		mJavaDir = new File(bundleProperties.getJavaVersion() < 1.7 ? mResourcesDir : mContentsDir, "Java");
+		mJavaDir = new File(bundleProperties.getOracleStyle()? mContentsDir: mResourcesDir, "Java");
 
 		if (!mJavaDir.mkdir())
 			throw new BuildException("Unable to create directory " + mJavaDir);

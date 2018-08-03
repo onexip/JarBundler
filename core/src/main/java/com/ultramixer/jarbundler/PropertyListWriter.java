@@ -278,9 +278,9 @@ public class PropertyListWriter
         }
 
         // Java / JavaX entries in the plist dictionary
-        if (bundleProperties.getJavaVersion() < 1.7)
+        if (bundleProperties.getOracleStyle() == false)
         {
-            // Apple Java Version
+            // Apple Java Version / legacy support for the Apple Java Dictionary via 'JavaX' key
             writeKey(bundleProperties.getJavaXKey() ? "JavaX" : "Java", dict);
             Node javaDict = createNode("dict", dict);
 

@@ -26,6 +26,7 @@ Take a look at [./docs/index.html](http://htmlpreview.github.io/?https://github.
 # ChangeLog
 
 ## Version 3.4.0 (2018-08-xx)
+* optional `useOracleStyle` attribute to generate the Plist Java entries in Oracle format
 * Support for Java 9+ in `jvmversion` attribute
 
 ## Version 3.3.0 (2015-11-09)

@@ -69,6 +69,9 @@ public class AppBundleProperties {
 	// Support for JavaX key, optional
 	private boolean mJavaXKey = false;
 
+	// Support for Oracle Plist style, optional
+	private boolean mOracleStyle = false;
+
 	// Explicit default: JavaApplicationStub
 	private String mCFBundleExecutable = "JavaApplicationStub";
 
@@ -131,7 +134,7 @@ public class AppBundleProperties {
 	/**
 	 * LSEnvironment (Dictionary - OS X) defines environment variables to be set before launching this app. The names of the environment variables are the keys of the dictionary, with the values being the corresponding environment variable value. Both keys and values must be strings.
 	 * These environment variables are set only for apps launched through Launch Services. If you run your executable directly from the command line, these environment variables are not set.
-	 * 
+	 *
 	 * @author Tobias Bley
 	 * @since 3.2.0
 	 */
@@ -142,10 +145,10 @@ public class AppBundleProperties {
 
 	/**
 	 * Add a LSEnvironment key-value pair to the mLSEnvironments hashtable.
-	 * 
+	 *
 	 * @author Tobias Bley
 	 * @since 3.2.0
-	 * 
+	 *
 	 * @param key A Key
 	 * @param value A Value
 	 */
@@ -155,10 +158,10 @@ public class AppBundleProperties {
 
 
 	/**
-	 * 
+	 *
 	 * @author Tobias Bley
 	 * @since 3.2.0
-	 * 
+	 *
 	 * @return LSEnvironment
 	 */
 	public Hashtable getLSEnvironment() {
@@ -167,7 +170,7 @@ public class AppBundleProperties {
 
 	/**
 	 * Add a Java runtime property to the properties hashtable.
-	 * 
+	 *
 	 * @param prop A property
 	 * @param val A value
 	 */
@@ -214,7 +217,7 @@ public class AppBundleProperties {
 
 	/**
 	 * Add a document type to the document type list.
-	 * 
+	 *
 	 * @param documentType A document type
 	 */
 	public void addDocumentType(DocumentType documentType) {
@@ -231,7 +234,7 @@ public class AppBundleProperties {
 
 	/**
 	 * Add a service to the services list.
-	 * 
+	 *
 	 * @param service Service
 	 */
 	public void addService(Service service) {
@@ -355,6 +358,14 @@ public class AppBundleProperties {
 
 	public boolean getJavaXKey() {
 		return mJavaXKey;
+	}
+
+	public void setOracleStyle(boolean b) {
+		mOracleStyle = b;
+	}
+
+	public boolean getOracleStyle() {
+		return mOracleStyle;
 	}
 
 	public void setCFBundleExecutable(String s) {
