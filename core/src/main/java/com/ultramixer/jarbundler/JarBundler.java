@@ -505,9 +505,6 @@ public class JarBundler extends MatchingTask {
 	 * @param b True sets 'JavaX' dictionary key instead of 'Java' key
 	 */
 	public void setUseJavaXKey(boolean b) {
-		if (b && (bundleProperties.getJavaVersion() >= 1.7)) {
-			throw new BuildException("Setting usejavaxkey is useless if jvmversion is at least 1.7, because then the Oracle PList format is used");
-		}
 		bundleProperties.setJavaXKey(b);
 	}
 
@@ -625,9 +622,6 @@ public class JarBundler extends MatchingTask {
 	 */
 	public void setJvmversion(String s) {
 		bundleProperties.setJVMVersion(s);
-		if (bundleProperties.getJavaXKey() && (bundleProperties.getJavaVersion() >= 1.7)) {
-			throw new BuildException("Setting usejavaxkey is useless if jvmversion is at least 1.7, because then the Oracle PList format is used");
-		}
 	}
 
 
@@ -828,7 +822,7 @@ public class JarBundler extends MatchingTask {
 	 * @param s File to chmod
 	 */
 	public void setChmod(String s) {
-		log("The \"chmod\" attribute is deprecated, this task uses the ANT Chmod task internally now instead");
+		log("The \"chmod\" attribute is deprecated, use the ANT Chmod task instead");
 	}
 
 	/***************************************************************************
@@ -1137,7 +1131,7 @@ public class JarBundler extends MatchingTask {
 					+ mResourcesDir);
 
 		// Make the Resources/Java directory
-		mJavaDir = new File(bundleProperties.getJavaVersion() < 1.7 ? mResourcesDir : mContentsDir, "Java");
+		mJavaDir = new File(mResourcesDir, "Java");
 
 		if (!mJavaDir.mkdir())
 			throw new BuildException("Unable to create directory " + mJavaDir);
@@ -1262,7 +1256,7 @@ public class JarBundler extends MatchingTask {
 	 * Obviously, this logic may need refactoring in the future.
 	 */
 	private boolean useOldPropertyNames() {
-		return (bundleProperties.getJavaVersion() <= 1.3);
+		return (bundleProperties.getJVMVersion().startsWith("1.3"));
 	}
 
 	private void processJarAttrs() throws BuildException {
