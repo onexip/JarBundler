@@ -77,7 +77,7 @@ public class PropertyListWriter
 
     /**
      * Create a new Property List writer.
-     * 
+     *
      * @param bundleProperties All the AppBundleProperties
      */
     public PropertyListWriter(AppBundleProperties bundleProperties)
@@ -229,13 +229,13 @@ public class PropertyListWriter
             writeKeyStringPair("NSHumanReadableCopyright", bundleProperties.getNSHumanReadableCopyright(), dict);
         }
 
-		// HiRes capability, optional
-		if ( bundleProperties.getNSHighResolutionCapable() != false )
-			writeKeyBooleanPair( "NSHighResolutionCapable", bundleProperties.getNSHighResolutionCapable(), dict );
+        // HiRes capability, optional
+        if ( bundleProperties.getNSHighResolutionCapable() != false )
+            writeKeyBooleanPair( "NSHighResolutionCapable", bundleProperties.getNSHighResolutionCapable(), dict );
 
-		// Content size, optional
-		if ( bundleProperties.getNSPreferencesContentSize() != null )
-			writeKeyStringPair( "NSPreferencesContentSize", "{" + bundleProperties.getNSPreferencesContentSize() + "}", dict );
+        // Content size, optional
+        if ( bundleProperties.getNSPreferencesContentSize() != null )
+            writeKeyStringPair( "NSPreferencesContentSize", "{" + bundleProperties.getNSPreferencesContentSize() + "}", dict );
 
         // IsAgent, optional
         if (bundleProperties.getLSUIElement() != null)
@@ -277,8 +277,8 @@ public class PropertyListWriter
             writeDocumentTypes(documentTypes, dict);
         }
 
-		// Java / JavaX entry in the plist dictionary
-		writeKey(bundleProperties.getJavaXKey() ? "JavaX" : "Java", dict);
+        // Java / JavaX entry in the plist dictionary
+        writeKey(bundleProperties.getJavaXKey() ? "JavaX" : "Java", dict);
         Node javaDict = createNode("dict", dict);
 
         // Main class, required

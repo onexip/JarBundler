@@ -28,73 +28,73 @@ import java.util.List;
 
 public class AppBundleProperties {
 
-	// Required
-	private String mApplicationName;
-	private String mMainClass;
+    // Required
+    private String mApplicationName;
+    private String mMainClass;
 
-	// Application short name
-	private String mCFBundleName = null;
+    // Application short name
+    private String mCFBundleName = null;
 
-	// Finder version, with default
-	private String mCFBundleShortVersionString = "1.0";
+    // Finder version, with default
+    private String mCFBundleShortVersionString = "1.0";
 
-	// Build number, optional
-	private String mCFBundleVersion = null;
+    // Build number, optional
+    private String mCFBundleVersion = null;
 
-	// Help Book folder, optional
-	private String mCFHelpBookFolder = null;
+    // Help Book folder, optional
+    private String mCFHelpBookFolder = null;
 
-	// Help Book name, optional
-	private String mCFHelpBookName = null;
+    // Help Book name, optional
+    private String mCFHelpBookName = null;
 
-	// StartOnMainThread, optional
-	private Boolean	mStartOnMainThread = null;
+    // StartOnMainThread, optional
+    private Boolean	mStartOnMainThread = null;
 
-	// StartAsAgent, optional (per Michael Bader <nufan_k@me.com>)
-	private Boolean	 mLSUIElement = null;
+    // StartAsAgent, optional (per Michael Bader <nufan_k@me.com>)
+    private Boolean	 mLSUIElement = null;
 
-	// Explicit default: false
-	private boolean mCFBundleAllowMixedLocalizations = false;
+    // Explicit default: false
+    private boolean mCFBundleAllowMixedLocalizations = false;
 
-	// Copyright, optional
+    // Copyright, optional
 
-	private String mNSHumanReadableCopyright = null;
+    private String mNSHumanReadableCopyright = null;
 
-	// Window size, optional (per Adrien Quillet <aquillet@is2t.com>)
-	private String mNSPreferencesContentSize = null;
+    // Window size, optional (per Adrien Quillet <aquillet@is2t.com>)
+    private String mNSPreferencesContentSize = null;
 
-	// Support for JavaX key, optional
-	private boolean mJavaXKey = false;
+    // Support for JavaX key, optional
+    private boolean mJavaXKey = false;
 
-	// Explicit default: JavaApplicationStub
-	private String mCFBundleExecutable = "JavaApplicationStub";
+    // Explicit default: JavaApplicationStub
+    private String mCFBundleExecutable = "JavaApplicationStub";
 
-	// Explicit default: English
-	private String mCFBundleDevelopmentRegion = "English";
+    // Explicit default: English
+    private String mCFBundleDevelopmentRegion = "English";
 
-	// Explicit default: APPL
-	private final String mCFBundlePackageType = "APPL";
+    // Explicit default: APPL
+    private final String mCFBundlePackageType = "APPL";
 
-	// Explicit default: ????
-	private String mCFBundleSignature = "????";
+    // Explicit default: ????
+    private String mCFBundleSignature = "????";
 
-	// Explicit default: 1.3+
-	private String mJVMVersion = "1.3+";
+    // Explicit default: 1.3+
+    private String mJVMVersion = "1.3+";
 
-	// Explicit default: 6.0
-	private final String mCFBundleInfoDictionaryVersion = "6.0";
+    // Explicit default: 6.0
+    private final String mCFBundleInfoDictionaryVersion = "6.0";
 
-	// Optional keys, with no defaults.
-	private String mCFBundleIconFile = null;
-	private String mSplashFile = null;
-	private String mCFBundleIdentifier = null;
-	private String mVMOptions = null; // Java VM options
-	private String mWorkingDirectory = null; // Java Working Dir
-	private String mArguments = null; // Java command line arguments
+    // Optional keys, with no defaults.
+    private String mCFBundleIconFile = null;
+    private String mSplashFile = null;
+    private String mCFBundleIdentifier = null;
+    private String mVMOptions = null; // Java VM options
+    private String mWorkingDirectory = null; // Java Working Dir
+    private String mArguments = null; // Java command line arguments
 
-	// Class path and extra class path elements
-	private List mClassPath = new ArrayList();
-	private List mExtraClassPath = new ArrayList();
+    // Class path and extra class path elements
+    private List mClassPath = new ArrayList();
+    private List mExtraClassPath = new ArrayList();
 
     // New since JarBundler 2.2.0; Tobias Bley / UltraMixer ----------------
     private List mJVMArchs = new ArrayList();
@@ -107,73 +107,73 @@ public class AppBundleProperties {
     // New 2015-08-05 Tobias Bkey / UltraMixer
     private String mSUPublicDSAKeyFile;
 
-	// Java properties
-	private Hashtable mJavaProperties = new Hashtable();
+    // Java properties
+    private Hashtable mJavaProperties = new Hashtable();
 
-	// Document types
-	private List mDocumentTypes = new LinkedList();
+    // Document types
+    private List mDocumentTypes = new LinkedList();
 
-	// Services
-	private List mServices = new LinkedList();
+    // Services
+    private List mServices = new LinkedList();
 
 
     // New since 2015-08-05 Tobias Bley / UltraMixer
     // HiDPI support (Retina)
     // NSHighResolutionCapable
-	// HiRes capability, optional
+    // HiRes capability, optional
     private boolean mNSHighResolutionCapable;
 
 
-	/**
-	 * LSEnvironment (Dictionary - OS X) defines environment variables to be set before launching this app. The names of the environment variables are the keys of the dictionary, with the values being the corresponding environment variable value. Both keys and values must be strings.
-	 * These environment variables are set only for apps launched through Launch Services. If you run your executable directly from the command line, these environment variables are not set.
-	 * 
-	 * @author Tobias Bley
-	 * @since 3.2.0
-	 */
-	private Hashtable mLSEnvironments = new Hashtable();
+    /**
+     * LSEnvironment (Dictionary - OS X) defines environment variables to be set before launching this app. The names of the environment variables are the keys of the dictionary, with the values being the corresponding environment variable value. Both keys and values must be strings.
+     * These environment variables are set only for apps launched through Launch Services. If you run your executable directly from the command line, these environment variables are not set.
+     *
+     * @author Tobias Bley
+     * @since 3.2.0
+     */
+    private Hashtable mLSEnvironments = new Hashtable();
 
 
-	// ================================================================================
+    // ================================================================================
 
-	/**
-	 * Add a LSEnvironment key-value pair to the mLSEnvironments hashtable.
-	 * 
-	 * @author Tobias Bley
-	 * @since 3.2.0
-	 * 
-	 * @param key A Key
-	 * @param value A Value
-	 */
-	public void addLSEnvironment(String key, String value) {
-		mLSEnvironments.put(key, value);
-	}
+    /**
+     * Add a LSEnvironment key-value pair to the mLSEnvironments hashtable.
+     *
+     * @author Tobias Bley
+     * @since 3.2.0
+     *
+     * @param key A Key
+     * @param value A Value
+     */
+    public void addLSEnvironment(String key, String value) {
+        mLSEnvironments.put(key, value);
+    }
 
 
-	/**
-	 * 
-	 * @author Tobias Bley
-	 * @since 3.2.0
-	 * 
-	 * @return LSEnvironment
-	 */
-	public Hashtable getLSEnvironment() {
-		return mLSEnvironments;
-	}
+    /**
+     *
+     * @author Tobias Bley
+     * @since 3.2.0
+     *
+     * @return LSEnvironment
+     */
+    public Hashtable getLSEnvironment() {
+        return mLSEnvironments;
+    }
 
-	/**
-	 * Add a Java runtime property to the properties hashtable.
-	 * 
-	 * @param prop A property
-	 * @param val A value
-	 */
-	public void addJavaProperty(String prop, String val) {
-		mJavaProperties.put(prop, val);
-	}
+    /**
+     * Add a Java runtime property to the properties hashtable.
+     *
+     * @param prop A property
+     * @param val A value
+     */
+    public void addJavaProperty(String prop, String val) {
+        mJavaProperties.put(prop, val);
+    }
 
-	public Hashtable getJavaProperties() {
-		return mJavaProperties;
-	}
+    public Hashtable getJavaProperties() {
+        return mJavaProperties;
+    }
 
     // New in JarBundler 2.2.0; Tobias Bley ----------------
 
@@ -189,121 +189,121 @@ public class AppBundleProperties {
 
     public void addToClassPath(String s)
     {
-		mClassPath.add("$JAVAROOT/" + s);
-	}
+        mClassPath.add("$JAVAROOT/" + s);
+    }
 
-	public void addToExtraClassPath(String s) {
-		mExtraClassPath.add(s);
-	}
+    public void addToExtraClassPath(String s) {
+        mExtraClassPath.add(s);
+    }
 
-	public List getExtraClassPath() {
-		return mExtraClassPath;
-	}
+    public List getExtraClassPath() {
+        return mExtraClassPath;
+    }
 
-	public DocumentType createDocumentType() {
-		return new DocumentType();
-	}
+    public DocumentType createDocumentType() {
+        return new DocumentType();
+    }
 
-	public List getDocumentTypes() {
-		return mDocumentTypes;
-	}
+    public List getDocumentTypes() {
+        return mDocumentTypes;
+    }
 
-	/**
-	 * Add a document type to the document type list.
-	 * 
-	 * @param documentType A document type
-	 */
-	public void addDocumentType(DocumentType documentType) {
-		mDocumentTypes.add(documentType);
-	}
+    /**
+     * Add a document type to the document type list.
+     *
+     * @param documentType A document type
+     */
+    public void addDocumentType(DocumentType documentType) {
+        mDocumentTypes.add(documentType);
+    }
 
-	public Service createService() {
-		return new Service();
-	}
+    public Service createService() {
+        return new Service();
+    }
 
-	public List getServices() {
-		return mServices;
-	}
+    public List getServices() {
+        return mServices;
+    }
 
-	/**
-	 * Add a service to the services list.
-	 * 
-	 * @param service Service
-	 */
-	public void addService(Service service) {
-		mServices.add(service);
-	}
+    /**
+     * Add a service to the services list.
+     *
+     * @param service Service
+     */
+    public void addService(Service service) {
+        mServices.add(service);
+    }
 
-	// ================================================================================
+    // ================================================================================
 
-	public void setApplicationName(String s) {
-		mApplicationName = s;
-	}
+    public void setApplicationName(String s) {
+        mApplicationName = s;
+    }
 
-	public String getApplicationName() {
-		return mApplicationName;
-	}
+    public String getApplicationName() {
+        return mApplicationName;
+    }
 
-	// ================================================================================
-	//
-	// Bundle setters and getters
-	//
+    // ================================================================================
+    //
+    // Bundle setters and getters
+    //
 
-	public void setCFBundleName(String s) {
+    public void setCFBundleName(String s) {
 
-		if (s.length() > 16)
-			System.err
-					.println("WARNING: 'shortname' is recommeded to be no more than 16 "
-							+ "charaters long. See usage notes.");
-		mCFBundleName = s;
-	}
+        if (s.length() > 16)
+            System.err
+                    .println("WARNING: 'shortname' is recommeded to be no more than 16 "
+                            + "charaters long. See usage notes.");
+        mCFBundleName = s;
+    }
 
-	public String getCFBundleName() {
-		if (mCFBundleName == null)
-			return getApplicationName();
+    public String getCFBundleName() {
+        if (mCFBundleName == null)
+            return getApplicationName();
 
-		return mCFBundleName;
-	}
+        return mCFBundleName;
+    }
 
-	public void setCFBundleVersion(String s) {
-		mCFBundleVersion = s;
-	}
+    public void setCFBundleVersion(String s) {
+        mCFBundleVersion = s;
+    }
 
-	public String getCFBundleVersion() {
-		return mCFBundleVersion;
-	}
+    public String getCFBundleVersion() {
+        return mCFBundleVersion;
+    }
 
-	public void setCFBundleInfoDictionaryVersion(String s) {
-		// mCFBundleInfoDictionaryVersion = s;
-	}
+    public void setCFBundleInfoDictionaryVersion(String s) {
+        // mCFBundleInfoDictionaryVersion = s;
+    }
 
-	public String getCFBundleInfoDictionaryVersion() {
-		return mCFBundleInfoDictionaryVersion;
-	}
+    public String getCFBundleInfoDictionaryVersion() {
+        return mCFBundleInfoDictionaryVersion;
+    }
 
-	public void setCFBundleIdentifier(String s) {
-		mCFBundleIdentifier = s;
-	}
+    public void setCFBundleIdentifier(String s) {
+        mCFBundleIdentifier = s;
+    }
 
-	public String getCFBundleIdentifier() {
-		return mCFBundleIdentifier;
-	}
+    public String getCFBundleIdentifier() {
+        return mCFBundleIdentifier;
+    }
 
-	public void setCFBundleShortVersionString(String s) {
-		mCFBundleShortVersionString = s;
-	}
+    public void setCFBundleShortVersionString(String s) {
+        mCFBundleShortVersionString = s;
+    }
 
-	public String getCFBundleShortVersionString() {
-		return mCFBundleShortVersionString;
-	}
+    public String getCFBundleShortVersionString() {
+        return mCFBundleShortVersionString;
+    }
 
-	public void setCFBundleIconFile(String s) {
-		mCFBundleIconFile = s;
-	}
+    public void setCFBundleIconFile(String s) {
+        mCFBundleIconFile = s;
+    }
 
-	public String getCFBundleIconFile() {
-		return mCFBundleIconFile;
-	}
+    public String getCFBundleIconFile() {
+        return mCFBundleIconFile;
+    }
 
     public void setSplashFile(String s) {
         mSplashFile = s;
@@ -313,160 +313,160 @@ public class AppBundleProperties {
         return mSplashFile;
     }
 
-	public void setCFBundleAllowMixedLocalizations(boolean b) {
-		mCFBundleAllowMixedLocalizations = b;
-	}
+    public void setCFBundleAllowMixedLocalizations(boolean b) {
+        mCFBundleAllowMixedLocalizations = b;
+    }
 
-	public boolean getCFBundleAllowMixedLocalizations() {
-		return mCFBundleAllowMixedLocalizations;
-	}
+    public boolean getCFBundleAllowMixedLocalizations() {
+        return mCFBundleAllowMixedLocalizations;
+    }
 
-	public void setNSHumanReadableCopyright(String s) {
-		mNSHumanReadableCopyright = s;
-	}
+    public void setNSHumanReadableCopyright(String s) {
+        mNSHumanReadableCopyright = s;
+    }
 
-	public String getNSHumanReadableCopyright() {
-		return mNSHumanReadableCopyright;
-	}
+    public String getNSHumanReadableCopyright() {
+        return mNSHumanReadableCopyright;
+    }
 
-	public void setNSHighResolutionCapable(boolean b) {
-		mNSHighResolutionCapable = b;
-	}
+    public void setNSHighResolutionCapable(boolean b) {
+        mNSHighResolutionCapable = b;
+    }
 
-	public boolean getNSHighResolutionCapable() {
-		return mNSHighResolutionCapable;
-	}
+    public boolean getNSHighResolutionCapable() {
+        return mNSHighResolutionCapable;
+    }
 
-	public void setNSPreferencesContentSize(String s) {
-		mNSPreferencesContentSize = s;
-	}
+    public void setNSPreferencesContentSize(String s) {
+        mNSPreferencesContentSize = s;
+    }
 
-	public String getNSPreferencesContentSize() {
-		return mNSPreferencesContentSize;
-	}
+    public String getNSPreferencesContentSize() {
+        return mNSPreferencesContentSize;
+    }
 
-	public void setJavaXKey(boolean b) {
-		mJavaXKey = b;
-	}
+    public void setJavaXKey(boolean b) {
+        mJavaXKey = b;
+    }
 
-	public boolean getJavaXKey() {
-		return mJavaXKey;
-	}
+    public boolean getJavaXKey() {
+        return mJavaXKey;
+    }
 
-	public void setCFBundleExecutable(String s) {
-		mCFBundleExecutable = s;
-	}
+    public void setCFBundleExecutable(String s) {
+        mCFBundleExecutable = s;
+    }
 
-	public String getCFBundleExecutable() {
-		return mCFBundleExecutable;
-	}
+    public String getCFBundleExecutable() {
+        return mCFBundleExecutable;
+    }
 
-	public void setCFBundleDevelopmentRegion(String s) {
-		mCFBundleDevelopmentRegion = s;
-	}
+    public void setCFBundleDevelopmentRegion(String s) {
+        mCFBundleDevelopmentRegion = s;
+    }
 
-	public String getCFBundleDevelopmentRegion() {
-		return mCFBundleDevelopmentRegion;
-	}
+    public String getCFBundleDevelopmentRegion() {
+        return mCFBundleDevelopmentRegion;
+    }
 
-	public void setCFBundlePackageType(String s) {
-		// mCFBundlePackageType = s;
-	}
+    public void setCFBundlePackageType(String s) {
+        // mCFBundlePackageType = s;
+    }
 
-	public String getCFBundlePackageType() {
-		return mCFBundlePackageType;
-	}
+    public String getCFBundlePackageType() {
+        return mCFBundlePackageType;
+    }
 
-	public void setCFBundleSignature(String s) {
-		mCFBundleSignature = s;
-	}
+    public void setCFBundleSignature(String s) {
+        mCFBundleSignature = s;
+    }
 
-	public String getCFBundleSignature() {
-		return mCFBundleSignature;
-	}
+    public String getCFBundleSignature() {
+        return mCFBundleSignature;
+    }
 
-	public void setCFBundleHelpBookFolder(String s) {
-		mCFHelpBookFolder = s;
-	}
+    public void setCFBundleHelpBookFolder(String s) {
+        mCFHelpBookFolder = s;
+    }
 
-	public String getCFBundleHelpBookFolder() {
-		return mCFHelpBookFolder;
-	}
+    public String getCFBundleHelpBookFolder() {
+        return mCFHelpBookFolder;
+    }
 
-	public void setCFBundleHelpBookName(String s) {
-		mCFHelpBookName = s;
-	}
+    public void setCFBundleHelpBookName(String s) {
+        mCFHelpBookName = s;
+    }
 
-	public String getCFBundleHelpBookName() {
-		return mCFHelpBookName;
-	}
-
-
-	public void setStartOnMainThread(Boolean b) {
-		mStartOnMainThread = b;
-	}
-
-	public Boolean getStartOnMainThread() {
-		return mStartOnMainThread;
-	}
+    public String getCFBundleHelpBookName() {
+        return mCFHelpBookName;
+    }
 
 
+    public void setStartOnMainThread(Boolean b) {
+        mStartOnMainThread = b;
+    }
 
-	public Boolean getLSUIElement() {
-		return mLSUIElement;
-	}
+    public Boolean getStartOnMainThread() {
+        return mStartOnMainThread;
+    }
 
 
 
-	public void setLSUIElement( Boolean b ) {
-		this.mLSUIElement = b;
-	}
+    public Boolean getLSUIElement() {
+        return mLSUIElement;
+    }
 
 
 
-	public void setMainClass( String s ) {
-		mMainClass = s;
-	}
+    public void setLSUIElement( Boolean b ) {
+        this.mLSUIElement = b;
+    }
 
-	public String getMainClass() {
-		return mMainClass;
-	}
 
-	public void setJVMVersion(String s) {
-		mJVMVersion = s;
-	}
 
-	public String getJVMVersion() {
-		return mJVMVersion;
-	}
+    public void setMainClass( String s ) {
+        mMainClass = s;
+    }
 
-	public void setVMOptions(String s) {
-		mVMOptions = s;
-	}
+    public String getMainClass() {
+        return mMainClass;
+    }
 
-	public String getVMOptions() {
-		return mVMOptions;
-	}
+    public void setJVMVersion(String s) {
+        mJVMVersion = s;
+    }
 
-	public void setWorkingDirectory(String s) {
-		mWorkingDirectory = s;
-	}
+    public String getJVMVersion() {
+        return mJVMVersion;
+    }
 
-	public String getWorkingDirectory() {
-		return mWorkingDirectory;
-	}
+    public void setVMOptions(String s) {
+        mVMOptions = s;
+    }
 
-	public void setArguments(String s) {
-		mArguments = s;
-	}
+    public String getVMOptions() {
+        return mVMOptions;
+    }
 
-	public String getArguments() {
-		return mArguments;
-	}
+    public void setWorkingDirectory(String s) {
+        mWorkingDirectory = s;
+    }
 
-	public List getClassPath() {
-		return mClassPath;
-	}
+    public String getWorkingDirectory() {
+        return mWorkingDirectory;
+    }
+
+    public void setArguments(String s) {
+        mArguments = s;
+    }
+
+    public String getArguments() {
+        return mArguments;
+    }
+
+    public List getClassPath() {
+        return mClassPath;
+    }
 
     // New in JarBundler 2.2.0; Tobias Bley ----------------------------------------------------
 
@@ -519,22 +519,22 @@ public class AppBundleProperties {
     }
 
     // New since 2015-08-05 Tobias Bley / UltraMixer
-	public void setSUPublicDSAKeyFile(String file)
-	{
-		this.mSUPublicDSAKeyFile = file;
-	}
+    public void setSUPublicDSAKeyFile(String file)
+    {
+        this.mSUPublicDSAKeyFile = file;
+    }
 
     // New since 2015-08-05 Tobias Bley / UltraMixer
-	public String getSUPublicDSAKeyFile()
-	{
-		return mSUPublicDSAKeyFile;
-	}
+    public String getSUPublicDSAKeyFile()
+    {
+        return mSUPublicDSAKeyFile;
+    }
 
     // New since 2015-08-05 Tobias Bley / UltraMixer
-	public String getLSApplicationCategoryType() { return mLSApplicationCategoryType; }
+    public String getLSApplicationCategoryType() { return mLSApplicationCategoryType; }
 
     // New since 2015-08-05 Tobias Bley / UltraMixer
-	public void setLSApplicationCategoryType(String lsApplicationCategoryType) { this.mLSApplicationCategoryType = lsApplicationCategoryType; }
+    public void setLSApplicationCategoryType(String lsApplicationCategoryType) { this.mLSApplicationCategoryType = lsApplicationCategoryType; }
 
     //------------------------------------------------------------------------------------------
 }
