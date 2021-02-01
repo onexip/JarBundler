@@ -2,6 +2,7 @@
 .classpath
 .settings/
 .idea/
+.vscode/
 jarbundler-parent.iml
 .DS_Store
 target/
