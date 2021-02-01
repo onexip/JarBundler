@@ -83,7 +83,6 @@ public class AppBundleProperties {
 
 	// Explicit default: 1.3+
 	private String mJVMVersion = "1.3+";
-	private double mJavaVersion = 1.3;
 
 	// Explicit default: 6.0
 	private final String mCFBundleInfoDictionaryVersion = "6.0";
@@ -438,15 +437,10 @@ public class AppBundleProperties {
 
 	public void setJVMVersion(String s) {
 		mJVMVersion = s;
-		mJavaVersion = Double.parseDouble(s.substring(0, 3));
 	}
 
 	public String getJVMVersion() {
 		return mJVMVersion;
-	}
-
-	public double getJavaVersion() {
-		return mJavaVersion;
 	}
 
 	public void setVMOptions(String s) {
