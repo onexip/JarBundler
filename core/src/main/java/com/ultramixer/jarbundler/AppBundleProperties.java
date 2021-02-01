@@ -15,19 +15,16 @@
  *  limitations under the License.
  *
  */
-
-
 package com.ultramixer.jarbundler;
+
 
 // Java Utility
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.LinkedList;
 // import java.util.Scanner;
+import java.util.List;
 
-// Java language imports
-import java.lang.String;
 
 public class AppBundleProperties {
 

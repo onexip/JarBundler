@@ -14,17 +14,15 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-
 package com.ultramixer.jarbundler;
 
-// This package's imports
 
 // Java I/O
-import java.io.BufferedWriter;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -39,22 +37,14 @@ import java.util.Set;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.FileScanner;
 import org.apache.tools.ant.Project;
-
+import org.apache.tools.ant.taskdefs.Chmod;
+import org.apache.tools.ant.taskdefs.Delete;
+import org.apache.tools.ant.taskdefs.MatchingTask;
 import org.apache.tools.ant.types.FileList;
 import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.PatternSet;
-
-import org.apache.tools.ant.taskdefs.MatchingTask;
-import org.apache.tools.ant.taskdefs.Chmod;
-import org.apache.tools.ant.taskdefs.Delete;
-
 import org.apache.tools.ant.util.FileUtils;
 
-
-// Java language imports
-import java.lang.Boolean;
-import java.lang.String;
-import java.lang.System;
 
 /**
  * <p>

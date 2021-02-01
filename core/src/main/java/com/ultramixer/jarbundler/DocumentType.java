@@ -15,13 +15,14 @@
  *  limitations under the License.
  *
  */
-
 package com.ultramixer.jarbundler;
+
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 
 /**
  * <p>Represents an Info.plist DocumentType used for associating a document with
@@ -84,8 +85,6 @@ import java.util.List;
  * image/jpeg" role="editor" bundle="true" /&gt;
  * </pre>
  */
-
-
 public class DocumentType
 {
 
