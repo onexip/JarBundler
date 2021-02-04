@@ -15,13 +15,14 @@
  *  limitations under the License.
  *
  */
-
 package com.ultramixer.jarbundler;
+
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 
 /**
  * <p>Represents an Info.plist DocumentType used for associating a document with
@@ -30,11 +31,11 @@ import java.util.List;
  * product can handle. You should list the application's primary document type
  * first because the document controller uses that type by default when the user
  * requests a new document.</p>
- * 
+ *
  * <dl>
  * <dt>Name</dt>
  * <dd>The name of the document type.</dd>
- * 
+ *
  * <dt>UTI</dt>
  * <dd>A list of Uniform Type Identifier (UTI) strings for the document. UTIs
  * are strings that uniquely identify abstract types. They can be used to
@@ -42,23 +43,23 @@ import java.util.List;
  * information for other sorts of entities, such as directories, volumes, or
  * packages. For more information on UTIs, see the header file UTType.h,
  * available as part of LaunchServices.framework in Mac OS X v10.3 and later.</dd>
- * 
+ *
  * <dt>Extensions</dt>
  * <dd>A list of the filename extensions for this document type. Don't
  * include the period in the extension.</dd>
- * 
+ *
  * <dt>OS Types</dt>
  * <dd>A list of four-letter codes for the document. These codes are
  * stored in the document's resources or information property list files.</dd>
- * 
+ *
  * <dt>MIME Types</dt>
  * <dd>A list of the Multipurpose Internet Mail Extensions (MIME) types
  * for the document. MIME types identify content types for Internet
  * applications.</dd>
- * 
+ *
  * <dt>Icon File</dt>
  * <dd>The name of the file that contains the document type's icon.</dd>
- * 
+ *
  * <dt>Role</dt>
  * <dd>A description of how the application uses the documents of this type.
  * <ul>
@@ -70,13 +71,13 @@ import java.util.List;
  * but instead uses them in some other way. For example, Sketch uses this role
  * to declare types it can export but not read.</li>
  * </ul></dd>
- * 
+ *
  * <dt>Bundle</dt>
  * <dd>Specifies whether the document is a single file or a file bundle,
  * that is, a directory that is treated as a single document by certain
  * applications, such as the Finder.</dd>
  * </dl>
- * 
+ *
  * <p>Example:</p>
  * <pre>
  * &lt;documenttype name="Scan Project" extensions="scansort scanproj"
@@ -84,8 +85,6 @@ import java.util.List;
  * image/jpeg" role="editor" bundle="true" /&gt;
  * </pre>
  */
-
-
 public class DocumentType
 {
 

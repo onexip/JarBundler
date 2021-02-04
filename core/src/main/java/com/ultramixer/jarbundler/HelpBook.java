@@ -15,8 +15,8 @@
  *  limitations under the License.
  *
  */
-
 package com.ultramixer.jarbundler;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,65 +25,62 @@ import org.apache.tools.ant.taskdefs.MatchingTask;
 import org.apache.tools.ant.types.FileList;
 import org.apache.tools.ant.types.FileSet;
 
-import java.lang.String;
-
-
 
 public class HelpBook extends MatchingTask {
 
-	private String folderName = null;
-	private String name = null;
-	private String locale = null;
+    private String folderName = null;
+    private String name = null;
+    private String locale = null;
 
-	private final List fileLists = new ArrayList();
-	private final List fileSets = new ArrayList();
-
-
-	// Help Book name
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getName() {
-		return name;
-	}
+    private final List fileLists = new ArrayList();
+    private final List fileSets = new ArrayList();
 
 
-	// Help Book folder name
-	public void setFolderName(String folderName) {
-		this.folderName = folderName;
-	}
+    // Help Book name
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getFolderName() {
-		return folderName;
-	}
+    public String getName() {
+        return name;
+    }
 
 
-	// Help Book locale
-	public void setLocale(String locale) {
-		this.locale = locale;
-	}
+    // Help Book folder name
+    public void setFolderName(String folderName) {
+        this.folderName = folderName;
+    }
 
-	public String getLocale() {
-		return locale;
-	}
+    public String getFolderName() {
+        return folderName;
+    }
 
-	// Help Book files as a ANT FileList	
-	public void addFileList(FileList fileList) {
-		fileLists.add(fileList);
-	}
 
-	public List getFileLists() {
-		return fileLists;
-	}
+    // Help Book locale
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
 
-	// Help Book files as a ANT FileSet	
-	public void addFileSet(FileSet fileSet) {
-		fileSets.add(fileSet);
-	}
+    public String getLocale() {
+        return locale;
+    }
 
-	public List getFileSets() {
-		return fileSets;
-	}
+    // Help Book files as a ANT FileList
+    public void addFileList(FileList fileList) {
+        fileLists.add(fileList);
+    }
+
+    public List getFileLists() {
+        return fileLists;
+    }
+
+    // Help Book files as a ANT FileSet
+    public void addFileSet(FileSet fileSet) {
+        fileSets.add(fileSet);
+    }
+
+    public List getFileSets() {
+        return fileSets;
+    }
 
 }

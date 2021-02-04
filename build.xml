@@ -1,10 +1,10 @@
 <project name="jarbundler" default="jar" basedir=".">
 
   <property name="version" value="2.3.2"/>
-  <property name="description" value="ANT task for creating Mac OS X application bundles"/>    
+  <property name="description" value="ANT task for creating Mac OS X application bundles"/>
 
 
-  <!-- File names -->  
+  <!-- File names -->
   <property name="jarbundler.jar" value="${ant.project.name}-${version}.jar" />
   <property name="release.zip"    value="${ant.project.name}.zip" />
   <property name="release.tar"    value="${ant.project.name}.tar" />
@@ -14,11 +14,11 @@
   <!-- This path works only for OS X, Windows, and Linux must redefine -->
   <property name="ant.jar" value="/Developer/Java/Ant/lib/ant.jar" />
 
-   
+
   <target name="compile" description="Compile the classes">
-    
+
     <mkdir dir="classes"/>
-        
+
     <javac srcdir="src" destdir="classes" source="1.6" classpath="${ant.jar}"/>
   </target>
 
@@ -27,14 +27,14 @@
 
     <mkdir dir="build"/>
 
-    <tstamp/>  
+    <tstamp/>
 
     <jar jarfile="build/${jarbundler.jar}" basedir="classes">
         <manifest>
           <attribute name="Version"     value="${version}"/>
           <attribute name="Description" value="${description}"/>
           <attribute name="Build-Date"  value="${TODAY}"/>
-          <attribute name="Built-By"    value="${user.name}"/>        
+          <attribute name="Built-By"    value="${user.name}"/>
         </manifest>
     </jar>
   </target>
@@ -54,19 +54,19 @@
 
   <target name="release" depends="jar" description="Create zip and tar.gz files">
 
-	<ant dir="./example" target="clean" inheritAll="false"/>
-	
+    <ant dir="./example" target="clean" inheritAll="false"/>
+
     <mkdir dir="release"/>
     <mkdir dir="release/dist"/>
-    
+
     <copy todir="release">
        <fileset dir="dox"/>
     </copy>
-    
+
 
     <!-- Make this file easy to find in the distribution -->
     <move file="build/${jarbundler.jar}" tofile="${jarbundler.jar}"/>
-    
+
     <zip destfile="release/dist/${release.zip}">
       <zipfileset prefix="${ant.project.name}-${version}/" dir="${basedir}" excludes="CVS">
         <include name="LICENSE.TXT"/>
@@ -74,7 +74,7 @@
         <include name="build.xml"/>
         <include name="src/**"/>
         <include name="example/**"/>
-        <include name="${jarbundler.jar}"/> 
+        <include name="${jarbundler.jar}"/>
       </zipfileset>
     </zip>
 
@@ -85,8 +85,8 @@
         <include name="build.xml"/>
         <include name="src/**"/>
         <include name="example/**"/>
-        <include name="${jarbundler.jar}"/> 
-      </tarfileset>	
+        <include name="${jarbundler.jar}"/>
+      </tarfileset>
     </tar>
 
     <!-- Compress the tar -->
@@ -103,25 +103,25 @@
 
 
   <target name="simple" depends="jar" description="Build an example application">
-	<ant dir="./example" target="simple" inheritAll="false">
+    <ant dir="./example" target="simple" inheritAll="false">
       <property name="jarbundler.jar" value="${basedir}/build/${jarbundler.jar}" />
-	</ant>
+    </ant>
   </target>
 
 
   <target name="complex" depends="jar" description="Build an example application">
-	<ant dir="./example" target="complex" inheritAll="false">
+    <ant dir="./example" target="complex" inheritAll="false">
       <property name="jarbundler.jar" value="${basedir}/build/${jarbundler.jar}" />
-	</ant>
+    </ant>
   </target>
 
 
   <target name="clean" description="Clean up">
-    <delete dir="classes"/> 
-    <delete dir="build"/> 
+    <delete dir="classes"/>
+    <delete dir="build"/>
     <delete dir="javadoc"/>
-    <delete dir="release"/> 
-	<ant dir="example" target="clean" inheritAll="false"/>
+    <delete dir="release"/>
+    <ant dir="example" target="clean" inheritAll="false"/>
   </target>
 
 </project>
