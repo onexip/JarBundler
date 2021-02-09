@@ -25,6 +25,8 @@ import java.util.LinkedList;
 // import java.util.Scanner;
 import java.util.List;
 
+// Java language imports
+import java.lang.String;
 
 public class AppBundleProperties {
 
@@ -80,6 +82,7 @@ public class AppBundleProperties {
 
     // Explicit default: 1.3+
     private String mJVMVersion = "1.3+";
+	private double mJavaVersion = 1.3;
 
     // Explicit default: 6.0
     private final String mCFBundleInfoDictionaryVersion = "6.0";
@@ -443,12 +446,20 @@ public class AppBundleProperties {
     }
 
     public void setJVMVersion(String s) {
+	    s = s.trim();
         mJVMVersion = s;
+		String foodle = s.endsWith("+") ? s.substring(0, s.length()-1)
+		                                : s.substring(0, s.length());
+		mJavaVersion = Double.parseDouble(foodle);
     }
 
     public String getJVMVersion() {
         return mJVMVersion;
     }
+
+	public double getJavaVersion() {
+		return mJavaVersion;
+	}
 
     public void setVMOptions(String s) {
         mVMOptions = s;

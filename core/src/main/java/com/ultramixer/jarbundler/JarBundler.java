@@ -502,6 +502,9 @@ public class JarBundler extends MatchingTask {
      * @param b True sets 'JavaX' dictionary key instead of 'Java' key
      */
     public void setUseJavaXKey(boolean b) {
+		if (b && (bundleProperties.getJavaVersion() >= 1.7)) {
+			throw new BuildException("Setting usejavaxkey is useless if jvmversion is at least 1.7, because then the Oracle PList format is used");
+		}
         bundleProperties.setJavaXKey(b);
     }
 
@@ -512,8 +515,9 @@ public class JarBundler extends MatchingTask {
      *
      * @param b If set to true, tab controls in Swing applications more closely resemble the Metal look and feel.
      */
+	@Deprecated
     public void setSmallTabs(boolean b) {
-        bundleProperties.addJavaProperty("com.apple.smallTabs", new Boolean(b)
+		bundleProperties.addJavaProperty("com.apple.smallTabs", Boolean.valueOf(b)
                 .toString());
     }
 
@@ -533,8 +537,9 @@ public class JarBundler extends MatchingTask {
      *
      * @param b If set to true, use anti-aliasing when rendering graphics.
      */
+	@Deprecated
     public void setAntialiasedgraphics(boolean b) {
-        mAntiAliasedGraphics = new Boolean(b);
+		mAntiAliasedGraphics = Boolean.valueOf(b);
     }
 
     /**
@@ -544,8 +549,9 @@ public class JarBundler extends MatchingTask {
      *
      * @param b If set to true, use anti-aliasing when rendering text.
      */
+	@Deprecated
     public void setAntialiasedtext(boolean b) {
-        mAntiAliasedText = new Boolean(b);
+		mAntiAliasedText = Boolean.valueOf(b);
     }
 
     /**
@@ -555,8 +561,9 @@ public class JarBundler extends MatchingTask {
      *
      * @param b If set to true, puts Swing menus in the Mac OS X menu bar if using the Aqua look and feel.
      */
+	@Deprecated
     public void setScreenmenu(boolean b) {
-        mScreenMenuBar = new Boolean(b);
+		mScreenMenuBar = Boolean.valueOf(b);
     }
 
     /**
@@ -566,8 +573,9 @@ public class JarBundler extends MatchingTask {
      *
      * @param b Show the Aqua resize (grow) box.
      */
+	@Deprecated
     public void setGrowbox(boolean b) {
-        mGrowbox = new Boolean(b);
+		mGrowbox = Boolean.valueOf(b);
     }
 
     /**
@@ -577,8 +585,9 @@ public class JarBundler extends MatchingTask {
      *
      * @param b If turned off, the bottom of the window is pushed down 15 pixels.
      */
+	@Deprecated
     public void setGrowboxintrudes(boolean b) {
-        mGrowboxIntrudes = new Boolean(b);
+		mGrowboxIntrudes = Boolean.valueOf(b);
     }
 
     /**
@@ -588,8 +597,9 @@ public class JarBundler extends MatchingTask {
      *
      * @param b If set to true, enable live-resizing of windows.
      */
+	@Deprecated
     public void setLiveresize(boolean b) {
-        mLiveResize = new Boolean(b);
+		mLiveResize = Boolean.valueOf(b);
     }
 
     /**
@@ -599,6 +609,7 @@ public class JarBundler extends MatchingTask {
      *
      * @param s The Mac OS type of the bundle.
      */
+	@Deprecated
     public void setType(String s) {
         bundleProperties.setCFBundlePackageType(s);
     }
@@ -619,6 +630,9 @@ public class JarBundler extends MatchingTask {
      */
     public void setJvmversion(String s) {
         bundleProperties.setJVMVersion(s);
+		if (bundleProperties.getJavaXKey() && (bundleProperties.getJavaVersion() >= 1.7)) {
+			throw new BuildException("Setting usejavaxkey is useless if jvmversion is at least 1.7, because then the Oracle PList format is used");
+		}
     }
 
 
@@ -657,7 +671,7 @@ public class JarBundler extends MatchingTask {
      * @param b true to start on JVM main thread
      */
     public void setStartonmainthread(boolean b) {
-        bundleProperties.setStartOnMainThread(new Boolean(b));
+		bundleProperties.setStartOnMainThread(Boolean.valueOf(b));
     }
 
 
@@ -667,7 +681,7 @@ public class JarBundler extends MatchingTask {
      * @param b ???
      */
     public void setIsAgent( boolean b ) {
-        bundleProperties.setLSUIElement( new Boolean( b ) );
+		bundleProperties.setLSUIElement(Boolean.valueOf(b));
     }
 
 
@@ -755,6 +769,7 @@ public class JarBundler extends MatchingTask {
      *
      * @param s A list of jar files or patternsets (space or comma seperated)
      */
+	@Deprecated
     public void setJars(String s) {
         PatternSet patset = new PatternSet();
         patset.setIncludes(s);
@@ -770,6 +785,7 @@ public class JarBundler extends MatchingTask {
      *
      * @param s A single jar file to be used in your application.
      */
+	@Deprecated
     public void setJar(File s) {
         mJarAttrs.add(s);
     }
@@ -781,6 +797,7 @@ public class JarBundler extends MatchingTask {
      *
      * @param s A list of files or patternsets (space or comma seperated)
      */
+	@Deprecated
     public void setExecs(String s) {
         PatternSet patset = new PatternSet();
         patset.setIncludes(s);
@@ -818,6 +835,7 @@ public class JarBundler extends MatchingTask {
      *
      * @param s File to chmod
      */
+	@Deprecated
     public void setChmod(String s) {
         log("The \"chmod\" attribute is deprecated, use the ANT Chmod task instead");
     }
@@ -1128,7 +1146,7 @@ public class JarBundler extends MatchingTask {
                     + mResourcesDir);
 
         // Make the Resources/Java directory
-        mJavaDir = new File(mResourcesDir, "Java");
+		mJavaDir = new File(bundleProperties.getJavaVersion() < 1.7 ? mResourcesDir : mContentsDir, "Java");
 
         if (!mJavaDir.mkdir())
             throw new BuildException("Unable to create directory " + mJavaDir);
@@ -1253,7 +1271,7 @@ public class JarBundler extends MatchingTask {
      * Obviously, this logic may need refactoring in the future.
      */
     private boolean useOldPropertyNames() {
-        return (bundleProperties.getJVMVersion().startsWith("1.3"));
+		return (bundleProperties.getJavaVersion() <= 1.3);
     }
 
     private void processJarAttrs() throws BuildException {

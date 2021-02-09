@@ -1,6 +1,6 @@
 <project name="jarbundler" default="jar" basedir=".">
 
-  <property name="version" value="2.3.2"/>
+  <property name="version" value="3.3.1"/>
   <property name="description" value="ANT task for creating Mac OS X application bundles"/>
 
 
@@ -12,14 +12,26 @@
 
   <!-- Needs to reference this in order to compile                     -->
   <!-- This path works only for OS X, Windows, and Linux must redefine -->
-  <property name="ant.jar" value="/Developer/Java/Ant/lib/ant.jar" />
+  <!-- <property name="ant.jar" value="/Developer/Java/Ant/lib/ant.jar" /> -->
 
 
   <target name="compile" description="Compile the classes">
 
     <mkdir dir="classes"/>
 
-    <javac srcdir="src" destdir="classes" source="1.6" classpath="${ant.jar}"/>
+    <!-- java 13 won't compile this with source=1.6. It moans about 1.7.
+         The first version it is silent about is 1,8, but for MacOS users
+         that has GUI problems. 9 is the first good version, so that's what
+         it is.
+      -->
+    <javac srcdir="core/src"
+           destdir="classes"
+           source="9"
+           deprecation="yes"
+           classpath="${ant.jar}"
+           includeAntRuntime="yes">
+           <!-- <compilerarg value="-Xlint:unchecked"/> -->
+    </javac>
   </target>
 
 
@@ -121,7 +133,7 @@
     <delete dir="build"/>
     <delete dir="javadoc"/>
     <delete dir="release"/>
-    <ant dir="example" target="clean" inheritAll="false"/>
+	<ant dir="examples" target="clean" inheritAll="false"/>
   </target>
 
 </project>
