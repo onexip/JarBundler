@@ -20,7 +20,7 @@ Check the [release page](https://github.com/UltraMixer/JarBundler/releases) to g
 
 
 # Documentation
-Take a look at [./docs/index.html](http://htmlpreview.github.io/?https://github.com/UltraMixer/JarBundler/blob/master/dox/index.html) *(Currently outdated. Sorry.)*
+Take a look at [./docs/index.html](http://htmlpreview.github.io/?https://github.com/UltraMixer/JarBundler/blob/master/docs/index.html) *(Currently outdated. Sorry.)*
 
 
 # ChangeLog
@@ -40,7 +40,7 @@ Take a look at [./docs/index.html](http://htmlpreview.github.io/?https://github.
 * optional `SUPublicDSAKeyFile` attribute (for Plist key `SUPublicDSAKeyFile`)
 
 ## Previous history
-Take a look at [./docs/index.html](http://htmlpreview.github.io/?https://github.com/UltraMixer/JarBundler/blob/master/dox/index.html)
+Take a look at [./docs/index.html](http://htmlpreview.github.io/?https://github.com/UltraMixer/JarBundler/blob/master/docs/index.html)
 
 
 # License
