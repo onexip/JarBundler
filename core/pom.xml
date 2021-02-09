@@ -15,7 +15,7 @@
   ~  See the License for the specific language governing permissions and
   ~  limitations under the License.
   ~
-  -->
+-->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -23,7 +23,7 @@
     <parent>
         <artifactId>jarbundler-parent</artifactId>
         <groupId>com.ultramixer.jarbundler</groupId>
-        <version>3.3.0</version>
+        <version>3.4.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -37,7 +37,7 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
