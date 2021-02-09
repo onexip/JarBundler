@@ -233,6 +233,10 @@ public class PropertyListWriter
         if ( bundleProperties.getNSHighResolutionCapable() != false )
             writeKeyBooleanPair( "NSHighResolutionCapable", bundleProperties.getNSHighResolutionCapable(), dict );
 
+        // automatic graphics switching capability, optional
+        if (bundleProperties.getNSSupportsAutomaticGraphicsSwitching())
+            writeKeyBooleanPair( "NSSupportsAutomaticGraphicsSwitching", bundleProperties.getNSSupportsAutomaticGraphicsSwitching(), dict );
+
         // Content size, optional
         if ( bundleProperties.getNSPreferencesContentSize() != null )
             writeKeyStringPair( "NSPreferencesContentSize", "{" + bundleProperties.getNSPreferencesContentSize() + "}", dict );

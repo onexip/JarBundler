@@ -468,6 +468,13 @@ public class JarBundler extends MatchingTask {
     }
 
     /**
+     * Setter for the "NSSupportsAutomaticGraphicsSwitching" attribute (optional) Default "true".
+     */
+    public void setSupportsAutomaticGraphicsSwitching(boolean b) {
+        bundleProperties.setNSSupportsAutomaticGraphicsSwitching(b);
+    }
+
+    /**
      * Setter for the "NSPreferencesContentSize" attribute (optional).
      *
      * @author Adrien Quillet

@@ -123,6 +123,8 @@ public class AppBundleProperties {
     // HiRes capability, optional
     private boolean mNSHighResolutionCapable;
 
+    private boolean mNSSupportsAutomaticGraphicsSwitching = true;
+
 
     /**
      * LSEnvironment (Dictionary - OS X) defines environment variables to be set before launching this app. The names of the environment variables are the keys of the dictionary, with the values being the corresponding environment variable value. Both keys and values must be strings.
@@ -335,6 +337,14 @@ public class AppBundleProperties {
 
     public boolean getNSHighResolutionCapable() {
         return mNSHighResolutionCapable;
+    }
+
+    public void setNSSupportsAutomaticGraphicsSwitching(boolean b) {
+        mNSSupportsAutomaticGraphicsSwitching = b;
+    }
+
+    public boolean getNSSupportsAutomaticGraphicsSwitching() {
+        return mNSSupportsAutomaticGraphicsSwitching;
     }
 
     public void setNSPreferencesContentSize(String s) {
