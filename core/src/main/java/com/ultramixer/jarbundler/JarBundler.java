@@ -469,6 +469,9 @@ public class JarBundler extends MatchingTask {
 
     /**
      * Setter for the "NSSupportsAutomaticGraphicsSwitching" attribute (optional) Default "true".
+     * https://developer.apple.com/documentation/bundleresources/information_property_list/nssupportsautomaticgraphicsswitching
+     *
+     * @param b A Boolean value indicating whether an OpenGL app may utilize the integrated GPU.
      */
     public void setSupportsAutomaticGraphicsSwitching(boolean b) {
         bundleProperties.setNSSupportsAutomaticGraphicsSwitching(b);
