@@ -184,7 +184,7 @@ public class AppBundleProperties {
     //------------------------------------------------------
 
     public void addToClassPath(String s) {
-        mClassPath.add("$JAVAROOT/" + s);
+        mClassPath.add("$JAVAROOT/" + s.replace('\\', '/'));
     }
 
     public void addToExtraClassPath(String s) {
