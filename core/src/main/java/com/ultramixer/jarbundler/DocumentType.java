@@ -85,8 +85,7 @@ import java.util.List;
  * image/jpeg" role="editor" bundle="true" /&gt;
  * </pre>
  */
-public class DocumentType
-{
+public class DocumentType {
 
     private static final List EMPTYLIST = new ArrayList(0);
 
@@ -154,91 +153,75 @@ public class DocumentType
      */
     public boolean isBundle = false;
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
     // Document type name
-    public void setName(String name)
-    {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public List getExtensions()
-    {
+    public List getExtensions() {
         return (extensions == null) ? EMPTYLIST : Arrays.asList(extensions);
     }
 
     // Extensions
-    public void setExtensions(String extensions)
-    {
+    public void setExtensions(String extensions) {
         this.extensions = extensions.split("[\\s,]");
     }
 
-    public List getOSTypes()
-    {
+    public List getOSTypes() {
         return (osTypes == null) ? EMPTYLIST : Arrays.asList(osTypes);
     }
 
     // OS Types
-    public void setOSTypes(String osTypes)
-    {
+    public void setOSTypes(String osTypes) {
         this.osTypes = osTypes.split("[\\s,]");
     }
 
-    public List getMimeTypes()
-    {
+    public List getMimeTypes() {
         return (mimeTypes == null) ? EMPTYLIST : Arrays.asList(this.mimeTypes);
     }
 
     // mime-types
-    public void setMimeTypes(String mimeTypes)
-    {
+    public void setMimeTypes(String mimeTypes) {
         this.mimeTypes = mimeTypes.split("[\\s,]");
     }
 
-    public List getUTIs()
-    {
+    public List getUTIs() {
         return this.UTIs == null ? EMPTYLIST : Arrays.asList(this.UTIs);
     }
 
     // Uniform Type Identifiers
-    public void setUTIs(String UTIs)
-    {
+    public void setUTIs(String UTIs) {
         this.UTIs = UTIs.split("[\\s,]");
     }
 
-    public File getIconFile()
-    {
+    public File getIconFile() {
         return iconFile;
     }
 
     // Document icon file
-    public void setIconFile(File iconFile)
-    {
+    public void setIconFile(File iconFile) {
         this.iconFile = iconFile;
     }
 
-    public String getRole()
-    {
+    public String getRole() {
         return role;
     }
 
     // Document role
-    public void setRole(String role)
-    {
+    public void setRole(String role) {
         this.role = role;
     }
 
-    public boolean isBundle()
-    {
+    public boolean isBundle() {
         return isBundle;
     }
 
     // Is this document represented as a bundle
-    public void setBundle(boolean isBundle)
-    {
+    public void setBundle(boolean isBundle) {
         this.isBundle = isBundle;
     }
 

@@ -74,7 +74,7 @@ import java.util.*;
  * <dt>version
  * <dd>Version information about your application (e.g., "1.0")
  * </dl>
- *
+ * <p>
  * These attributes control the fine-tuning of the "Mac OS X" look and feel.
  *
  * <dl>
@@ -215,7 +215,7 @@ import java.util.*;
  *                jvmversion=&quot;1.4.1+&quot;
  *                vmoptions=&quot;-Xmx256m&quot;/&gt;
  * </pre>
- *
+ * <p>
  * http://developer.apple.com/documentation/MacOSX/Conceptual/BPRuntimeConfig/
  */
 public class JarBundler extends MatchingTask {
@@ -289,7 +289,6 @@ public class JarBundler extends MatchingTask {
 
     // Ant file utilities
     private FileUtils mFileUtils = FileUtils.getFileUtils();
-
 
 
     /***************************************************************************
@@ -382,10 +381,9 @@ public class JarBundler extends MatchingTask {
      * in a jar file, which contains a Splash-Screen manifest entry,
      * use "$JAVAROOT/myjar.jar"
      *
+     * @param s Path to a splash file
      * @author Angelo van der Sijpt
      * @since 2.0.0
-     *
-     * @param s Path to a splash file
      */
     public void setSplashFile(String s) {
         bundleProperties.setSplashFile(s);
@@ -419,10 +417,9 @@ public class JarBundler extends MatchingTask {
      * <p>Setter for the "allowmixedlocalizations" attribute (optional)</p>
      * <p>Default "false".<p>
      *
+     * @param b True to allow mixed localizations in your app
      * @author Tobias Fischer
      * @since 2.2.1
-     *
-     * @param b True to allow mixed localizations in your app
      */
     public void setAllowMixedLocalizations(boolean b) {
         bundleProperties.setCFBundleAllowMixedLocalizations(b);
@@ -431,10 +428,9 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "NSHumanReadableCopyright" attribute (optional)
      *
+     * @param s A string with the copyright notice for the bundle
      * @author Tobias Fischer
      * @since 2.3.0
-     *
-     * @param s A string with the copyright notice for the bundle
      */
     public void setCopyright(String s) {
         bundleProperties.setNSHumanReadableCopyright(s);
@@ -444,10 +440,9 @@ public class JarBundler extends MatchingTask {
      * <p>Setter for the "NSHighResolutionCapable" attribute (optional)</p>
      * <p>Default "false".</p>
      *
+     * @param b True if app is retina compatible
      * @author Tobias Fischer
      * @since 2.4.0
-     *
-     * @param b True if app is retina compatible
      */
     public void setHighResolutionCapable(boolean b) {
         bundleProperties.setNSHighResolutionCapable(b);
@@ -466,15 +461,14 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "NSPreferencesContentSize" attribute (optional).
      *
+     * @param s content size for window "int,int"
      * @author Adrien Quillet
      * @since 2.5.0
-     *
-     * @param s content size for window "int,int"
      */
     public void setContentSize(String s) {
         // Check input consistency
         String pattern = "[0-9]+,[0-9]+";
-        if(!s.matches(pattern)) {
+        if (!s.matches(pattern)) {
             throw new BuildException("Invalid content size format (expected 'width,height')");
         }
         bundleProperties.setNSPreferencesContentSize(s);
@@ -485,10 +479,9 @@ public class JarBundler extends MatchingTask {
      * <p>The 'JavaX' key is used to support the 'universalJavaApplicationStub'
      * project. More details https://github.com/tofi86/universalJavaApplicationStub</p>
      *
+     * @param b True sets 'JavaX' dictionary key instead of 'Java' key
      * @author Tobias Fischer
      * @since 2.4.0
-     *
-     * @param b True sets 'JavaX' dictionary key instead of 'Java' key
      */
     public void setUseJavaXKey(boolean b) {
         bundleProperties.setJavaXKey(b);
@@ -497,13 +490,12 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "smalltabs" attribute
      *
-     * @deprecated Deprecated under JVM 1.4.1
-     *
      * @param b If set to true, tab controls in Swing applications more closely resemble the Metal look and feel.
+     * @deprecated Deprecated under JVM 1.4.1
      */
     public void setSmallTabs(boolean b) {
         bundleProperties.addJavaProperty("com.apple.smallTabs", new Boolean(b)
-                .toString());
+            .toString());
     }
 
     /**
@@ -518,9 +510,8 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "antialiasedgraphics" attribute
      *
-     * @deprecated Use &lt;javaproperty name="apple.awt.antialiasing" .../&gt; instead
-     *
      * @param b If set to true, use anti-aliasing when rendering graphics.
+     * @deprecated Use &lt;javaproperty name="apple.awt.antialiasing" .../&gt; instead
      */
     public void setAntialiasedgraphics(boolean b) {
         mAntiAliasedGraphics = new Boolean(b);
@@ -529,9 +520,8 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "antialiasedtext" attribute
      *
-     * @deprecated Use &lt;javaproperty name="apple.awt.textantialiasing" .../&gt; instead
-     *
      * @param b If set to true, use anti-aliasing when rendering text.
+     * @deprecated Use &lt;javaproperty name="apple.awt.textantialiasing" .../&gt; instead
      */
     public void setAntialiasedtext(boolean b) {
         mAntiAliasedText = new Boolean(b);
@@ -540,9 +530,8 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "screenmenu" attribute
      *
-     * @deprecated Use &lt;javaproperty name="apple.laf.useScreenMenuBar" value="true"/&gt; instead
-     *
      * @param b If set to true, puts Swing menus in the Mac OS X menu bar if using the Aqua look and feel.
+     * @deprecated Use &lt;javaproperty name="apple.laf.useScreenMenuBar" value="true"/&gt; instead
      */
     public void setScreenmenu(boolean b) {
         mScreenMenuBar = new Boolean(b);
@@ -551,9 +540,8 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "growbox" attribute
      *
-     * @deprecated Use &lt;javaproperty name="apple.awt.showGrowBox" .../&gt; instead
-     *
      * @param b Show the Aqua resize (grow) box.
+     * @deprecated Use &lt;javaproperty name="apple.awt.showGrowBox" .../&gt; instead
      */
     public void setGrowbox(boolean b) {
         mGrowbox = new Boolean(b);
@@ -562,9 +550,8 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "growboxintrudes" attribute
      *
-     * @deprecated Deprecated under JVM 1.4.1
-     *
      * @param b If turned off, the bottom of the window is pushed down 15 pixels.
+     * @deprecated Deprecated under JVM 1.4.1
      */
     public void setGrowboxintrudes(boolean b) {
         mGrowboxIntrudes = new Boolean(b);
@@ -573,9 +560,8 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "liveresize" attribute
      *
-     * @deprecated Deprecated under JVM 1.4.1
-     *
      * @param b If set to true, enable live-resizing of windows.
+     * @deprecated Deprecated under JVM 1.4.1
      */
     public void setLiveresize(boolean b) {
         mLiveResize = new Boolean(b);
@@ -584,9 +570,8 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "type" attribute
      *
-     * @deprecated As it should always be set to APPL for applications.
-     *
      * @param s The Mac OS type of the bundle.
+     * @deprecated As it should always be set to APPL for applications.
      */
     public void setType(String s) {
         bundleProperties.setCFBundlePackageType(s);
@@ -614,10 +599,9 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "JVMArchs" attribute (optional)
      *
+     * @param s A space delimited string. Example: "i386 x64_86 ppc"
      * @author Tobias Bley
      * @since 2.2.0
-     *
-     * @param s A space delimited string. Example: "i386 x64_86 ppc"
      */
     public void setJvmArchs(String s) {
         bundleProperties.setJVMArchs(s);
@@ -627,10 +611,9 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "LSArchitecturePriority" attribute (optional)
      *
+     * @param s A space delimited string. Example: "i386 x64_86 ppc"
      * @author Michael Bader
      * @since 2.2.0
-     *
-     * @param s A space delimited string. Example: "i386 x64_86 ppc"
      */
     public void setLSArchitecturePriority(String s) {
         bundleProperties.setLSArchitecturePriority(s);
@@ -640,10 +623,9 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "startonmainthread" attribute (optional)
      *
+     * @param b true to start on JVM main thread
      * @author Mitch Coopet
      * @since 2.1.0
-     *
-     * @param b true to start on JVM main thread
      */
     public void setStartonmainthread(boolean b) {
         bundleProperties.setStartOnMainThread(new Boolean(b));
@@ -655,8 +637,8 @@ public class JarBundler extends MatchingTask {
      *
      * @param b ???
      */
-    public void setIsAgent( boolean b ) {
-        bundleProperties.setLSUIElement( new Boolean( b ) );
+    public void setIsAgent(boolean b) {
+        bundleProperties.setLSUIElement(new Boolean(b));
     }
 
 
@@ -736,13 +718,11 @@ public class JarBundler extends MatchingTask {
     }
 
 
-
     /**
      * Setter for the "jars" attribute (required if no "jarfileset" is present)
      *
-     * @deprecated Use &lt;jarfileset&gt; and/or &lt;jarfilelist&gt; nested tasks instead.
-     *
      * @param s A list of jar files or patternsets (space or comma seperated)
+     * @deprecated Use &lt;jarfileset&gt; and/or &lt;jarfilelist&gt; nested tasks instead.
      */
     public void setJars(String s) {
         PatternSet patset = new PatternSet();
@@ -750,8 +730,9 @@ public class JarBundler extends MatchingTask {
 
         String[] jarNames = patset.getIncludePatterns(getProject());
 
-        for (int i = 0; i < jarNames.length; i++)
+        for (int i = 0; i < jarNames.length; i++) {
             mJarAttrs.add(getProject().resolveFile(jarNames[i]));
+        }
     }
 
     /**
@@ -766,9 +747,8 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "execs" attribute
      *
-     * @deprecated Use &lt;execfileset/&gt; or &lt;execfilelist/&gt; nested tasks instead.
-     *
      * @param s A list of files or patternsets (space or comma seperated)
+     * @deprecated Use &lt;execfileset/&gt; or &lt;execfilelist/&gt; nested tasks instead.
      */
     public void setExecs(String s) {
         PatternSet patset = new PatternSet();
@@ -788,7 +768,9 @@ public class JarBundler extends MatchingTask {
      * @param s A list of files or patternsets (space or comma seperated)
      */
     public void setExtraclasspath(String s) {
-        if (s == null || s.trim().equals("")) return;
+        if (s == null || s.trim().equals("")) {
+            return;
+        }
         PatternSet patset = new PatternSet();
         patset.setIncludes(s);
 
@@ -803,9 +785,8 @@ public class JarBundler extends MatchingTask {
     /**
      * Set the 'chmod' executable.
      *
-     * @deprecated use the ANT Chmod task instead
-     *
      * @param s File to chmod
+     * @deprecated use the ANT Chmod task instead
      */
     public void setChmod(String s) {
         log("The \"chmod\" attribute is deprecated, use the ANT Chmod task instead");
@@ -866,20 +847,20 @@ public class JarBundler extends MatchingTask {
     /**
      * Add a configured LSEnvironment
      *
-     * @author Tobias Bley
-     * @since 3.2.0
-     *
      * @param lsEnvironment A 'lsenvironment' element
      * @throws BuildException 'lsenvironment' must have both 'name' and 'value' attributes
+     * @author Tobias Bley
+     * @since 3.2.0
      */
     public void addConfiguredLSEnvironment(LSEnvironment lsEnvironment) throws BuildException {
 
         String name = lsEnvironment.getName();
         String value = lsEnvironment.getValue();
 
-        if ((name == null) || (value == null))
+        if ((name == null) || (value == null)) {
             throw new BuildException(
-                    "'<lsenvironment>' must have both 'name' and 'value' attributes");
+                "'<lsenvironment>' must have both 'name' and 'value' attributes");
+        }
 
         bundleProperties.addLSEnvironment(name, value);
     }
@@ -889,9 +870,10 @@ public class JarBundler extends MatchingTask {
         String name = javaProperty.getName();
         String value = javaProperty.getValue();
 
-        if ((name == null) || (value == null))
+        if ((name == null) || (value == null)) {
             throw new BuildException(
-                    "'<javaproperty>' must have both 'name' and 'value' attributes");
+                "'<javaproperty>' must have both 'name' and 'value' attributes");
+        }
 
         bundleProperties.addJavaProperty(name, value);
     }
@@ -903,15 +885,17 @@ public class JarBundler extends MatchingTask {
         List extensions = documentType.getExtensions();
         List mimeTypes = documentType.getMimeTypes();
 
-        if ((name == null) || (role == null))
+        if ((name == null) || (role == null)) {
             throw new BuildException(
-                    "'<documenttype>' must have both a 'name' and a 'role' attribute");
+                "'<documenttype>' must have both a 'name' and a 'role' attribute");
+        }
 
-        if ((osTypes.isEmpty()) && (extensions.isEmpty()) && (mimeTypes.isEmpty()))
+        if ((osTypes.isEmpty()) && (extensions.isEmpty()) && (mimeTypes.isEmpty())) {
             throw new BuildException(
-                    "'<documenttype>' of \""
-                            + name
-                            + "\" must have 'osTypes' or 'extensions' or 'mimeTypes'");
+                "'<documenttype>' of \""
+                    + name
+                    + "\" must have 'osTypes' or 'extensions' or 'mimeTypes'");
+        }
 
         bundleProperties.addDocumentType(documentType);
     }
@@ -921,21 +905,26 @@ public class JarBundler extends MatchingTask {
         //if (service.getPortName() == null)
         //    throw new BuildException("\"<service>\" must have a \"portName\" attribute");
 
-        if (service.getMessage() == null)
+        if (service.getMessage() == null) {
             throw new BuildException("\"<service>\" must have a \"message\" attribute");
+        }
 
         String menuItem = service.getMenuItem();
-        if (menuItem == null)
+        if (menuItem == null) {
             throw new BuildException("\"<service>\" must have a \"menuItem\" attribute");
-        if (!menuItems.add(menuItem))
+        }
+        if (!menuItems.add(menuItem)) {
             throw new BuildException("\"<service>\" \"menuItem\" value must be unique");
+        }
 
-        if (service.getSendTypes().isEmpty() && service.getReturnTypes().isEmpty())
+        if (service.getSendTypes().isEmpty() && service.getReturnTypes().isEmpty()) {
             throw new BuildException("\"<service>\" must have either a \"sendTypes\" attribute, a \"returnTypes\" attribute or both");
+        }
 
         String keyEquivalent = service.getKeyEquivalent();
-        if ((keyEquivalent != null) && (1 != keyEquivalent.length()))
+        if ((keyEquivalent != null) && (1 != keyEquivalent.length())) {
             throw new BuildException("\"<service>\" \"keyEquivalent\" must be one character if present");
+        }
 
         String timeoutString = service.getTimeout();
         if (timeoutString != null) {
@@ -945,8 +934,9 @@ public class JarBundler extends MatchingTask {
             } catch (NumberFormatException nfe) {
                 throw new BuildException("\"<service>\" \"timeout\" must be a positive integral number");
             }
-            if (timeout < 0)
+            if (timeout < 0) {
                 throw new BuildException("\"<service>\" \"timeout\" must not be negative");
+            }
         }
 
         bundleProperties.addService(service);
@@ -956,15 +946,17 @@ public class JarBundler extends MatchingTask {
 
         // Validity check on 'foldername'
         if (helpBook.getFolderName() == null) {
-            if (bundleProperties.getCFBundleHelpBookFolder() == null)
+            if (bundleProperties.getCFBundleHelpBookFolder() == null) {
                 throw new BuildException("Either the '<helpbook>' attribute 'foldername' or the '<jarbundler>' attribute 'helpbookfolder' must be defined");
+            }
             helpBook.setFolderName(bundleProperties.getCFBundleHelpBookFolder());
         }
 
         // Validity check on 'title'
         if (helpBook.getName() == null) {
-            if (bundleProperties.getCFBundleHelpBookName() == null)
+            if (bundleProperties.getCFBundleHelpBookName() == null) {
                 throw new BuildException("Either the '<helpbook>' attribute 'name' or the '<jarbundler>' attribute 'helpbookname' must be defined");
+            }
             helpBook.setName(bundleProperties.getCFBundleHelpBookName());
         }
 
@@ -972,13 +964,13 @@ public class JarBundler extends MatchingTask {
         List fileLists = helpBook.getFileLists();
         List fileSets = helpBook.getFileSets();
 
-        if ( fileLists.isEmpty() && fileSets.isEmpty() )
+        if (fileLists.isEmpty() && fileSets.isEmpty()) {
             throw new BuildException("The '<helpbook>' task must have either " +
-                                     "'<fileset>' or  '<filelist>' nested tags");
+                "'<fileset>' or  '<filelist>' nested tags");
+        }
 
         mHelpBooks.add(helpBook);
     }
-
 
 
     /***************************************************************************
@@ -1004,123 +996,142 @@ public class JarBundler extends MatchingTask {
         // Validate - look for required attributes
         // ///////////////////////////////////////////
 
-        if (mRootDir == null)
+        if (mRootDir == null) {
             throw new BuildException("Required attribute \"dir\" is not set.");
+        }
 
         if (mJarAttrs.isEmpty() && mJarFileSets.isEmpty()
-                && mJarFileLists.isEmpty())
+            && mJarFileLists.isEmpty()) {
             throw new BuildException("Either the attribute \"jar\" must "
-                    + "be set, or one or more jarfilelists or "
-                    + "jarfilesets must be added.");
+                + "be set, or one or more jarfilelists or "
+                + "jarfilesets must be added.");
+        }
 
         if (!mJarAttrs.isEmpty()
-                && (!mJarFileSets.isEmpty() || !mJarFileLists.isEmpty()))
+            && (!mJarFileSets.isEmpty() || !mJarFileLists.isEmpty())) {
             throw new BuildException(
-                    "Cannot set both the attribute "
-                            + "\"jars\" and use jar filesets/filelists.  Use only one or the other.");
+                "Cannot set both the attribute "
+                    + "\"jars\" and use jar filesets/filelists.  Use only one or the other.");
+        }
 
-        if (bundleProperties.getApplicationName() == null)
+        if (bundleProperties.getApplicationName() == null) {
             throw new BuildException("Required attribute \"name\" is not set.");
+        }
 
-        if (bundleProperties.getMainClass() == null)
+        if (bundleProperties.getMainClass() == null) {
             throw new BuildException(
-                    "Required attribute \"mainclass\" is not set.");
+                "Required attribute \"mainclass\" is not set.");
+        }
 
         // /////////////////////////////////////////////////////////////////////////////////////
 
         // Set up some Java properties
 
         // About Menu, deprecated under 1.4+
-        if (useOldPropertyNames())
+        if (useOldPropertyNames()) {
             bundleProperties.addJavaProperty(ABOUTMENU_KEY, bundleProperties
-                    .getCFBundleName());
+                .getCFBundleName());
+        }
 
         // Anti Aliased Graphics, renamed in 1.4+
         String antiAliasedProperty = useOldPropertyNames()
-                ? "com.apple.macosx.AntiAliasedGraphicsOn"
-                : "apple.awt.antialiasing";
+            ? "com.apple.macosx.AntiAliasedGraphicsOn"
+            : "apple.awt.antialiasing";
 
-        if (mAntiAliasedGraphics != null)
+        if (mAntiAliasedGraphics != null) {
             bundleProperties.addJavaProperty(antiAliasedProperty,
-                    mAntiAliasedGraphics.toString());
+                mAntiAliasedGraphics.toString());
+        }
 
         // Anti Aliased Text, renamed in 1.4+
         String antiAliasedTextProperty = useOldPropertyNames()
-                ? "com.apple.macosx.AntiAliasedTextOn"
-                : "apple.awt.textantialiasing";
+            ? "com.apple.macosx.AntiAliasedTextOn"
+            : "apple.awt.textantialiasing";
 
-        if (mAntiAliasedText != null)
+        if (mAntiAliasedText != null) {
             bundleProperties.addJavaProperty(antiAliasedTextProperty,
-                    mAntiAliasedText.toString());
+                mAntiAliasedText.toString());
+        }
 
         // Live Resize, deprecated under 1.4+
-        if (useOldPropertyNames() && (mLiveResize != null))
+        if (useOldPropertyNames() && (mLiveResize != null)) {
             bundleProperties.addJavaProperty(
-                    "com.apple.mrj.application.live-resize", mLiveResize
-                            .toString());
+                "com.apple.mrj.application.live-resize", mLiveResize
+                    .toString());
+        }
 
         // Screen Menu Bar, renamed in 1.4+
         String screenMenuBarProperty = useOldPropertyNames()
-                ? "com.apple.macos.useScreenMenuBar"
-                : "apple.laf.useScreenMenuBar";
+            ? "com.apple.macos.useScreenMenuBar"
+            : "apple.laf.useScreenMenuBar";
 
-        if (mScreenMenuBar != null)
+        if (mScreenMenuBar != null) {
             bundleProperties.addJavaProperty(screenMenuBarProperty,
-                    mScreenMenuBar.toString());
+                mScreenMenuBar.toString());
+        }
 
         // Growbox, added with 1.4+
-        if ((useOldPropertyNames() == false) && (mGrowbox != null))
+        if ((useOldPropertyNames() == false) && (mGrowbox != null)) {
             bundleProperties.addJavaProperty("apple.awt.showGrowBox", mGrowbox
-                    .toString());
+                .toString());
+        }
 
         // Growbox Intrudes, deprecated under 1.4+
-        if (useOldPropertyNames() && (mGrowboxIntrudes != null))
+        if (useOldPropertyNames() && (mGrowboxIntrudes != null)) {
             bundleProperties.addJavaProperty(
-                    "com.apple.mrj.application.growbox.intrudes",
-                    mGrowboxIntrudes.toString());
+                "com.apple.mrj.application.growbox.intrudes",
+                mGrowboxIntrudes.toString());
+        }
 
         if (!mRootDir.exists()
-                || (mRootDir.exists() && !mRootDir.isDirectory()))
+            || (mRootDir.exists() && !mRootDir.isDirectory())) {
             throw new BuildException(
-                    "Destination directory specified by \"dir\" "
-                            + "attribute must already exist.");
+                "Destination directory specified by \"dir\" "
+                    + "attribute must already exist.");
+        }
 
-        if (bundleDir.exists())
+        if (bundleDir.exists()) {
             throw new BuildException("The directory/bundle \""
-                    + bundleDir.getName()
-                    + "\" already exists, cannot continue.");
+                + bundleDir.getName()
+                + "\" already exists, cannot continue.");
+        }
 
         // Status message
         log("Creating application bundle: " + bundleDir);
 
-        if (!bundleDir.mkdir())
+        if (!bundleDir.mkdir()) {
             throw new BuildException("Unable to create bundle: " + bundleDir);
+        }
 
         // Make the Contents directory
         mContentsDir = new File(bundleDir, "Contents");
 
-        if (!mContentsDir.mkdir())
+        if (!mContentsDir.mkdir()) {
             throw new BuildException("Unable to create directory "
-                    + mContentsDir);
+                + mContentsDir);
+        }
 
         // Make the "MacOS" directory
         mMacOsDir = new File(mContentsDir, "MacOS");
 
-        if (!mMacOsDir.mkdir())
+        if (!mMacOsDir.mkdir()) {
             throw new BuildException("Unable to create directory " + mMacOsDir);
+        }
 
         // Make the Resources directory
         mResourcesDir = new File(mContentsDir, "Resources");
 
-        if (!mResourcesDir.mkdir())
+        if (!mResourcesDir.mkdir()) {
             throw new BuildException("Unable to create directory "
-                    + mResourcesDir);
+                + mResourcesDir);
+        }
 
         // Make the Resources/Java directory
         mJavaDir = new File(mResourcesDir, "Java");
 
-        if (!mJavaDir.mkdir())
+        if (!mJavaDir.mkdir()) {
             throw new BuildException("Unable to create directory " + mJavaDir);
+        }
 
         // Copy icon file to resource dir. If no icon parameter
         // is supplied, the default icon will be used.
@@ -1129,8 +1140,9 @@ public class JarBundler extends MatchingTask {
             try {
                 File dest = new File(mResourcesDir, mAppIcon.getName());
 
-                if(mVerbose)
+                if (mVerbose) {
                     log("Copying application icon file to \"" + bundlePath(dest) + "\"");
+                }
 
                 mFileUtils.copyFile(mAppIcon, dest);
             } catch (IOException ex) {
@@ -1147,8 +1159,9 @@ public class JarBundler extends MatchingTask {
                 File iconFile = documentType.getIconFile();
                 if (iconFile != null) {
                     File dest = new File(mResourcesDir, iconFile.getName());
-                    if(mVerbose)
+                    if (mVerbose) {
                         log("Copying document icon file to \"" + bundlePath(dest) + "\"");
+                    }
                     mFileUtils.copyFile(iconFile, dest);
                 }
             }
@@ -1224,8 +1237,9 @@ public class JarBundler extends MatchingTask {
         chmodTask.setFile(f);
         chmodTask.setPerm("ugo+rx");
 
-        if (mVerbose)
+        if (mVerbose) {
             log("Setting \"" + bundlePath(f) + "\" to executable");
+        }
 
         chmodTask.execute();
 
@@ -1238,7 +1252,7 @@ public class JarBundler extends MatchingTask {
      * 1.3 the Java property to tell the VM to display Swing menu bars as screen
      * menus is "com.apple.macos.useScreenMenuBar". Under 1.4, it becomes
      * "apple.laf.useScreenMenuBar". Such is the price of progress, I suppose.
-     *
+     * <p>
      * Obviously, this logic may need refactoring in the future.
      */
     private boolean useOldPropertyNames() {
@@ -1249,12 +1263,13 @@ public class JarBundler extends MatchingTask {
 
         try {
 
-            for (Iterator jarIter = mJarAttrs.iterator(); jarIter.hasNext();) {
+            for (Iterator jarIter = mJarAttrs.iterator(); jarIter.hasNext(); ) {
                 File src = (File) jarIter.next();
                 File dest = new File(mJavaDir, src.getName());
 
-                if (mVerbose)
+                if (mVerbose) {
                     log("Copying JAR file to \"" + bundlePath(dest) + "\"");
+                }
 
 
                 mFileUtils.copyFile(src, dest);
@@ -1267,7 +1282,7 @@ public class JarBundler extends MatchingTask {
 
     private void processJarFileSets() throws BuildException {
 
-        for (Iterator jarIter = mJarFileSets.iterator(); jarIter.hasNext();) {
+        for (Iterator jarIter = mJarFileSets.iterator(); jarIter.hasNext(); ) {
 
             FileSet fs = (FileSet) jarIter.next();
 
@@ -1286,10 +1301,12 @@ public class JarBundler extends MatchingTask {
                     File src = new File(srcDir, fileName);
                     File dest = new File(mJavaDir, fileName);
 
-                    if (mVerbose)
+                    if (mVerbose) {
                         log("Copying JAR file to \"" + bundlePath(dest) + "\"");
+                    }
 
                     mFileUtils.copyFile(src, dest);
+
                     bundleProperties.addToClassPath(fileName);
                 }
 
@@ -1301,7 +1318,7 @@ public class JarBundler extends MatchingTask {
 
     private void processJarFileLists() throws BuildException {
 
-        for (Iterator jarIter = mJarFileLists.iterator(); jarIter.hasNext();) {
+        for (Iterator jarIter = mJarFileLists.iterator(); jarIter.hasNext(); ) {
             FileList fl = (FileList) jarIter.next();
             Project p = fl.getProject();
             File srcDir = fl.getDir(p);
@@ -1314,11 +1331,13 @@ public class JarBundler extends MatchingTask {
                     File src = new File(srcDir, fileName);
                     File dest = new File(mJavaDir, fileName);
 
-                    if (mVerbose)
+                    if (mVerbose) {
                         log("Copying JAR file to \"" + bundlePath(dest) + "\"");
+                    }
 
 
                     mFileUtils.copyFile(src, dest);
+
                     bundleProperties.addToClassPath(fileName);
                 }
             } catch (IOException ex) {
@@ -1329,8 +1348,7 @@ public class JarBundler extends MatchingTask {
 
     private void processExtraClassPathAttrs() throws BuildException {
 
-        for (Iterator jarIter = mExtraClassPathAttrs.iterator(); jarIter
-                .hasNext();) {
+        for (Iterator jarIter = mExtraClassPathAttrs.iterator(); jarIter.hasNext(); ) {
             File src = (File) jarIter.next();
             String path = src.getPath().replace(File.separatorChar, '/');
             bundleProperties.addToExtraClassPath(path);
@@ -1339,8 +1357,7 @@ public class JarBundler extends MatchingTask {
 
     private void processExtraClassPathFileSets() throws BuildException {
 
-        for (Iterator jarIter = mExtraClassPathFileSets.iterator(); jarIter
-                .hasNext();) {
+        for (Iterator jarIter = mExtraClassPathFileSets.iterator(); jarIter.hasNext(); ) {
             FileSet fs = (FileSet) jarIter.next();
             Project p = fs.getProject();
             File srcDir = fs.getDir(p);
@@ -1359,8 +1376,7 @@ public class JarBundler extends MatchingTask {
     }
 
     private void processExtraClassPathFileLists() throws BuildException {
-        for (Iterator jarIter = mExtraClassPathFileLists.iterator(); jarIter
-                .hasNext();) {
+        for (Iterator jarIter = mExtraClassPathFileLists.iterator(); jarIter.hasNext(); ) {
             FileList fl = (FileList) jarIter.next();
             Project p = fl.getProject();
             File srcDir = fl.getDir(p);
@@ -1376,12 +1392,13 @@ public class JarBundler extends MatchingTask {
 
     private void processExecAttrs() throws BuildException {
         try {
-            for (Iterator execIter = mExecAttrs.iterator(); execIter.hasNext();) {
+            for (Iterator execIter = mExecAttrs.iterator(); execIter.hasNext(); ) {
                 File src = (File) execIter.next();
                 File dest = new File(mMacOsDir, src.getName());
 
-                if (mVerbose)
+                if (mVerbose) {
                     log("Copying exec file to \"" + bundlePath(dest) + "\"");
+                }
 
 
                 mFileUtils.copyFile(src, dest);
@@ -1410,7 +1427,7 @@ public class JarBundler extends MatchingTask {
     }
 
     private void processCopyingFileSets(List fileSets, File targetdir, boolean setExec) {
-        for (Iterator execIter = fileSets.iterator(); execIter.hasNext();) {
+        for (Iterator execIter = fileSets.iterator(); execIter.hasNext(); ) {
             FileSet fs = (FileSet) execIter.next();
             Project p = fs.getProject();
             File srcDir = fs.getDir(p);
@@ -1423,8 +1440,8 @@ public class JarBundler extends MatchingTask {
             if (files.length == 0) {
                 // this is probably an error -- warn about it
                 System.err
-                        .println("WARNING: fileset for copying from directory "
-                                + srcDir + ": no files found");
+                    .println("WARNING: fileset for copying from directory "
+                        + srcDir + ": no files found");
             } else {
                 try {
                     for (int i = 0; i < files.length; i++) {
@@ -1432,14 +1449,16 @@ public class JarBundler extends MatchingTask {
                         File src = new File(srcDir, fileName);
                         File dest = new File(targetdir, fileName);
 
-                        if (mVerbose)
+                        if (mVerbose) {
                             log("Copying "
-                                    + (setExec ? "exec" : "resource")
-                                    + " file to \"" + bundlePath(dest) +"\"");
+                                + (setExec ? "exec" : "resource")
+                                + " file to \"" + bundlePath(dest) + "\"");
+                        }
 
                         mFileUtils.copyFile(src, dest);
-                        if (setExec)
+                        if (setExec) {
                             setExecutable(dest);
+                        }
                     }
                 } catch (IOException ex) {
                     throw new BuildException("Cannot copy file: " + ex);
@@ -1466,7 +1485,7 @@ public class JarBundler extends MatchingTask {
     }
 
     private void processCopyingFileLists(List fileLists, File targetDir, boolean setExec) throws BuildException {
-        for (Iterator execIter = fileLists.iterator(); execIter.hasNext();) {
+        for (Iterator execIter = fileLists.iterator(); execIter.hasNext(); ) {
 
             FileList fl = (FileList) execIter.next();
             Project p = fl.getProject();
@@ -1476,7 +1495,7 @@ public class JarBundler extends MatchingTask {
             if (files.length == 0) {
                 // this is probably an error -- warn about it
                 System.err.println("WARNING: filelist for copying from directory "
-                                + srcDir + ": no files found");
+                    + srcDir + ": no files found");
             } else {
                 try {
                     for (int i = 0; i < files.length; i++) {
@@ -1484,14 +1503,16 @@ public class JarBundler extends MatchingTask {
                         File src = new File(srcDir, fileName);
                         File dest = new File(targetDir, fileName);
 
-                        if (mVerbose)
+                        if (mVerbose) {
                             log("Copying "
-                                    + (setExec ? "exec" : "resource")
-                                    + " file to \"" + bundlePath(dest) +"\"");
+                                + (setExec ? "exec" : "resource")
+                                + " file to \"" + bundlePath(dest) + "\"");
+                        }
 
                         mFileUtils.copyFile(src, dest);
-                        if (setExec)
+                        if (setExec) {
                             setExecutable(dest);
+                        }
                     }
                 } catch (IOException ex) {
                     throw new BuildException("Cannot copy jar file: " + ex);
@@ -1501,11 +1522,10 @@ public class JarBundler extends MatchingTask {
     }
 
 
-
     private void copyHelpBooks() {
-        for (Iterator itor = mHelpBooks.iterator(); itor.hasNext();) {
+        for (Iterator itor = mHelpBooks.iterator(); itor.hasNext(); ) {
 
-            HelpBook helpBook = (HelpBook)itor.next();
+            HelpBook helpBook = (HelpBook) itor.next();
 
             String folderName = helpBook.getFolderName();
             String name = helpBook.getName();
@@ -1520,19 +1540,22 @@ public class JarBundler extends MatchingTask {
             if (locale == null) {
 
                 // Set the Bundle entries for a nonlocalized Help Book
-                if (folderName != null)
+                if (folderName != null) {
                     bundleProperties.setCFBundleHelpBookFolder(folderName);
+                }
 
-                if (name != null)
+                if (name != null) {
                     bundleProperties.setCFBundleHelpBookName(name);
+                }
 
                 // The non-localized Help Book is top level "/Resources"
                 helpBookDir = new File(mResourcesDir, folderName);
                 helpBookDir.mkdir();
 
-                if(mVerbose)
+                if (mVerbose) {
                     log("Creating Help Book at \"" +
-                                        bundlePath(helpBookDir) + "\"");
+                        bundlePath(helpBookDir) + "\"");
+                }
 
 
             } else {
@@ -1544,21 +1567,22 @@ public class JarBundler extends MatchingTask {
                 helpBookDir = new File(lproj, folderName);
                 helpBookDir.mkdir();
 
-                if(mVerbose)
+                if (mVerbose) {
                     log("Creating Help Book for \"" + locale +
-                                        "\" at \"" + bundlePath(helpBookDir)  + "\"");
+                        "\" at \"" + bundlePath(helpBookDir) + "\"");
+                }
 
                 // Create a local file to override the Bundle settings
                 File infoPList = new File(lproj, "InfoPlist.strings");
                 PrintWriter writer = null;
                 try {
-                     writer = new PrintWriter(new FileWriter(infoPList));
-                       writer.println("CFBundleHelpBookFolder = \"" + folderName + "\";");
-                       writer.println("CFBundleHelpBookName = \"" + name + "\";");
-                       writer.println("CFBundleName = \"" + bundleProperties.getCFBundleName() + "\";");
-                   } catch (IOException ioe) {
-                       throw new BuildException("IOException in writing Help Book locale: " + locale);
-                   } finally {
+                    writer = new PrintWriter(new FileWriter(infoPList));
+                    writer.println("CFBundleHelpBookFolder = \"" + folderName + "\";");
+                    writer.println("CFBundleHelpBookName = \"" + name + "\";");
+                    writer.println("CFBundleName = \"" + bundleProperties.getCFBundleName() + "\";");
+                } catch (IOException ioe) {
+                    throw new BuildException("IOException in writing Help Book locale: " + locale);
+                } finally {
                     mFileUtils.close(writer);
                 }
             }
@@ -1580,8 +1604,9 @@ public class JarBundler extends MatchingTask {
     private void copyApplicationStub() throws BuildException {
         File newStubFile = new File(mMacOsDir, bundleProperties.getCFBundleExecutable());
 
-        if (mVerbose)
+        if (mVerbose) {
             log("Copying Java application stub to \"" + bundlePath(newStubFile) + "\"");
+        }
 
         try {
             mFileUtils.copyFile(mStubFile, newStubFile);
@@ -1600,16 +1625,18 @@ public class JarBundler extends MatchingTask {
 
         listWriter.writeFile(infoPlist);
 
-        if (mVerbose)
+        if (mVerbose) {
             log("Creating \"" + bundlePath(infoPlist) + "\" file");
+        }
 
 
         if (mShowPlist) {
             try {
                 BufferedReader in = new BufferedReader(new FileReader(infoPlist));
                 String str;
-                while ((str = in.readLine()) != null)
+                while ((str = in.readLine()) != null) {
                     log(str);
+                }
                 in.close();
             } catch (IOException e) {
                 throw new BuildException(e);
@@ -1649,26 +1676,22 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the 'suFeedURL' attribute (optional)
      *
+     * @param url URL used to check for new version of the applications.
      * @author Tobias Bley
      * @since 2.2.0
-     *
-     * @param url URL used to check for new version of the applications.
      */
-    public void setSUFeedURL(String url)
-    {
+    public void setSUFeedURL(String url) {
         this.bundleProperties.setSUFeedURL(url);
     }
 
     /**
      * Setter for the 'UPublicDSAKeyFile' attribute (optional)
      *
+     * @param file DSA key file
      * @author Tobias Bley
      * @since 3.2.0
-     *
-     * @param file DSA key file
      */
-    public void setSUPublicDSAKeyFile(String file)
-    {
+    public void setSUPublicDSAKeyFile(String file) {
         this.bundleProperties.setSUPublicDSAKeyFile(file);
     }
 
@@ -1677,13 +1700,11 @@ public class JarBundler extends MatchingTask {
      *
      * <p>https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/LaunchServicesKeys.html#//apple_ref/doc/uid/TP40009250-SW8</p>
      *
+     * @param type Type of application category
      * @author Tobias Bley
      * @since 3.2.0
-     *
-     * @param type Type of application category
      */
-    public void setLSApplicationCategoryType(String type)
-    {
+    public void setLSApplicationCategoryType(String type) {
         this.bundleProperties.setLSApplicationCategoryType(type);
     }
 

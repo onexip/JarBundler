@@ -19,23 +19,22 @@ package com.ultramixer.jarbundler;
 
 public class JavaProperty {
 
-    /** The JavaProperties' name and value */
-
+    /**
+     * The JavaProperties' name and value
+     */
     private String name = null;
     private String value = null;
 
     /**
      * Construct an empty JavaProperty
      */
-
     public JavaProperty() {
     }
 
     /**
      * Set the JavaProperties's name; required
      *
-     * @param name
-     *            the JavaProperties' name
+     * @param name the JavaProperties' name
      */
     public void setName(String name) {
         this.name = name;
@@ -48,8 +47,9 @@ public class JavaProperty {
      */
     public String getName() {
 
-        if (this.name == null)
+        if (this.name == null) {
             return null;
+        }
 
         return this.name.trim();
     }
@@ -57,10 +57,8 @@ public class JavaProperty {
     /**
      * Set the JavaProperties' value; required
      *
-     * @param value
-     *            the JavaProperties' value
+     * @param value the JavaProperties' value
      */
-
     public void setValue(String value) {
         this.value = value;
     }
@@ -72,8 +70,9 @@ public class JavaProperty {
      */
     public String getValue() {
 
-        if (this.value == null)
+        if (this.value == null) {
             return null;
+        }
 
         return this.value.trim();
     }

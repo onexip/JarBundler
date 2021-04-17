@@ -81,35 +81,31 @@ public class Service {
     private static final List EMPTYLIST = new ArrayList(0);
 
 
-    /** The name of the port the application monitors for incoming service requests. */
+    /**
+     * The name of the port the application monitors for incoming service requests.
+     */
     private String portName = null;
 
 
     /**
-     *
      * The name of the instance method to invoke for the service.
      * In Objective-C, the instance method must be of the form messageName:userData:error:.
-     *
      * In Java, the instance method must be of the form messageName(NSPasteBoard,String).
      */
     private String message = null;
 
 
     /**
-     *
      * The text to add to the Services menu. The value must be unique.
-     *
      * You can use a slash character "/" to specify a submenu. For example, Mail/Send
-     *
      * would appear in the Services Menu as a menu named Mail with an item named Send.
      */
     private String menuItem = null;
 
+
     /**
      * A list of the data type names that can be read by the service.
-     *
      * The NSPasteboard class description lists several common data types.
-     *
      * You must specify either Send Types, Return Types or both.
      */
     private String[] sendTypes = null;
@@ -117,9 +113,7 @@ public class Service {
 
     /**
      * A list of the data type names that can be returned by the service.
-     *
      * The NSPasteboard class description lists several common data types.
-     *
      * You must specify either Return Types, Send Types or both.
      */
     private String[] returnTypes = null;
@@ -127,33 +121,23 @@ public class Service {
 
     /**
      * This attribute is optional. The keyboard equivalent used to invoke
-     *
      * the service menu command. The value has to be a single character. Users invoke this
-     *
      * keyboard equivalent by pressing the Command and Shift key modifiers along with the character.
-     *
      */
     private String keyEquivalent = null;
 
 
     /**
-     *
      * This attribute is optional. The value is free choosable and is passed
-     *
      * to the method as second parameter.
-     *
      */
     private String userData = null;
 
 
     /**
-     *
      * This attribute is optional. It indicates the number of milliseconds
-     *
      * Services should wait for a response from the application providing
-     *
      * a service when a respond is required.
-     *
      */
     private String timeout = null;
 
@@ -176,7 +160,6 @@ public class Service {
 
     public void setMenuItem(String menuItem) {
         this.menuItem = menuItem;
-
     }
 
     public String getMenuItem() {

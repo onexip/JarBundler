@@ -55,7 +55,6 @@ public class AppBundleProperties {
     private boolean mCFBundleAllowMixedLocalizations = false;
 
     // Copyright, optional
-
     private String mNSHumanReadableCopyright = null;
 
     // Window size, optional (per Adrien Quillet <aquillet@is2t.com>)
@@ -139,11 +138,10 @@ public class AppBundleProperties {
     /**
      * Add a LSEnvironment key-value pair to the mLSEnvironments hashtable.
      *
+     * @param key   A Key
+     * @param value A Value
      * @author Tobias Bley
      * @since 3.2.0
-     *
-     * @param key A Key
-     * @param value A Value
      */
     public void addLSEnvironment(String key, String value) {
         mLSEnvironments.put(key, value);
@@ -151,11 +149,9 @@ public class AppBundleProperties {
 
 
     /**
-     *
+     * @return LSEnvironment
      * @author Tobias Bley
      * @since 3.2.0
-     *
-     * @return LSEnvironment
      */
     public Hashtable getLSEnvironment() {
         return mLSEnvironments;
@@ -165,7 +161,7 @@ public class AppBundleProperties {
      * Add a Java runtime property to the properties hashtable.
      *
      * @param prop A property
-     * @param val A value
+     * @param val  A value
      */
     public void addJavaProperty(String prop, String val) {
         mJavaProperties.put(prop, val);
@@ -187,8 +183,7 @@ public class AppBundleProperties {
 
     //------------------------------------------------------
 
-    public void addToClassPath(String s)
-    {
+    public void addToClassPath(String s) {
         mClassPath.add("$JAVAROOT/" + s);
     }
 
@@ -251,16 +246,18 @@ public class AppBundleProperties {
 
     public void setCFBundleName(String s) {
 
-        if (s.length() > 16)
+        if (s.length() > 16) {
             System.err
-                    .println("WARNING: 'shortname' is recommeded to be no more than 16 "
-                            + "charaters long. See usage notes.");
+                .println("WARNING: 'shortname' is recommeded to be no more than 16 "
+                    + "charaters long. See usage notes.");
+        }
         mCFBundleName = s;
     }
 
     public String getCFBundleName() {
-        if (mCFBundleName == null)
+        if (mCFBundleName == null) {
             return getApplicationName();
+        }
 
         return mCFBundleName;
     }
@@ -418,21 +415,15 @@ public class AppBundleProperties {
         return mStartOnMainThread;
     }
 
-
-
     public Boolean getLSUIElement() {
         return mLSUIElement;
     }
 
-
-
-    public void setLSUIElement( Boolean b ) {
+    public void setLSUIElement(Boolean b) {
         this.mLSUIElement = b;
     }
 
-
-
-    public void setMainClass( String s ) {
+    public void setMainClass(String s) {
         mMainClass = s;
     }
 
@@ -486,8 +477,9 @@ public class AppBundleProperties {
 
         // Use for 1.4 backwards compatability
         String[] tokens = archs.split("\\s+");
-        for (int i=0; i<tokens.length; i++)
+        for (int i = 0; i < tokens.length; i++) {
             mJVMArchs.add(tokens[i]);
+        }
 
         // 'java.util.Scanner' is available in JDK 1.5
         // Scanner s = new Scanner(archs);
@@ -508,8 +500,9 @@ public class AppBundleProperties {
 
         // Use for 1.4 backwards compatability
         String[] tokens = lsArchitecturePriority.split("\\s+");
-        for (int i=0; i<tokens.length; i++)
+        for (int i = 0; i < tokens.length; i++) {
             mLSArchitecturePriority.add(tokens[i]);
+        }
 
         // 'java.util.Scanner' is available in JDK 1.5
         // Scanner s = new Scanner(lsArchitecturePriority);
@@ -527,22 +520,24 @@ public class AppBundleProperties {
     }
 
     // New since 2015-08-05 Tobias Bley / UltraMixer
-    public void setSUPublicDSAKeyFile(String file)
-    {
+    public void setSUPublicDSAKeyFile(String file) {
         this.mSUPublicDSAKeyFile = file;
     }
 
     // New since 2015-08-05 Tobias Bley / UltraMixer
-    public String getSUPublicDSAKeyFile()
-    {
+    public String getSUPublicDSAKeyFile() {
         return mSUPublicDSAKeyFile;
     }
 
     // New since 2015-08-05 Tobias Bley / UltraMixer
-    public String getLSApplicationCategoryType() { return mLSApplicationCategoryType; }
+    public String getLSApplicationCategoryType() {
+        return mLSApplicationCategoryType;
+    }
 
     // New since 2015-08-05 Tobias Bley / UltraMixer
-    public void setLSApplicationCategoryType(String lsApplicationCategoryType) { this.mLSApplicationCategoryType = lsApplicationCategoryType; }
+    public void setLSApplicationCategoryType(String lsApplicationCategoryType) {
+        this.mLSApplicationCategoryType = lsApplicationCategoryType;
+    }
 
     //------------------------------------------------------------------------------------------
 }

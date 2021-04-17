@@ -40,10 +40,10 @@ public class HelloWorld {
         JMenuItem helpItem = new JMenuItem("Hello World Help");
         helpMenu.add(helpItem);
         helpItem
-                .setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_SLASH,
-                        KeyEvent.SHIFT_MASK
-                                | Toolkit.getDefaultToolkit()
-                                        .getMenuShortcutKeyMask()));
+            .setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_SLASH,
+                KeyEvent.SHIFT_MASK
+                    | Toolkit.getDefaultToolkit()
+                    .getMenuShortcutKeyMask()));
 
         // Attach simple anonymous listener
         helpItem.addActionListener(new ActionListener() {
