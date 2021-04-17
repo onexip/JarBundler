@@ -18,12 +18,12 @@
 package com.ultramixer.jarbundler;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.tools.ant.taskdefs.MatchingTask;
 import org.apache.tools.ant.types.FileList;
 import org.apache.tools.ant.types.FileSet;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class HelpBook extends MatchingTask {

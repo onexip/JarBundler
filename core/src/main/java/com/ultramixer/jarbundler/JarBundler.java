@@ -17,23 +17,6 @@
 package com.ultramixer.jarbundler;
 
 
-// Java I/O
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-
-// Java Utility
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
-// Apache Jakarta
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.FileScanner;
 import org.apache.tools.ant.Project;
@@ -44,6 +27,9 @@ import org.apache.tools.ant.types.FileList;
 import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.types.PatternSet;
 import org.apache.tools.ant.util.FileUtils;
+
+import java.io.*;
+import java.util.*;
 
 
 /**

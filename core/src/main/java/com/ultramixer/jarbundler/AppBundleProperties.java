@@ -18,11 +18,9 @@
 package com.ultramixer.jarbundler;
 
 
-// Java Utility
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.LinkedList;
-// import java.util.Scanner;
 import java.util.List;
 
 
