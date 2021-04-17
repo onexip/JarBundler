@@ -21,7 +21,7 @@ package com.ultramixer.jarbundler;
 public class LSEnvironment {
 
     /**
-     * The LSEnvironment' name and value
+     * The LSEnvironment's name and value
      */
     private String name = null;
     private String value = null;
@@ -33,9 +33,9 @@ public class LSEnvironment {
     }
 
     /**
-     * Get the LSEnvironment' name
+     * Get the LSEnvironment's name
      *
-     * @return the LSEnvironment' name.
+     * @return the LSEnvironment's name.
      */
     public String getName() {
 
@@ -49,16 +49,16 @@ public class LSEnvironment {
     /**
      * Set the LSEnvironment's name; required
      *
-     * @param name the LSEnvironment' name
+     * @param name the LSEnvironment's name
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * Get the LSEnvironment' value.
+     * Get the LSEnvironment's value.
      *
-     * @return the LSEnvironment' value.
+     * @return the LSEnvironment's value.
      */
     public String getValue() {
 
@@ -70,9 +70,9 @@ public class LSEnvironment {
     }
 
     /**
-     * Set the LSEnvironment' value; required
+     * Set the LSEnvironment's value; required
      *
-     * @param value the LSEnvironment' value
+     * @param value the LSEnvironment's value
      */
     public void setValue(String value) {
         this.value = value;

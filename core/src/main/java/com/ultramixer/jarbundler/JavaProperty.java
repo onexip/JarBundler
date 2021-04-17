@@ -32,7 +32,7 @@ public class JavaProperty {
     }
 
     /**
-     * Set the JavaProperties's name; required
+     * Set the JavaProperties' name; required
      *
      * @param name the JavaProperties' name
      */

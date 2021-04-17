@@ -248,8 +248,8 @@ public class AppBundleProperties {
 
         if (s.length() > 16) {
             System.err
-                .println("WARNING: 'shortname' is recommeded to be no more than 16 "
-                    + "charaters long. See usage notes.");
+                .println("WARNING: 'shortname' is recommended to be no more than 16 "
+                    + "characters long. See usage notes.");
         }
         mCFBundleName = s;
     }
@@ -475,7 +475,7 @@ public class AppBundleProperties {
 
     public void setJVMArchs(String archs) {
 
-        // Use for 1.4 backwards compatability
+        // Use for 1.4 backwards compatibility
         String[] tokens = archs.split("\\s+");
         for (int i = 0; i < tokens.length; i++) {
             mJVMArchs.add(tokens[i]);
@@ -498,7 +498,7 @@ public class AppBundleProperties {
      */
     public void setLSArchitecturePriority(String lsArchitecturePriority) {
 
-        // Use for 1.4 backwards compatability
+        // Use for 1.4 backwards compatibility
         String[] tokens = lsArchitecturePriority.split("\\s+");
         for (int i = 0; i < tokens.length; i++) {
             mLSArchitecturePriority.add(tokens[i]);
