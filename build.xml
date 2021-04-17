@@ -1,6 +1,6 @@
 <project name="jarbundler" default="jar" basedir=".">
 
-  <property name="version" value="2.3.2"/>
+  <property name="version" value="3.4.0-SNAPSHOT"/>
   <property name="description" value="ANT task for creating Mac OS X application bundles"/>
 
 
@@ -19,7 +19,8 @@
 
     <mkdir dir="classes"/>
 
-    <javac srcdir="src" destdir="classes" source="1.6" classpath="${ant.jar}"/>
+    <javac srcdir="core/src" destdir="classes" source="1.6" classpath="${ant.jar}"
+           deprecation="yes" includeAntRuntime="yes"/>
   </target>
 
 
@@ -121,7 +122,7 @@
     <delete dir="build"/>
     <delete dir="javadoc"/>
     <delete dir="release"/>
-    <ant dir="example" target="clean" inheritAll="false"/>
+    <ant dir="examples" target="clean" inheritAll="false"/>
   </target>
 
 </project>

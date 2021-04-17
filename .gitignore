@@ -6,3 +6,5 @@
 jarbundler-parent.iml
 .DS_Store
 target/
+build
+classes
