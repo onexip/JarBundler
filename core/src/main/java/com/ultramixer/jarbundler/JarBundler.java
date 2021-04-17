@@ -933,7 +933,7 @@ public class JarBundler extends MatchingTask {
     public void addConfiguredService(Service service) {
 
         //if (service.getPortName() == null)
-        //	throw new BuildException("\"<service>\" must have a \"portName\" attribute");
+        //    throw new BuildException("\"<service>\" must have a \"portName\" attribute");
 
         if (service.getMessage() == null)
             throw new BuildException("\"<service>\" must have a \"message\" attribute");

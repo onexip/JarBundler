@@ -8,19 +8,19 @@
     </formats>
     <files>
         <file>
-        	<source>${project.basedir}/../LICENSE.txt</source>
+            <source>${project.basedir}/../LICENSE.txt</source>
         </file>
         <file>
-        	<source>${project.basedir}/../README.md</source>
+            <source>${project.basedir}/../README.md</source>
         </file>
         <file>
-        	<source>${project.build.directory}/${artifact.artifactId}-${project.version}.jar</source>
+            <source>${project.build.directory}/${artifact.artifactId}-${project.version}.jar</source>
         </file>
-    	<file>
-    		<source>${project.build.directory}/${artifact.artifactId}-${project.version}-javadoc.jar</source>
-    	</file>
-    	<file>
-    		<source>${project.build.directory}/${artifact.artifactId}-${project.version}-sources.jar</source>
-    	</file>
+        <file>
+            <source>${project.build.directory}/${artifact.artifactId}-${project.version}-javadoc.jar</source>
+        </file>
+        <file>
+            <source>${project.build.directory}/${artifact.artifactId}-${project.version}-sources.jar</source>
+        </file>
     </files>
 </assembly>

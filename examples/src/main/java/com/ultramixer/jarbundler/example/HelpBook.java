@@ -33,9 +33,9 @@
 package com.ultramixer.jarbundler.example;
 
 public class HelpBook {
-	static {
-		System.loadLibrary("HelpBookJNI");
-	}
+    static {
+        System.loadLibrary("HelpBookJNI");
+    }
 
-	public static native void launchHelpViewer();
+    public static native void launchHelpViewer();
 }
