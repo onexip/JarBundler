@@ -2,7 +2,7 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Mac OS X JarBundler ANT Task - HelpBook Nested Task</title>
+<title>macOS JarBundler ANT Task - HelpBook Nested Task</title>
 <meta http-equiv="Content-type" content="text/html; charset=iso-8859-1" />
 <meta http-equiv="Content-Language" content="en-us" />
 <link href="styles.css" rel="stylesheet" media="all" type="text/css" />
@@ -50,8 +50,8 @@ Help Book help. This is a very simple file and usage is demonstrated in the "Hel
 example. Windows and Linux users will not be able to generate the JNI library on their
 platforms. In order to generate a univeral binary JNI you can use Xcode and the tutorial found
 <a href="http://developer.apple.com/java/jniuniversal.html">here</a>.  This process can only
-be done under Mac OS X with the "Apple Developer Tools" installed.  Windows and Linux
-developer will have to obtain the JNI library from a Mac OS X system.
+be done under macOS with the "Apple Developer Tools" installed.  Windows and Linux
+developer will have to obtain the JNI library from a macOS system.
 
 <p>The <tt>example/build.xml</tt> file shows how to create a JNI library from source with
 ANT using command lines.
@@ -69,18 +69,18 @@ for different languages.
                       .
                       .
             helpbookfolder="HelpBook"
-            helpbookname="Hello World Help" &gt; 
-                 
+            helpbookname="Hello World Help" &gt;
+
   &lt;!-- Copy the HelpBook JNI library  --&gt;
   &lt;javafilelist dir="${basedir}/build" files="libHelpBookJNI.jnilib"/&gt;
 
-  &lt;!-- Specify the HelpBook contents --&gt;   
+  &lt;!-- Specify the HelpBook contents --&gt;
   &lt;helpbook&gt;
      &lt;fileset dir="${basedir}/HelpBook"/&gt;
   &lt;helpbook/&gt;
-                     
+
 &lt;/jarbundler&gt;
-    
+
 </pre>
 
 
@@ -89,12 +89,12 @@ for different languages.
 The default Help Book folder name and Help Book name are set in the JarBundler tag.  The
 English Help Book uses these defaults.
 
-<p>The German Help Book specifes both the Help Book folder name and Help Book name, effectivly 
+<p>The German Help Book specifes both the Help Book folder name and Help Book name, effectivly
 overriding the JarBundler defaults.
 
-<p>The Swedish Help Book uses the default Help Book foldername but specifies it's own Help 
+<p>The Swedish Help Book uses the default Help Book foldername but specifies it's own Help
 Book name.  The Swedish locale is specfied using it's ISO country code, <tt>sv</tt>. The ISO
-codes of <tt>en</tt> and <tt>de</tt> could have been used in place of <tt>English</tt> and 
+codes of <tt>en</tt> and <tt>de</tt> could have been used in place of <tt>English</tt> and
 <tt>German</tt>.
 
 <p>The directory <tt>HelpBook/commom</tt> could contain images and CSS stylesheets common to
@@ -108,7 +108,7 @@ directory into the HTML tree.
                       .
                       .
             helpbookfolder="HelpBook"
-            helpbookname="Hello World Help" &gt; 
+            helpbookname="Hello World Help" &gt;
                       .
                       .
                       .
@@ -116,26 +116,26 @@ directory into the HTML tree.
     &lt;fileset dir="HelpBook/English" /&gt;
     &lt;fileset dir="HelpBook/common" /&gt;
   &lt;/helpbook&gt;
-      
+
   &lt;helpbook foldername="Hilfebuch" name="Hallo Welt Hilfe" locale="German"&gt;
     &lt;fileset dir="HelpBook/German" /&gt;
     &lt;fileset dir="HelpBook/common" /&gt;
   &lt;/helpbook&gt;
-  
+
   &lt;helpbook name="Hjälp" locale="sv"&gt;
     &lt;fileset dir="HelpBook/Swedish" /&gt;
     &lt;fileset dir="HelpBook/common" /&gt;
   &lt;/helpbook&gt;
-  
+
 &lt;/jarbundler&gt;
 </pre>
 
 
 
-<h3>Troubleshooting the Help Viewer cache.</h3> 
-<p>During development the Help Viewer sometimes 
+<h3>Troubleshooting the Help Viewer cache.</h3>
+<p>During development the Help Viewer sometimes
 refuses to update the contents of a Help Book which changed.  The Apple Developer Docs
-<a href="http://developer.apple.com/qa/qa2005/qa1409.html">suggest</a> to delete or 
+<a href="http://developer.apple.com/qa/qa2005/qa1409.html">suggest</a> to delete or
 edit the file <tt>~/Library/Preferences/com.apple.help.plist</tt>.  This file
 contains the list of known Help Books.  If you double-click on this file the XML Property Editor
 applicaiton will be launched and re can 'delete' your bundle ID entry and "save" this file.  Deleting

@@ -2,7 +2,7 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Mac OS X JarBundler ANT Task</title>
+<title>macOS JarBundler ANT Task</title>
 <meta http-equiv="Content-type" content="text/html; charset=iso-8859-1" />
 <meta http-equiv="Content-Language" content="en-us" />
 <meta name="ROBOTS" content="ALL" />
@@ -11,20 +11,20 @@
 <body>
 
 
-<h1>Mac OS X JarBundler ANT Task</h1>
+<h1>macOS JarBundler ANT Task</h1>
 <h1>Version 2.3.1</h1>
 
 <p>How many times has this happened to you?  You've written a little
 Java utility, or maybe even a more complex application, and you want to
-create Mac OS X application bundle for easy distribution.
+create macOS application bundle for easy distribution.
 
 <p>You'd like to be able to do it automatically from your build process,
 but you're forced to go run the Apple Jar Bundler and tweak all the
 settings manually every time you build.</p>
 
 <p>Well no more!  JarBundler is a feature-rich Ant task which will
-create a Mac OS X application bundle from a list of Jar files and a
-main class name.  You can add an Icon resource, set various Mac OS X
+create a macOS application bundle from a list of Jar files and a
+main class name.  You can add an Icon resource, set various macOS
 native look-and-feel bells and whistles, and maintain your application
 bundles as part of your normal build and release cycle.  It is free
 software licensed under the GNU General Public License.</p>
@@ -272,7 +272,7 @@ ANT <tt>build.xml</tt> file like this:</p>
 
   <tr>
     <td class="attribute">icon</td>
-    <td class="description">File reference to a Mac OS X icon file.  This file is created with
+    <td class="description">File reference to a macOS icon file.  This file is created with
     the Mac OS application located at "<tt>/Developer/Applications/Utilites/Icon Composer</tt>"
   </tr>
 
@@ -398,7 +398,7 @@ ANT <tt>build.xml</tt> file like this:</p>
 
   <tr>
     <td class="attribute">stubfile</td>
-    <td class="description">If set, the location of a Mac OS X Java Application Stub file
+    <td class="description">If set, the location of a macOS Java Application Stub file
         to use for this application bundle.  See the section "<em>Specifying the Java Launching
         Stub File</em>" below. <div><strong>Required</strong> for Windows or Linux</div>
         <div>
@@ -596,7 +596,7 @@ ANT <tt>build.xml</tt> file like this:</p>
   <tr>
     <td class="attribute">screenmenu</td>
     <td class="description">If set to true, puts Swing menus
-       in the Mac OS X menu bar if using the Aqua look and feel.
+       in the macOS menu bar if using the Aqua look and feel.
        <div>Set the <code>apple.laf.useScreenMenuBar</code> property instead:
        <code>&lt;javaproperty name="apple.laf.useScreenMenuBar" value="true"/&gt;</code></div></td>
     <!-- This advice is correct as of 2006 May, though Apple have
@@ -730,7 +730,7 @@ files in the FileSet or FileList have to the '<tt>dir</tt>' attribute.  Thus in 
              jar="build/myapp.jar" /&gt;
 </pre>
 
-<p>This will create a Mac OS X application bundle called "MyApp.app" in
+<p>This will create a macOS application bundle called "MyApp.app" in
 the directory "release" using a JAR file which was created in the "build" directory.</p>
 
 <p>You can use FileSets or FileLists for more complex builds.  For example:</p>
@@ -810,7 +810,7 @@ into other packages whose licensing does not conform with the GPL.</li>
 We lost the indenting but can look into this later.<br>
 Thanks to Christian Menz for providing this modification to the source code.
 </li>
-<li>ANT commands and shell script for creating a Disk Image. (Mac OS X only)<br>
+<li>ANT commands and shell script for creating a Disk Image. (macOS only)<br>
 Thanks to Philip Weaver for providing these.  See "<a href="./DiskImage.html">Creating a Disk Image</a>"
 </li>
 </ul>
@@ -964,7 +964,7 @@ for usage.
 <h3>28 Dec 2003 (version 0.5):</h3>
 <p>Added setter for "execs" attribute.  Added setter for "workingdirectory"
    attribute.  Fixed missing setter for "arguments" attribute.  Added
-   alternate Java runtime parameter names for Mac OS X Java VM version
+   alternate Java runtime parameter names for macOS Java VM version
    1.4.1.  Included change submitted by Pierre-Luc Paour.
    Thanks also to Dante Briones and Graham Perks
    for pointing out bugs and enhancements.</p>

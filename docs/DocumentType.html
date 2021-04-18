@@ -2,7 +2,7 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <title>Mac OS X JarBundler ANT Task - DocumentType Nested Task</title>
+  <title>macOS JarBundler ANT Task - DocumentType Nested Task</title>
   <meta http-equiv="Content-type" content="text/html; charset=iso-8859-1" />
   <meta http-equiv="Content-Language" content="en-us" />
   <meta name="ROBOTS" content="ALL" />
@@ -49,7 +49,7 @@ key.
     <td class="description">
     An application's unique name for this document type.  For example, "<tt>Text Document</tt>" or
     "<tt>Raw Data Document</tt>"
-    
+
     <div><strong>NB: </strong>Required attribute</div>
     </td>
   </tr>
@@ -58,7 +58,7 @@ key.
     <td class="attribute">extensions</td>
     <td class="description">
     A comma or space delimited string of filename extensions.
-    Do not specify the leading period. To open documents with 
+    Do not specify the leading period. To open documents with
     any extension, specify an extension with a single asterisk "<tt>*</tt>".    </td>
   </tr>
 
@@ -66,8 +66,8 @@ key.
     <td class="attribute">ostypes</td>
     <td class="description">
      A comma or space delimited string of Mac OS types. Each value contains a four-letter type.
-     To open documents of any type, 
-     include four asterisk characters "<tt>****</tt>" as the type code. These codes are equivalent 
+     To open documents of any type,
+     include four asterisk characters "<tt>****</tt>" as the type code. These codes are equivalent
      to the legacy type codes used by Mac OS 9.  Currently, OS Types with leading or trailing
      spaces or commas cannot be processed.
     </td>
@@ -83,15 +83,15 @@ key.
   <tr>
     <td class="attribute">UTI</td>
     <td class="description">
-     A comma or space delimited string of Uniform Type Identifier (UTI) strings for the document. 
+     A comma or space delimited string of Uniform Type Identifier (UTI) strings for the document.
      UTIs are strings that uniquely identify abstract types. They can be used to
      describe a file format or data type but can also be used to describe type
      information for other sorts of entities, such as directories, volumes, or
      packages. For more information on UTIs, see the header file UTType.h,
      available as part of LaunchServices.framework in Mac OS X v10.3 and later.
-Also see the Apple Developer Connection document 
+Also see the Apple Developer Connection document
     <a href="http://developer.apple.com/macosx/uniformtypeidentifiers.html">
-    "Simplifying Data Handling with Uniform type Identifiers"</a>.      
+    "Simplifying Data Handling with Uniform type Identifiers"</a>.
 
     </td>
   </tr>
@@ -114,11 +114,11 @@ Also see the Apple Developer Connection document
     <td class="attribute">role</td>
     <td class="description">
     This key specifies the application's role with respect to the type. The value can be
-    <tt>Editor</tt>, <tt>Viewer</tt>, <tt>Shell</tt>, or <tt>None</tt>. See 
+    <tt>Editor</tt>, <tt>Viewer</tt>, <tt>Shell</tt>, or <tt>None</tt>. See
     <a href="http://developer.apple.com/documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/ConfigApplications.html#//apple_ref/doc/uid/20002094-98566">
     "Document Configuration"</a>
-    for descriptions of these values. 
-    
+    for descriptions of these values.
+
     <div><strong>NB: </strong>Required attribute</div>
     </td>
   </tr>
@@ -126,12 +126,12 @@ Also see the Apple Developer Connection document
   <tr>
     <td class="attribute">bundle</td>
     <td class="description">
-    Used with extention and iconfile attributes to specify to Finder that a directory tree be 
-    treated and displayed as a single document. See  
+    Used with extention and iconfile attributes to specify to Finder that a directory tree be
+    treated and displayed as a single document. See
     <a href="http://developer.apple.com/documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/PListKeys.html">
     "Property List Key Reference"</a>,
-    look for the document type key <tt>LSTypeIsPackage</tt>. 
-    
+    look for the document type key <tt>LSTypeIsPackage</tt>.
+
     <div><strong>NB: </strong>Boolean attribute, takes "true" or "false", default is "false"</div>
     </td>
   </tr>
@@ -152,8 +152,8 @@ Also see the Apple Developer Connection document
 
 
 
-<p>The following example shows four document types being associated with a JarBundler built 
-Mac OS X application.  The first document type associates HTML files using the file extensions
+<p>The following example shows four document types being associated with a JarBundler built
+macOS application.  The first document type associates HTML files using the file extensions
 <tt>html</tt> and <tt>htm</tt>.  The application also provides a custom icon file which can be
 used by Finder to render files with these two extensions, if this application is chosen as the
 default application.
@@ -168,33 +168,33 @@ application is declaring that it can only view files of this <tt>mime-type</tt>.
 
 <p>The last document type is a bit interesting using the <tt>bundle</tt> attribute to
 designate a directory, which has an extension, as a document.  The application has an
-icon set which will be used by the Finder to render this directory.  The directory will 
+icon set which will be used by the Finder to render this directory.  The directory will
 not be seen from the Finder as a folder and can be copied and renamed as a single unit. This
 structure can be very useful or creating complex associations of files which should be treated
 as a unit.  The content of the document bundle can be viewed using a control-click and
 choosing "Show Package Contents...".
 
 <p>A document bundle has proven very useful in my own development work bring UNIX applications
-onto to Mac OS X platform where the application would require several input file and create a
+onto to macOS platform where the application would require several input file and create a
 myriad of small output files.
 
 
 <pre style="padding-left:2em; margin-bottom:0em;">
 
 
-  &lt;jarbundler dir="release"...&gt; 
-                
+  &lt;jarbundler dir="release"...&gt;
+
       &lt;documenttype name="Hello World HTML document"
-                    extensions="html htm" 
+                    extensions="html htm"
                     iconFile="icons/html.icns"
                     role="Editor"/&gt;
-                     
+
       &lt;documenttype name="Hello World RTF document"
-                    extensions="rtf" 
+                    extensions="rtf"
                     role="Viewer"/&gt;
 
       &lt;documenttype name="Hello World images"
-                    mimetypes="image/jpeg image/png" 
+                    mimetypes="image/jpeg image/png"
                     role="Viewer"/&gt;
 
       &lt;documenttype name="Hello Project document"
@@ -202,7 +202,7 @@ myriad of small output files.
                     iconFile="icons/Hello Document.icns"
                     bundle="true"
                     role="Editor"/&gt;
-                    
+
   &lt;/jarbundler&gt;
 
 </pre>

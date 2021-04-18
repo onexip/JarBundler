@@ -2,7 +2,7 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Mac OS X JarBundler - Advanced Examples</title>
+<title>macOS JarBundler - Advanced Examples</title>
 <meta http-equiv="Content-type" content="text/html; charset=iso-8859-1" />
 <meta http-equiv="Content-Language" content="en-us" />
 <meta name="ROBOTS" content="ALL" />
@@ -18,7 +18,7 @@
 
 
 <ul>
-<li>Native Mac OS X look and feel
+<li>Native macOS look and feel
 <li>Custom application icon file
 <li>Long application name, short name used in the menu
 <li>Requires minimum JVM of 1.4
@@ -27,7 +27,7 @@
 <li>Five different document types
 <li>Bundle license agreement
 <li>Help Book JNI library
-<li>Two language Help Book support 
+<li>Two language Help Book support
 </ul>
 
 <pre style="padding-left:2em; margin-bottom:0em;">
@@ -48,35 +48,35 @@
               version="1.2"
               infostring="Hello World, copyright 2006"
               build="213"
-              bundleid="net.sourceforge.jarbundler.example.HelloWorld"   
+              bundleid="net.sourceforge.jarbundler.example.HelloWorld"
               helpbookfolder="HelpBook"
-              helpbookname="Hello World Help" &gt; 
-                
+              helpbookname="Hello World Help" &gt;
+
     &lt;!-- Adjust the look, feel and behavior --&gt;
-    
+
       &lt;javaproperty name="apple.laf.useScreenMenuBar" value="true"/&gt;
       &lt;javaproperty name="apple.awt.brushMetal" value="true"/&gt;
       &lt;javaproperty name="apple.awt.showGrowBox" value="false"/&gt;
 
     &lt;!-- Associate document types with this application --&gt;
-    
+
       &lt;documenttype name="Hello World text document"
-                    extensions="txt text" 
-                    ostypes="TEXT sEXT ttro" 
+                    extensions="txt text"
+                    ostypes="TEXT sEXT ttro"
                     iconFile="icons/txt.icns"
                     role="Editor"/>
-                    
+
       &lt;documenttype name="Hello World HTML document"
-                    extensions="html htm" 
+                    extensions="html htm"
                     iconFile="icons/html.icns"
                     role="Editor"/&gt;
-                     
+
       &lt;documenttype name="Hello World RTF document"
-                    extensions="rtf" 
+                    extensions="rtf"
                     role="Viewer"/&gt;
 
       &lt;documenttype name="Hello World images"
-                    mimetypes="image/jpeg image/png" 
+                    mimetypes="image/jpeg image/png"
                     role="Viewer"/&gt;
 
       &lt;documenttype name="Hello World Document"
@@ -84,32 +84,32 @@
                     iconFile="icons/Hello Document.icns"
                     bundle="true"
                     role="Editor"/&gt;
-                    
-    &lt;!-- Just proving we can include a file.  Might use it in the About box --&gt; 
-    
+
+    &lt;!-- Just proving we can include a file.  Might use it in the About box --&gt;
+
       &lt;resourcefilelist dir=".." files="LICENSE.TXT"/&gt;
- 
+
     &lt;!-- Copy the HelpBook JNI library into the Java directory --&gt;
-    
+
       &lt;javafilelist dir="./build" files="libHelpBookJNI.jnilib"/&gt;
 
     &lt;!-- Copy the HelpBooks to the language specific folders            --&gt;
     &lt;!--  English will use the foldername and book name from the Bundle --&gt;
     &lt;!--  German or 'de' will use the custom folder name and book name  --&gt;
-      
+
       &lt;helpbook locale="English"&gt;
         &lt;fileset dir="HelpBook/English" /&gt;
         &lt;fileset dir="HelpBook/common" /&gt;
       &lt;/helpbook&gt;
-      
+
       &lt;helpbook foldername="Hilfebuch" name="Hallo Welt Hilfe" locale="German"&gt;
         &lt;fileset dir="HelpBook/German" /&gt;
         &lt;fileset dir="HelpBook/common" /&gt;
       &lt;/helpbook&gt;
 
-                     
+
   &lt;/jarbundler&gt;
-    
+
 &lt;/target&gt;
 
 </pre>

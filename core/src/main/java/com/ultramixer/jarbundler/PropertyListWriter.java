@@ -138,11 +138,11 @@ public class PropertyListWriter {
         // Finder 'Version' label, defaults to "1.0"
         writeKeyStringPair("CFBundleShortVersionString", bundleProperties.getCFBundleShortVersionString(), dict);
 
-        // Mac OS X required key, defaults to "false"
+        // macOS required key, defaults to "false"
         writeKeyStringPair("CFBundleAllowMixedLocalizations",
             (bundleProperties.getCFBundleAllowMixedLocalizations() ? "true" : "false"), dict);
 
-        // Mac OS X required, defaults to "6.0"
+        // macOS required, defaults to "6.0"
         writeKeyStringPair("CFBundleInfoDictionaryVersion",
             bundleProperties.getCFBundleInfoDictionaryVersion(), dict);
 

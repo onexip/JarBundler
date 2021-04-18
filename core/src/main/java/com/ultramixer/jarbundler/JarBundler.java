@@ -34,7 +34,7 @@ import java.util.*;
 
 /**
  * <p>
- * An ant task which creates a Mac OS X Application Bundle for a Java
+ * An ant task which creates a macOS Application Bundle for a Java
  * application.
  * </p>
  *
@@ -75,7 +75,7 @@ import java.util.*;
  * <dd>Version information about your application (e.g., "1.0")
  * </dl>
  * <p>
- * These attributes control the fine-tuning of the "Mac OS X" look and feel.
+ * These attributes control the fine-tuning of the "macOS" look and feel.
  *
  * <dl>
  * <dt>arguments
@@ -104,7 +104,7 @@ import java.util.*;
  * <dd>Show growbox (default "true")
  *
  * <dt>screenmenu
- * <dd>Put swing menu into Mac OS X menu bar.
+ * <dd>Put swing menu into macOS menu bar.
  *
  * <dt>type
  * <dd>Bundle type (default "APPL")
@@ -244,7 +244,7 @@ public class JarBundler extends MatchingTask {
     private boolean mVerbose = false;
     private boolean mShowPlist = false;
 
-    // Java properties used by Mac OS X Java applications
+    // Java properties used by macOS Java applications
 
     private File mStubFile = new File(DEFAULT_STUB);
 
@@ -355,7 +355,7 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "icon" attribute (optional)
      *
-     * @param f File reference to a Mac OS X icon file.
+     * @param f File reference to a macOS icon file.
      */
     public void setIcon(File f) {
         mAppIcon = f;
@@ -505,7 +505,7 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "screenmenu" attribute
      *
-     * @param b If set to true, puts Swing menus in the Mac OS X menu bar if using the Aqua look and feel.
+     * @param b If set to true, puts Swing menus in the macOS menu bar if using the Aqua look and feel.
      * @deprecated Use &lt;javaproperty name="apple.laf.useScreenMenuBar" value="true"/&gt; instead
      */
     public void setScreenmenu(boolean b) {
