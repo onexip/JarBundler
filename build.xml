@@ -19,8 +19,8 @@
 
     <mkdir dir="classes"/>
 
-    <javac srcdir="core/src" destdir="classes" source="1.6" classpath="${ant.jar}"
-           deprecation="yes" includeAntRuntime="yes"/>
+    <javac srcdir="core/src" destdir="classes" source="1.6" target="1.6"
+           classpath="${ant.jar}" deprecation="yes" includeAntRuntime="yes"/>
   </target>
 
 

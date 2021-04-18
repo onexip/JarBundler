@@ -39,7 +39,7 @@ make sure to remove the 'classpath' attribute from the "taskdef" element.
 
     <target name="compile" description="Compile the classes">
         <mkdir dir="classes"/>
-        <javac srcdir="src/main/java" destdir="classes" deprecation="on" source="1.4" includeAntRuntime="yes"/>
+        <javac srcdir="src/main/java" destdir="classes" deprecation="on" source="1.6" target="1.6" includeAntRuntime="yes"/>
     </target>
 
 
