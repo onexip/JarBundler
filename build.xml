@@ -55,7 +55,7 @@
 
   <target name="release" depends="jar" description="Create zip and tar.gz files">
 
-    <ant dir="./example" target="clean" inheritAll="false"/>
+    <ant dir="./examples" target="clean" inheritAll="false"/>
 
     <mkdir dir="release"/>
     <mkdir dir="release/dist"/>
@@ -74,7 +74,7 @@
         <include name="dox/**"/>
         <include name="build.xml"/>
         <include name="src/**"/>
-        <include name="example/**"/>
+        <include name="examples/**"/>
         <include name="${jarbundler.jar}"/>
       </zipfileset>
     </zip>
@@ -85,7 +85,7 @@
         <include name="dox/**"/>
         <include name="build.xml"/>
         <include name="src/**"/>
-        <include name="example/**"/>
+        <include name="examples/**"/>
         <include name="${jarbundler.jar}"/>
       </tarfileset>
     </tar>
@@ -103,15 +103,15 @@
   </target>
 
 
-  <target name="simple" depends="jar" description="Build an example application">
-    <ant dir="./example" target="simple" inheritAll="false">
+  <target name="simple" depends="jar" description="Build a simple example application">
+    <ant dir="./examples" target="simple" inheritAll="false">
       <property name="jarbundler.jar" value="${basedir}/build/${jarbundler.jar}" />
     </ant>
   </target>
 
 
-  <target name="complex" depends="jar" description="Build an example application">
-    <ant dir="./example" target="complex" inheritAll="false">
+  <target name="complex" depends="jar" description="Build a complex example application">
+    <ant dir="./examples" target="complex" inheritAll="false">
       <property name="jarbundler.jar" value="${basedir}/build/${jarbundler.jar}" />
     </ant>
   </target>
