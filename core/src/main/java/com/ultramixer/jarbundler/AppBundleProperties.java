@@ -76,7 +76,8 @@ public class AppBundleProperties {
     private String mCFBundleSignature = "????";
 
     // Explicit default: 1.4+
-    private String mJVMVersion = "1.4+";
+    private final String defaultJvmVersion = "1.4+";
+    private String mJVMVersion = defaultJvmVersion;
 
     // Explicit default: 6.0
     private final String mCFBundleInfoDictionaryVersion = "6.0";
@@ -433,6 +434,16 @@ public class AppBundleProperties {
 
     public void setJVMVersion(String s) {
         mJVMVersion = s;
+
+        if(s.startsWith("1.")) {
+            // check for deprecated Java versions
+            Double versionDouble = Double.parseDouble(s.substring(0, 3));
+            if(versionDouble < 1.4) {
+                System.err.println("ERROR: 'jvmversion' must represent a Java version >= 1.4." +
+                    "The default value of '1.4' is used instead. See usage notes.");
+                mJVMVersion = this.defaultJvmVersion;
+            }
+        }
     }
 
     public String getJVMVersion() {

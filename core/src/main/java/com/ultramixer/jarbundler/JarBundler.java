@@ -544,6 +544,25 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "jvmversion" attribute (optional)
      *
+     * Default is `1.4+` if this attribute isn't used.
+     *
+     * The value must represent a Java version higher than 1.4 and may contain special chars
+     * such as wildcards or range indicators:
+     *
+     * - 1.4
+     * - 1.7+
+     * - 1.8.0_144
+     * - 9.0.1+
+     * - 10*
+     *
+     * Specifying a maximum JvmVersion is supported if you use the
+     * universalJavaApplicationStub project as launcherStub:
+     *
+     * - 1.8;11*
+     *
+     * See https://github.com/tofi86/universalJavaApplicationStub#specify-minmax-java-requirement
+     * for further details.
+     *
      * @param s The version of the JVM required to run the application.
      */
     public void setJvmversion(String s) {

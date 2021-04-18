@@ -49,8 +49,6 @@ public class PropertyListWriter {
     // Our application bundle properties
     private AppBundleProperties bundleProperties;
 
-    private double version = 1.4;
-
     // DOM version of Info.plist file
     private Document document = null;
 
@@ -64,16 +62,6 @@ public class PropertyListWriter {
      */
     public PropertyListWriter(AppBundleProperties bundleProperties) {
         this.bundleProperties = bundleProperties;
-        setJavaVersion(bundleProperties.getJVMVersion());
-    }
-
-    private void setJavaVersion(String version) {
-
-        if (version == null) {
-            return;
-        }
-
-        this.version = Double.valueOf(version.substring(0, 3)).doubleValue();
     }
 
 
@@ -458,7 +446,7 @@ public class PropertyListWriter {
         for (Iterator i = javaProperties.keySet().iterator(); i.hasNext(); ) {
             String key = (String) i.next();
 
-            if (key.startsWith("com.apple.") && (version >= 1.4)) {
+            if (key.startsWith("com.apple.")) {
                 System.out.println("Deprecated as of 1.4: " + key);
                 continue;
             }

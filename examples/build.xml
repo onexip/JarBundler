@@ -124,7 +124,7 @@ make sure to remove the 'classpath' attribute from the "taskdef" element.
                     mainclass="com.ultramixer.jarbundler.example.HelloWorld"
                     jar="build/${ant.project.name}.jar"
                     icon="icons/${ant.project.name}.icns"
-                    jvmversion="1.5+"
+                    jvmversion="9+"
                     version="${version}"
                     build="${buildnumber}"
                     bundleid="com.ultramixer.jarbundler.example.HelloWorld"
