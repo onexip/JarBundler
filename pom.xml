@@ -20,6 +20,59 @@
     <inceptionYear>2015</inceptionYear>
     <url>https://github.com/UltraMixer/JarBundler</url>
 
+    <licenses>
+        <license>
+            <name>Apache 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Tobias Bley</name>
+            <url>https://github.com/UltraMixer</url>
+            <organizationUrl>http://www.ultramixer.com</organizationUrl>
+            <email>info@ultramixer.com</email>
+        </developer>
+        <developer>
+            <name>Seth J. Morabito</name>
+            <email>sethm@loomcom.com</email>
+        </developer>
+        <developer>
+            <name>Tobias Fischer</name>
+            <email>tobias.carl.fischer@gmail.com</email>
+        </developer>
+    </developers>
+
+    <issueManagement>
+        <url>https://github.com/UltraMixer/JarBundler/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+
+    <scm>
+        <connection>scm:git:git@github.com:UltraMixer/JarBundler.git</connection>
+        <developerConnection>scm:git:git@github.com:UltraMixer/JarBundler.git</developerConnection>
+        <url>git@github.com:UltraMixer/JarBundler.git</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <git.name>JarBundler</git.name>
+        <git.owner>UltraMixer</git.owner>
+        <my.maven-javadoc-plugin.version>3.2.0</my.maven-javadoc-plugin.version>
+        <my.maven-site-plugin.version>3.9.1</my.maven-site-plugin.version>
+        <my.maven-project-info-reports-plugin.version>3.1.1</my.maven-project-info-reports-plugin.version>
+    </properties>
+
     <build>
         <plugins>
 
@@ -176,16 +229,6 @@
         </plugins>
     </reporting>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <git.name>JarBundler</git.name>
-        <git.owner>UltraMixer</git.owner>
-        <my.maven-javadoc-plugin.version>3.2.0</my.maven-javadoc-plugin.version>
-        <my.maven-site-plugin.version>3.9.1</my.maven-site-plugin.version>
-        <my.maven-project-info-reports-plugin.version>3.1.1</my.maven-project-info-reports-plugin.version>
-    </properties>
-
     <profiles>
         <profile>
             <id>gitrelease</id>
@@ -275,49 +318,6 @@
             </reporting>
         </profile>
     </profiles>
-
-    <issueManagement>
-        <url>https://github.com/UltraMixer/JarBundler/issues</url>
-        <system>GitHub Issues</system>
-    </issueManagement>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
-
-    <developers>
-        <developer>
-            <name>Tobias Bley</name>
-            <url>https://github.com/UltraMixer</url>
-            <organizationUrl>http://www.ultramixer.com</organizationUrl>
-            <email>info@ultramixer.com</email>
-        </developer>
-        <developer>
-            <name>Seth J. Morabito</name>
-            <email>sethm@loomcom.com</email>
-        </developer>
-        <developer>
-            <name>Tobias Fischer</name>
-            <email>tobias.carl.fischer@gmail.com</email>
-        </developer>
-    </developers>
-
-    <licenses>
-        <license>
-            <name>Apache 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-    <scm>
-        <connection>scm:git:git@github.com:UltraMixer/JarBundler.git</connection>
-        <developerConnection>scm:git:git@github.com:UltraMixer/JarBundler.git</developerConnection>
-        <url>git@github.com:UltraMixer/JarBundler.git</url>
-    </scm>
 
     <dependencyManagement>
         <dependencies>
