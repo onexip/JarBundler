@@ -81,9 +81,6 @@ import java.util.*;
  * <dt>arguments
  * <dd>Command line arguments. (no default)
  *
- * <dt>smalltabs
- * <dd>Use small tabs. (default "false") Deprecated under JVM 1.4.1
- *
  * <dt>antialiasedgraphics
  * <dd>Use anti-aliased graphics (default "false")
  *
@@ -103,14 +100,8 @@ import java.util.*;
  * <dt>execs
  * <dd>Files to be copied into "Resources/MacOS" and made executable
  *
- * <dt>liveresize
- * <dd>Use "Live resizing" (default "false") Deprecated under JVM 1.4.1
- *
  * <dt>growbox
  * <dd>Show growbox (default "true")
- *
- * <dt>growboxintrudes
- * <dd>Intruding growbox (default "false") Deprecated under JVM 1.4.1
  *
  * <dt>screenmenu
  * <dd>Put swing menu into Mac OS X menu bar.
@@ -222,7 +213,6 @@ public class JarBundler extends MatchingTask {
 
     private static final String DEFAULT_STUB = "/System/Library/Frameworks/JavaVM.framework/Versions/Current/Resources/MacOS/JavaApplicationStub";
 
-    private static final String ABOUTMENU_KEY = "com.apple.mrj.application.apple.menu.about.name";
     private static final Set menuItems = new HashSet();
     private File mAppIcon;
 
@@ -262,13 +252,9 @@ public class JarBundler extends MatchingTask {
 
     private Boolean mAntiAliasedText = null;
 
-    private Boolean mLiveResize = null;
-
     private Boolean mScreenMenuBar = null;
 
     private Boolean mGrowbox = null;
-
-    private Boolean mGrowboxIntrudes = null;
 
     // The root of the application bundle
     private File bundleDir;
@@ -488,17 +474,6 @@ public class JarBundler extends MatchingTask {
     }
 
     /**
-     * Setter for the "smalltabs" attribute
-     *
-     * @param b If set to true, tab controls in Swing applications more closely resemble the Metal look and feel.
-     * @deprecated Deprecated under JVM 1.4.1
-     */
-    public void setSmallTabs(boolean b) {
-        bundleProperties.addJavaProperty("com.apple.smallTabs", new Boolean(b)
-            .toString());
-    }
-
-    /**
      * Setter for the "vmoptions" attribute (optional)
      *
      * @param s Command line options to pass the JVM at startup.
@@ -545,26 +520,6 @@ public class JarBundler extends MatchingTask {
      */
     public void setGrowbox(boolean b) {
         mGrowbox = new Boolean(b);
-    }
-
-    /**
-     * Setter for the "growboxintrudes" attribute
-     *
-     * @param b If turned off, the bottom of the window is pushed down 15 pixels.
-     * @deprecated Deprecated under JVM 1.4.1
-     */
-    public void setGrowboxintrudes(boolean b) {
-        mGrowboxIntrudes = new Boolean(b);
-    }
-
-    /**
-     * Setter for the "liveresize" attribute
-     *
-     * @param b If set to true, enable live-resizing of windows.
-     * @deprecated Deprecated under JVM 1.4.1
-     */
-    public void setLiveresize(boolean b) {
-        mLiveResize = new Boolean(b);
     }
 
     /**
@@ -1027,60 +982,31 @@ public class JarBundler extends MatchingTask {
 
         // Set up some Java properties
 
-        // About Menu, deprecated under 1.4+
-        if (useOldPropertyNames()) {
-            bundleProperties.addJavaProperty(ABOUTMENU_KEY, bundleProperties
-                .getCFBundleName());
-        }
-
-        // Anti Aliased Graphics, renamed in 1.4+
-        String antiAliasedProperty = useOldPropertyNames()
-            ? "com.apple.macosx.AntiAliasedGraphicsOn"
-            : "apple.awt.antialiasing";
-
+        // Anti Aliased Graphics
+        String antiAliasedProperty = "apple.awt.antialiasing";
         if (mAntiAliasedGraphics != null) {
             bundleProperties.addJavaProperty(antiAliasedProperty,
                 mAntiAliasedGraphics.toString());
         }
 
-        // Anti Aliased Text, renamed in 1.4+
-        String antiAliasedTextProperty = useOldPropertyNames()
-            ? "com.apple.macosx.AntiAliasedTextOn"
-            : "apple.awt.textantialiasing";
-
+        // Anti Aliased Text
+        String antiAliasedTextProperty = "apple.awt.textantialiasing";
         if (mAntiAliasedText != null) {
             bundleProperties.addJavaProperty(antiAliasedTextProperty,
                 mAntiAliasedText.toString());
         }
 
-        // Live Resize, deprecated under 1.4+
-        if (useOldPropertyNames() && (mLiveResize != null)) {
-            bundleProperties.addJavaProperty(
-                "com.apple.mrj.application.live-resize", mLiveResize
-                    .toString());
-        }
-
-        // Screen Menu Bar, renamed in 1.4+
-        String screenMenuBarProperty = useOldPropertyNames()
-            ? "com.apple.macos.useScreenMenuBar"
-            : "apple.laf.useScreenMenuBar";
-
+        // Screen Menu Bar
+        String screenMenuBarProperty = "apple.laf.useScreenMenuBar";
         if (mScreenMenuBar != null) {
             bundleProperties.addJavaProperty(screenMenuBarProperty,
                 mScreenMenuBar.toString());
         }
 
         // Growbox, added with 1.4+
-        if ((useOldPropertyNames() == false) && (mGrowbox != null)) {
-            bundleProperties.addJavaProperty("apple.awt.showGrowBox", mGrowbox
-                .toString());
-        }
-
-        // Growbox Intrudes, deprecated under 1.4+
-        if (useOldPropertyNames() && (mGrowboxIntrudes != null)) {
-            bundleProperties.addJavaProperty(
-                "com.apple.mrj.application.growbox.intrudes",
-                mGrowboxIntrudes.toString());
+        if (mGrowbox != null) {
+            bundleProperties.addJavaProperty("apple.awt.showGrowBox",
+                mGrowbox.toString());
         }
 
         if (!mRootDir.exists()
@@ -1243,20 +1169,6 @@ public class JarBundler extends MatchingTask {
 
         chmodTask.execute();
 
-    }
-
-    /**
-     * Utility method to determine whether this app bundle is targeting a 1.3 or
-     * 1.4 VM. The Mac OS X 1.3 VM uses different Java property names from the
-     * 1.4 VM to hint at native Mac OS X look and feel options. For example, on
-     * 1.3 the Java property to tell the VM to display Swing menu bars as screen
-     * menus is "com.apple.macos.useScreenMenuBar". Under 1.4, it becomes
-     * "apple.laf.useScreenMenuBar". Such is the price of progress, I suppose.
-     * <p>
-     * Obviously, this logic may need refactoring in the future.
-     */
-    private boolean useOldPropertyNames() {
-        return (bundleProperties.getJVMVersion().startsWith("1.3"));
     }
 
     private void processJarAttrs() throws BuildException {

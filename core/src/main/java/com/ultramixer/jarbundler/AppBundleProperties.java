@@ -75,8 +75,8 @@ public class AppBundleProperties {
     // Explicit default: ????
     private String mCFBundleSignature = "????";
 
-    // Explicit default: 1.3+
-    private String mJVMVersion = "1.3+";
+    // Explicit default: 1.4+
+    private String mJVMVersion = "1.4+";
 
     // Explicit default: 6.0
     private final String mCFBundleInfoDictionaryVersion = "6.0";

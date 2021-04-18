@@ -49,7 +49,7 @@ public class PropertyListWriter {
     // Our application bundle properties
     private AppBundleProperties bundleProperties;
 
-    private double version = 1.3;
+    private double version = 1.4;
 
     // DOM version of Info.plist file
     private Document document = null;
