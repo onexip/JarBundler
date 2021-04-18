@@ -89,7 +89,7 @@ public class PropertyListWriter {
         } catch (IOException ex) {
             throw new BuildException("Unable to write  \"" + fileName + "\"");
         } finally {
-            fileUtils.close(writer);
+            FileUtils.close(writer);
         }
     }
 

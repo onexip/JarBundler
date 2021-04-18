@@ -1514,7 +1514,7 @@ public class JarBundler extends MatchingTask {
                 } catch (IOException ioe) {
                     throw new BuildException("IOException in writing Help Book locale: " + locale);
                 } finally {
-                    mFileUtils.close(writer);
+                    FileUtils.close(writer);
                 }
             }
 
@@ -1592,7 +1592,7 @@ public class JarBundler extends MatchingTask {
         } catch (IOException ex) {
             throw new BuildException("Cannot create PkgInfo file: " + ex);
         } finally {
-            mFileUtils.close(writer);
+            FileUtils.close(writer);
         }
     }
 
