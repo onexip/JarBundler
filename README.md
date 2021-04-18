@@ -39,6 +39,25 @@ To skip the GPG signing process (for maven central release) add `-Dgpg.skip` to 
 
 # ChangeLog
 
+## Version 3.4.0 (Work In Progress)
+
+* Massive code refactoring
+  * code formatting
+  * specify maven source encoding
+  * fix Ant build files
+  * run examples with a modern JavaApplicationStub ([universalJavaApplicationStub](https://github.com/tofi86/universalJavaApplicationStub))
+* Updates to docs and examples
+* Optional `supportsAutomaticGraphicsSwitching` attribute which defaults to `true` *(for Plist key `NSSupportsAutomaticGraphicsSwitching`)*
+  * PullRequest !14, thanks to Björn Kautler (@Vampire) for his contribution!
+* Update Ant from 1.9.3 to 1.9.14
+* Bugfix: JarBundler on Windows created a classpath with backward slashes which broke the Info.plist file on macOS
+  * `\` in classpath are now replaced with `/`
+* Remove support for Java 1.3
+  * if no `jvmversion` attribute is set, the default version is now `1.4+`
+  * removed deprecated `growboxintrudes` attribute
+  * removed deprecated `liveresize` attribute
+  * removed deprecated `smalltabs` attribute
+
 ## Version 3.3.0 (2015-11-09)
 
 * Merged changes from [tofi86/Jarbundler](https://github.com/tofi86/Jarbundler/) into official release
