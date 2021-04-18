@@ -55,8 +55,35 @@ public class HelloWorld {
         menubar.add(helpMenu);
         frame.setJMenuBar(menubar);
 
-        JLabel label = new JLabel("Hello, World!", SwingConstants.CENTER);
+        final long maxMemory = Runtime.getRuntime().maxMemory() / (1024 * 1024);
+
+        String[] cp = System.getProperty("java.class.path").split(":");
+        String classpathList = "";
+        for (int i = 0; i < cp.length; i++) {
+            classpathList += "<li>" + cp[i] + "</li>";
+        }
+
+        String argsList = "";
+        for (int i = 0; i < args.length; i++) {
+            argsList += "<li>" + args[i] + "</li>";
+        }
+
+        JLabel label = new JLabel(
+            "<html>" +
+                "Hello, world!<br/><br/>" +
+
+                "Java version: " + System.getProperty("java.version") + "<br/>" +
+                "Java vendor: " + System.getProperty("java.vendor") + "<br/>" +
+                "Java home: " + System.getProperty("java.home") + "<br/><br/>" +
+
+                "Classpath: <ul>" + classpathList + "</ul><br/>" +
+
+                "Max Memory: " + maxMemory + "MB<br/><br/>" +
+
+                "Args: <ul>" + argsList + "</ul><br/>" +
+                "</html>", SwingConstants.LEFT);
         frame.getContentPane().add(label, BorderLayout.CENTER);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         placeWindow(frame, 400, 300);

@@ -57,6 +57,7 @@ To skip the GPG signing process (for maven central release) add `-Dgpg.skip` to 
   * removed deprecated `growboxintrudes` attribute
   * removed deprecated `liveresize` attribute
   * removed deprecated `smalltabs` attribute
+* Updated HelloWorld example to show JVM details, classpath and mainArgs
 
 ## Version 3.3.0 (2015-11-09)
 
