@@ -19,15 +19,16 @@
   -->
 
 <!-- ===========================================================================================
-Use this sample build in your own projects.  After putting the JarBundler-X.X.jar file in 
-your ANT library remove the 'classpath' attribute from the "taskdef" element.
+Use this sample build in your own projects. Make sure to build the parent project first.
+If you prefer putting the created JarBundler-X.X.X.jar file in your local ANT library,
+make sure to remove the 'classpath' attribute from the "taskdef" element.
 ============================================================================================ -->
 
 <project name="Hello World" default="simple" basedir=".">
 
-    <property name="version" value="4.3.1"/>
+    <property name="version" value="3.4.0-SNAPSHOT"/>
     <property name="buildnumber" value="213"/>
-    <property name="jarbundler.jar" value="../build/jarbundler-2.3.1.jar"></property>
+    <property name="jarbundler.jar" value="../build/jarbundler-${version}.jar"/>
 
     <tstamp>
         <format property="this_year" pattern="yyyy"/>
@@ -38,7 +39,7 @@ your ANT library remove the 'classpath' attribute from the "taskdef" element.
 
     <target name="compile" description="Compile the classes">
         <mkdir dir="classes"/>
-        <javac srcdir="src/java" destdir="classes" deprecation="on" source="1.4"/>
+        <javac srcdir="src/main/java" destdir="classes" deprecation="on" source="1.4" includeAntRuntime="yes"/>
     </target>
 
 
@@ -53,9 +54,9 @@ your ANT library remove the 'classpath' attribute from the "taskdef" element.
         <mkdir dir="build"/>
         <exec executable="cc">
             <arg line="-c"/>
-            <arg line="-I/System/Library/Frameworks/JavaVM.framework/Headers"/>
+            <arg line="-I /System/Library/Frameworks/JavaVM.framework/Headers"/>
             <arg line="-o build/HelpBookJNI.o"/>
-            <arg value="src/obj-c/HelpBookJNI.m"/>
+            <arg value="src/main/obj-c/HelpBookJNI.m"/>
         </exec>
 
         <exec executable="cc">
@@ -71,21 +72,18 @@ your ANT library remove the 'classpath' attribute from the "taskdef" element.
 
 
     <!-- Create a simple application to see if all the bits came together properly -->
-
     <target name="simple" depends="jar" description="Build an example application">
-
         <taskdef name="jarbundler"
                  classpath="${jarbundler.jar}"
                  classname="com.ultramixer.jarbundler.JarBundler"/>
 
-        <jarbundler dir="${basedir}" verbose="true" showPlist="true"
+        <jarbundler dir="${basedir}/build" verbose="true" showPlist="true"
                     name="${ant.project.name}"
                     mainclass="com.ultramixer.jarbundler.example.HelloWorld"
                     jar="build/${ant.project.name}.jar"
                     icon="icons/${ant.project.name}.icns"
                     version="${version}"
                     copyright="${copyright}"/>
-
     </target>
 
 
@@ -95,14 +93,12 @@ your ANT library remove the 'classpath' attribute from the "taskdef" element.
            - Has a bundle document type, extension '.hello'
            - Includes a Help Book
      -->
-
     <target name="complex" depends="jar, jni" description="Build an example application">
-
         <taskdef name="jarbundler"
                  classpath="${jarbundler.jar}"
                  classname="com.ultramixer.jarbundler.JarBundler"/>
 
-        <jarbundler dir="${basedir}" verbose="true" showPlist="false"
+        <jarbundler dir="${basedir}/build" verbose="true" showPlist="false"
                     name="${ant.project.name}"
                     copyright="${copyright}"
                     shortname="Hello"
@@ -113,7 +109,6 @@ your ANT library remove the 'classpath' attribute from the "taskdef" element.
                     icon="icons/${ant.project.name}.icns"
                     jvmversion="1.5+"
                     version="${version}"
-                    infostring="${ant.project.name}, ${copyright}"
                     build="${buildnumber}"
                     bundleid="com.ultramixer.jarbundler.example.HelloWorld"
                     helpbookfolder="HelpBook"
@@ -121,14 +116,13 @@ your ANT library remove the 'classpath' attribute from the "taskdef" element.
                     suFeedURL=""
         >
 
-
             <!-- Adjust the look, feel and behavior -->
             <javaproperty name="apple.laf.useScreenMenuBar" value="true"/>
             <javaproperty name="apple.awt.brushMetal" value="true"/>
             <javaproperty name="apple.awt.showGrowBox" value="false"/>
 
             <lsenvironment name="DYLD_LIBRARY_PATH"
-                           value="Contents/Resources/native/mac/x86:$DYLD_LIBRARY_PATH"></lsenvironment>
+                           value="Contents/Resources/native/mac/x86:$DYLD_LIBRARY_PATH"/>
 
             <!-- Associate document types with this application -->
             <documenttype name="Hello World text document"
@@ -163,26 +157,19 @@ your ANT library remove the 'classpath' attribute from the "taskdef" element.
             <javafilelist dir="${basedir}/build" files="libHelpBookJNI.jnilib"/>
 
 
-            <!-- Copy the HelpBooks to the language specific folders            -->
-            <!--  English will use the foldername and book name from the Bundle -->
-            <!--  German or 'de' will use the custom folder name and book name  -->
-
-            <HelpBook locale="English">
+            <!--
+                Copy the HelpBooks to the language specific folders
+                * English will use the folder name and book name from the Bundle
+                * German or 'de' will use the custom folder name and book name
+            -->
+            <helpbook locale="English">
                 <fileset dir="HelpBook/English"/>
                 <fileset dir="HelpBook/common"/>
-            </HelpBook>
-
-            <helpbook foldername="Hilfebuch" name="Hallo Welt Hilfe" locale="German">
+            </helpbook>
+            <helpbook locale="German" foldername="Hilfebuch" name="Hallo Welt Hilfe">
                 <fileset dir="HelpBook/German"/>
                 <fileset dir="HelpBook/common"/>
             </helpbook>
-            <!--
-                  <helpbook name="Hjälp" locale="sv">
-                      <fileset dir="HelpBook/Swedish" />
-                      <fileset dir="HelpBook/common" />
-                  </helpbook>
-            -->
-
 
         </jarbundler>
 
@@ -190,16 +177,8 @@ your ANT library remove the 'classpath' attribute from the "taskdef" element.
 
 
     <target name="clean" description="Clean up anything we can't rebuild">
-        <delete dir="${ant.project.name}.app" quiet="true"/>
         <delete dir="build" quiet="true"/>
         <delete dir="classes" quiet="true"/>
     </target>
 
 </project>
-
-        <!--
-        cc -c -I/System/Library/Frameworks/JavaVM.framework/Headers src/obj-c/HelpBookJNI.m
-        cc -dynamiclib -o libHelpBookJNI.jnilib HelpBookJNI.o -framework JavaVM -framework Cocoa
-        -->
-
-
