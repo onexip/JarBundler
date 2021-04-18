@@ -43,6 +43,13 @@ make sure to remove the 'classpath' attribute from the "taskdef" element.
     </target>
 
 
+    <target name="getJavaStub" description="Download a modern JavaApplicationStub which supports Java 1.5 - 16">
+        <get src="https://raw.githubusercontent.com/tofi86/universalJavaApplicationStub/master/src/universalJavaApplicationStub"
+             dest="build/universalJavaApplicationStub" />
+        <chmod file="build/universalJavaApplicationStub" perm="ugo+rx"/>
+    </target>
+
+
     <target name="jar" depends="compile" description="Create JAR file">
         <mkdir dir="build"/>
         <jar jarfile="build/${ant.project.name}.jar" basedir="classes"/>
@@ -72,18 +79,27 @@ make sure to remove the 'classpath' attribute from the "taskdef" element.
 
 
     <!-- Create a simple application to see if all the bits came together properly -->
-    <target name="simple" depends="jar" description="Build an example application">
+    <target name="simple" depends="jar, getJavaStub" description="Build an example application">
         <taskdef name="jarbundler"
                  classpath="${jarbundler.jar}"
                  classname="com.ultramixer.jarbundler.JarBundler"/>
 
+        <!--
+            Set 'usejavaxkey' to 'true' and 'stubfile' to a modern JavaApplicationStub implementation if you want
+            to support Java 1.5 - 16 on all old and modern macOS systems. Otherwise Apple's default
+            JavaApplicationStub will be used which will not run on modern macOS systems.
+        -->
         <jarbundler dir="${basedir}/build" verbose="true" showPlist="true"
                     name="${ant.project.name}"
                     mainclass="com.ultramixer.jarbundler.example.HelloWorld"
                     jar="build/${ant.project.name}.jar"
                     icon="icons/${ant.project.name}.icns"
                     version="${version}"
-                    copyright="${copyright}"/>
+                    copyright="${copyright}"
+                    highresolutioncapable="true"
+                    usejavaxkey="true"
+                    stubfile="build/universalJavaApplicationStub"
+        />
     </target>
 
 
@@ -93,7 +109,7 @@ make sure to remove the 'classpath' attribute from the "taskdef" element.
            - Has a bundle document type, extension '.hello'
            - Includes a Help Book
      -->
-    <target name="complex" depends="jar, jni" description="Build an example application">
+    <target name="complex" depends="jar, jni, getJavaStub" description="Build an example application">
         <taskdef name="jarbundler"
                  classpath="${jarbundler.jar}"
                  classname="com.ultramixer.jarbundler.JarBundler"/>
@@ -103,7 +119,8 @@ make sure to remove the 'classpath' attribute from the "taskdef" element.
                     copyright="${copyright}"
                     shortname="Hello"
                     signature="Helo"
-                    stubfile="Hello World"
+                    usejavaxkey="true"
+                    stubfile="build/universalJavaApplicationStub"
                     mainclass="com.ultramixer.jarbundler.example.HelloWorld"
                     jar="build/${ant.project.name}.jar"
                     icon="icons/${ant.project.name}.icns"
@@ -114,6 +131,7 @@ make sure to remove the 'classpath' attribute from the "taskdef" element.
                     helpbookfolder="HelpBook"
                     helpbookname="Hello World Help"
                     suFeedURL=""
+                    highresolutioncapable="true"
         >
 
             <!-- Adjust the look, feel and behavior -->
