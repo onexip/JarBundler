@@ -137,7 +137,7 @@ public class DocumentType {
      * type.</li>
      * <li>Viewer. The application can display, but not edit, documents of this
      * type.</li>
-     * <li>Shell. The application provides runtime services for other processesfor
+     * <li>Shell. The application provides runtime services for other processes for
      * example, a Java applet viewer.</li>
      * <li>None. The application can neither display nor edit documents of this type
      * but instead uses them in some other way. For example, Sketch uses this

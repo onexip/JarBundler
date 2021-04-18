@@ -329,6 +329,7 @@ public class JarBundler extends MatchingTask {
      * cropped to this if necessary.</p>
      *
      * @param s The short name for this application bundle
+     * @see <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/CFBundleName">Apple Developer Docs for 'CFBundleName' key</a>
      */
     public void setShortName(String s) {
         bundleProperties.setCFBundleName(s);
@@ -355,7 +356,10 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "icon" attribute (optional)
      *
+     * <p>The file containing the bundle's icon.</p>
+     *
      * @param f File reference to a macOS icon file.
+     * @see <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/CFBundleIconFile">Apple Developer Docs for 'CFBundleIconFile' key</a>
      */
     public void setIcon(File f) {
         mAppIcon = f;
@@ -384,6 +388,7 @@ public class JarBundler extends MatchingTask {
      * <p>No default.</p>
      *
      * @param s Unique identifier string for the bundle.
+     * @see <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/CFBundleIdentifier">Apple Developer Docs for 'CFBundleIdentifier' key</a>
      */
     public void setBundleid(String s) {
         bundleProperties.setCFBundleIdentifier(s);
@@ -393,7 +398,10 @@ public class JarBundler extends MatchingTask {
      * <p>Setter for the "developmentregion" attribute (optional)</p>
      * <p>Default "English".</p>
      *
+     * <p>The default language and region for the bundle, as a language ID.</p>
+     *
      * @param s Development region (country)
+     * @see <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/CFBundleDevelopmentRegion">Apple Developer Docs for 'CFBundleDevelopmentRegion' key</a>
      */
     public void setDevelopmentregion(String s) {
         bundleProperties.setCFBundleDevelopmentRegion(s);
@@ -403,8 +411,11 @@ public class JarBundler extends MatchingTask {
      * <p>Setter for the "allowmixedlocalizations" attribute (optional)</p>
      * <p>Default "false".<p>
      *
+     * <p>A Boolean value that indicates whether the bundle supports the retrieval of localized strings from frameworks.</p>
+     *
      * @param b True to allow mixed localizations in your app
      * @author Tobias Fischer
+     * @see <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleallowmixedlocalizations">Apple Developer Docs for 'CFBundleAllowMixedLocalizations' key</a>
      * @since 2.2.1
      */
     public void setAllowMixedLocalizations(boolean b) {
@@ -414,8 +425,11 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "NSHumanReadableCopyright" attribute (optional)
      *
+     * <p>A human-readable copyright notice for the bundle.</p>
+     *
      * @param s A string with the copyright notice for the bundle
      * @author Tobias Fischer
+     * @see <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/nshumanreadablecopyright">Apple Developer Docs for 'NSHumanReadableCopyright' key</a>
      * @since 2.3.0
      */
     public void setCopyright(String s) {
@@ -426,8 +440,11 @@ public class JarBundler extends MatchingTask {
      * <p>Setter for the "NSHighResolutionCapable" attribute (optional)</p>
      * <p>Default "false".</p>
      *
+     * <p>A Boolean value indicating whether the app supports high-resolution displays.</p>
+     *
      * @param b True if app is retina compatible
      * @author Tobias Fischer
+     * @see <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/nshighresolutioncapable">Apple Developer Docs for 'NSHighResolutionCapable' key</a>
      * @since 2.4.0
      */
     public void setHighResolutionCapable(boolean b) {
@@ -436,9 +453,9 @@ public class JarBundler extends MatchingTask {
 
     /**
      * Setter for the "NSSupportsAutomaticGraphicsSwitching" attribute (optional) Default "true".
-     * https://developer.apple.com/documentation/bundleresources/information_property_list/nssupportsautomaticgraphicsswitching
      *
      * @param b A Boolean value indicating whether an OpenGL app may utilize the integrated GPU.
+     * @see <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/nssupportsautomaticgraphicsswitching">Apple Developer Docs for 'NSSupportsAutomaticGraphicsSwitching' key</a>
      */
     public void setSupportsAutomaticGraphicsSwitching(boolean b) {
         bundleProperties.setNSSupportsAutomaticGraphicsSwitching(b);
@@ -463,10 +480,11 @@ public class JarBundler extends MatchingTask {
     /**
      * <p>Setter for the alternative 'JavaX' dictionary key (optional)</p>
      * <p>The 'JavaX' key is used to support the 'universalJavaApplicationStub'
-     * project. More details https://github.com/tofi86/universalJavaApplicationStub</p>
+     * project which supports Java versions 1.4-16</p>
      *
      * @param b True sets 'JavaX' dictionary key instead of 'Java' key
      * @author Tobias Fischer
+     * @see <a href="https://github.com/tofi86/universalJavaApplicationStub">universalJavaApplicationStub Project Docs</a>
      * @since 2.4.0
      */
     public void setUseJavaXKey(boolean b) {
@@ -526,6 +544,7 @@ public class JarBundler extends MatchingTask {
      * Setter for the "type" attribute
      *
      * @param s The Mac OS type of the bundle.
+     * @see <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundlepackagetype">Apple Developer Docs for 'CFBundlePackageType' key</a>
      * @deprecated As it should always be set to APPL for applications.
      */
     public void setType(String s) {
@@ -544,24 +563,29 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "jvmversion" attribute (optional)
      *
-     * Default is `1.4+` if this attribute isn't used.
+     * <p>Default is `1.4+` if this attribute isn't used.</p>
      *
-     * The value must represent a Java version higher than 1.4 and may contain special chars
-     * such as wildcards or range indicators:
+     * <p>The value must represent a Java version higher than 1.4 and may contain special chars
+     * such as wildcards or range indicators:</p>
      *
-     * - 1.4
-     * - 1.7+
-     * - 1.8.0_144
-     * - 9.0.1+
-     * - 10*
+     * <ul>
+     *     <li>1.4</li>
+     *     <li>1.7+</li>
+     *     <li>1.8.0_144</li>
+     *     <li>9.0.1+</li>
+     *     <li>10*</li>
+     * </ul>
      *
-     * Specifying a maximum JvmVersion is supported if you use the
-     * universalJavaApplicationStub project as launcherStub:
+     * <p>Specifying a maximum JvmVersion is supported if you use the
+     * universalJavaApplicationStub project as launcherStub:</p>
      *
-     * - 1.8;11*
+     * <ul>
+     *     <li>1.8;11*</li>
+     * </ul>
      *
-     * See https://github.com/tofi86/universalJavaApplicationStub#specify-minmax-java-requirement
-     * for further details.
+     * <p>See <a href="https://github.com/tofi86/universalJavaApplicationStub#specify-minmax-java-requirement"
+     * >https://github.com/tofi86/universalJavaApplicationStub#specify-minmax-java-requirement</a>
+     * for further details.</p>
      *
      * @param s The version of the JVM required to run the application.
      */
@@ -585,8 +609,11 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "LSArchitecturePriority" attribute (optional)
      *
+     * <p>An array of the architectures that the app supports, arranged according to their preferred usage.</p>
+     *
      * @param s A space delimited string. Example: "i386 x64_86 ppc"
      * @author Michael Bader
+     * @see <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/lsarchitecturepriority">Apple Developer Docs for 'LSArchitecturePriority' key</a>
      * @since 2.2.0
      */
     public void setLSArchitecturePriority(String s) {
@@ -609,7 +636,10 @@ public class JarBundler extends MatchingTask {
     /**
      * Setter for the "startasagent" attribute (optional)
      *
+     * <p>A Boolean value indicating whether the app is an agent app that runs in the background and doesn't appear in the Dock.</p>
+     *
      * @param b ???
+     * @see <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/lsuielement">Apple Developer Docs for 'LSUIElement' key</a>
      */
     public void setIsAgent(boolean b) {
         bundleProperties.setLSUIElement(new Boolean(b));
@@ -656,6 +686,7 @@ public class JarBundler extends MatchingTask {
      * information of a released bundle, use the CFBundleShortVersionString key.</p>
      *
      * @param s The build number
+     * @see <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleversion">Apple Developer Docs for 'CFBundleVersion' key</a>
      */
     public void setBuild(String s) {
         bundleProperties.setCFBundleVersion(s);
@@ -668,6 +699,7 @@ public class JarBundler extends MatchingTask {
      * http://developer.apple.com/documentation/MacOSX/Conceptual/BPRuntimeConfig/
      *
      * @param s The version number
+     * @see <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleshortversionstring">Apple Developer Docs for 'CFBundleShortVersionString' key</a>
      */
     public void setVersion(String s) {
         bundleProperties.setCFBundleShortVersionString(s);
@@ -766,6 +798,44 @@ public class JarBundler extends MatchingTask {
         log("The \"chmod\" attribute is deprecated, use the ANT Chmod task instead");
     }
 
+
+    /**
+     * Setter for the 'suFeedURL' attribute (optional)
+     *
+     * @param url URL used to check for new version of the applications.
+     * @author Tobias Bley
+     * @see <a href="https://sparkle-project.org/documentation/">Sparkle software update framework docs</a>
+     * @since 2.2.0
+     */
+    public void setSUFeedURL(String url) {
+        this.bundleProperties.setSUFeedURL(url);
+    }
+
+    /**
+     * Setter for the 'SUPublicDSAKeyFile' attribute (optional)
+     *
+     * @param file DSA key file
+     * @author Tobias Bley
+     * @see <a href="https://sparkle-project.org/documentation/">Sparkle software update framework docs</a>
+     * @since 3.2.0
+     */
+    public void setSUPublicDSAKeyFile(String file) {
+        this.bundleProperties.setSUPublicDSAKeyFile(file);
+    }
+
+    /**
+     * Setter for the 'LSApplicationCategoryType' attribute (optional)
+     *
+     * @param type Type of application category
+     * @author Tobias Bley
+     * @see <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/lsapplicationcategorytype">Apple Developer Docs for 'LSApplicationCategoryType' key</a>
+     * @since 3.2.0
+     */
+    public void setLSApplicationCategoryType(String type) {
+        this.bundleProperties.setLSApplicationCategoryType(type);
+    }
+
+
     /***************************************************************************
      * Nested tasks - derived from FileList and FileSet
      **************************************************************************/
@@ -838,7 +908,6 @@ public class JarBundler extends MatchingTask {
 
         bundleProperties.addLSEnvironment(name, value);
     }
-
 
     public void addConfiguredJavaProperty(JavaProperty javaProperty) throws BuildException {
         String name = javaProperty.getName();
@@ -1601,42 +1670,6 @@ public class JarBundler extends MatchingTask {
         String thisPath = bundleFile.getAbsolutePath();
 
         return thisPath.substring(rootPath.length());
-    }
-
-
-    /**
-     * Setter for the 'suFeedURL' attribute (optional)
-     *
-     * @param url URL used to check for new version of the applications.
-     * @author Tobias Bley
-     * @since 2.2.0
-     */
-    public void setSUFeedURL(String url) {
-        this.bundleProperties.setSUFeedURL(url);
-    }
-
-    /**
-     * Setter for the 'UPublicDSAKeyFile' attribute (optional)
-     *
-     * @param file DSA key file
-     * @author Tobias Bley
-     * @since 3.2.0
-     */
-    public void setSUPublicDSAKeyFile(String file) {
-        this.bundleProperties.setSUPublicDSAKeyFile(file);
-    }
-
-    /**
-     * <p>Setter for the 'LSApplicationCategoryType' attribute (optional)</p>
-     *
-     * <p>https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/LaunchServicesKeys.html#//apple_ref/doc/uid/TP40009250-SW8</p>
-     *
-     * @param type Type of application category
-     * @author Tobias Bley
-     * @since 3.2.0
-     */
-    public void setLSApplicationCategoryType(String type) {
-        this.bundleProperties.setLSApplicationCategoryType(type);
     }
 
 }
