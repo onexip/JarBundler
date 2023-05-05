@@ -409,7 +409,7 @@ public class JarBundler extends MatchingTask {
 
     /**
      * <p>Setter for the "allowmixedlocalizations" attribute (optional)</p>
-     * <p>Default "false".<p>
+     * <p>Default "false".</p>
      *
      * <p>A Boolean value that indicates whether the bundle supports the retrieval of localized strings from frameworks.</p>
      *
